@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Disaster Recovery &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/disaster-recovery/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>AEM Infrastructure Series: Disaster Recovery Basics</title>
+		<link>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/</link>
+		<comments>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/#respond</comments>
+		<pubDate>Thu, 14 Apr 2016 19:12:45 +0000</pubDate>
+		<dc:creator><![CDATA[Greg Dawson]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Disaster Recovery]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3474</guid>
+		<description><![CDATA[As I woke up this morning and turned on the coffee maker, the buttons would not work. Trying the light switch, and the lights would not turn on. Sometime during the night my power went out. I realized this was the day to write about disaster recovery for Adobe Experience Manager, but in my case [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/">AEM Infrastructure Series: Disaster Recovery Basics</a> was first posted on April 14, 2016 at 2:12 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><img class="size-medium wp-image-3476 alignright" src="/adobe-blog/files/2016/04/aem-unplug-300x200.jpg" alt="aem-unplug" width="300" height="200" srcset="/adobe-blog/files/2016/04/aem-unplug-300x200.jpg 300w, /adobe-blog/files/2016/04/aem-unplug.jpg 500w" sizes="(max-width: 300px) 100vw, 300px" />As I woke up this morning and turned on the coffee maker, the buttons would not work. Trying the light switch, and the lights would not turn on. Sometime during the night my power went out. I realized this was the day to write about disaster recovery for Adobe Experience Manager, but in my case the blocker was not about my computer (plenty of battery), or Internet (thank you tethering), but about how to survive for the next few hours without a hot cup of coffee. Here goes.</p>
+<p>When planning an Adobe Experience Manager on premise deployment, I always ask the the question “What is your tolerance for a site outage?” And the answer is almost always “None.” This is not surprising as I knew the answer before I asked the question.</p>
+<p>It may seem obvious that loss of your ecommerce site, even temporarily, can be severely detrimental to sales. But the truth is that all types of businesses suffer&#8211;expectations are high that your site is always available or your corporate image may be tarnished. Why then is redundancy and disaster recovery not a part of all AEM stand-ups?</p>
+<p>Cost? Most IT organizations have disaster recovery plans and initiatives in place, and when properly planned, an AEM infrastructure that is regionally fault tolerant is not necessarily an expensive proposition. Once I explain the options, it’ll be hard to say no.</p>
+<p><strong>Author Instances</strong></p>
+<p>First let’s look at a fault tolerant authoring instance. As you’ll see in other blog posts, I’m not a fan of Oak clustering as an answer for fault tolerance, and there are very specific use cases that need to be met before I’ll bless a 6.x clustering design. Clustering increases complexity, is slower than native TarMK and requires specialized DBAs to manage MongoDB instances. DBA resources that few customers have. With AEM 6.x there are other database options, but they require “Engineering / Support approval” and few, if any customers are actually running this in production. Do you want to be first?</p>
+<p>A better alternative is to use the TarMK Cold Standby feature, spanning the standbys across physical data centers. Sure, a Cold Standby requires a short amount of downtime as they must be manually activated, but most organizations can tolerate Authoring outages for short periods of time.</p>
+<p><img class="aligncenter wp-image-3477 size-medium" src="/adobe-blog/files/2016/04/aem-tarmk-cold-standby-300x141.png" alt="AEM TarMK Cold Standby" width="300" height="141" srcset="/adobe-blog/files/2016/04/aem-tarmk-cold-standby-300x141.png 300w, /adobe-blog/files/2016/04/aem-tarmk-cold-standby-600x282.png 600w, /adobe-blog/files/2016/04/aem-tarmk-cold-standby.png 715w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+<p><strong>Publish Instances</strong></p>
+<p>It’s simpler than you think. Load balanced publishers in multiple data centers protect against complete data center outages and if licensed, can provide increased capacity. A global load balancer can route traffic among data centers handing out IP addresses to visitors. Talk to your Adobe rep about licensing for instances that will be accepting traffic (an active/active scenario), versus instances that will only accept traffic in a disaster recovery situation (active/passive).</p>
+<p>Configure dependent services like LDAP, SMTP and federated search with fallback when possible.</p>
+<p><img class="aligncenter wp-image-3478" src="/adobe-blog/files/2016/04/aem-dr-global-lb-600x342.png" alt="AEM with a Global Load Balancer" width="400" height="228" srcset="/adobe-blog/files/2016/04/aem-dr-global-lb-600x342.png 600w, /adobe-blog/files/2016/04/aem-dr-global-lb-300x171.png 300w, /adobe-blog/files/2016/04/aem-dr-global-lb-768x438.png 768w, /adobe-blog/files/2016/04/aem-dr-global-lb.png 1037w" sizes="(max-width: 400px) 100vw, 400px" /></p>
+<p><strong>Creating a Disaster Recovery Plan</strong></p>
+<p>Your organization likely already has a disaster recovery plan template created for other projects, and may require you use the template when creating your AEM disaster recovery plan. Using a common template provides documentation consistency for system administrators while executing a plan in a real DR situation. Elements a disaster recovery plan should include:</p>
+<ul>
+<li>Basic information around the plan purpose, scope, objectives and strategies;</li>
+<li>Primary contacts and call lists;</li>
+<li>Hardware and software inventories with sizing, mounts, IP, DNS names, login information, and any other special information required to understand the platform;</li>
+<li>Infrastructure diagrams to visually show connectivity and interaction between devices, including port numbers, firewalls, IP addresses and DNS names;</li>
+<li>Upstream dependencies, how to validate and who to contact;</li>
+<li>Tasking orders with detailed recovery procedures, and return to normal procedures;</li>
+<li>Detailed testing procedures and the results when initially tested (always test your plan!);</li>
+</ul>
+<p>When writing a disaster recovery plan, assume the reader knows literally nothing about the platform. This helps you write and test with clarity to help ensure success during recovery.</p>
+<p>And yes, pouring hot water through a coffee filter into a cup does render a decent cup of coffee. Thank you. Disaster averted.</p>
+<p><strong>Adobe Resources</strong></p>
+<ul>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/deploy/recommended-deploys.html">Recommended Deployments</a></li>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/deploy/recommended-deploys/tarmk-cold-standby.html">How to Run AEM with TarMK Cold Standby</a></li>
+</ul>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/">AEM Infrastructure Series: Disaster Recovery Basics</a> was first posted on April 14, 2016 at 2:12 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:28:07 by W3 Total Cache -->

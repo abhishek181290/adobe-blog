@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe Analytics &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/adobe-analytics/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>One Visitor ID To Rule Them All</title>
+		<link>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/</link>
+		<comments>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/#respond</comments>
+		<pubDate>Tue, 17 May 2016 21:38:19 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[adobe audience manager]]></category>
+		<category><![CDATA[Adobe Campaigns]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe Media Optimizer]]></category>
+		<category><![CDATA[Adobe Mobile Services]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3937</guid>
+		<description><![CDATA[Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to setting their version of a third party cookie, called “s_vi”. As a temporarily solution, Adobe set a default backup cookie, “s_fid”, in case the cookie was deleted since these cookies were being set by servers outside the parent domain on a browser. The other option and more cumbersome solution for implementing the first party visitor ID cookie was to use a CNAME record on our client&#8217;s DNS in order to avoid setting a 3rd party cookie altogether. Obviously, there was a need and room to grow from Adobe’s side.<br />
+The Marketing Cloud Visitor ID service, AMCV ID, is supported by the following libraries and SDKs: Adobe Dynamic Tag Mnagement, Adobe Analytyics, Adobe Audience Manager, Adobe Target and Adobe Mobile Services.</p>
+<p><em><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png"><img class=" wp-image-3938 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png" alt="Adobe Marketing Cloud Visitor ID framework" width="460" height="221" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png 600w" sizes="(max-width: 460px) 100vw, 460px" /></a></em></p>
+<p><em>Source: https://blogs.adobe.com/digitalmarketing/analytics/why-new-adobe-marketing-cloud-id-service-should-be-on-your-radar/<br />
+</em><br />
+<strong>Migrating from Adobe Analytics Legacy Visitor ID</strong><br />
+This migration will either store the legacy cookie (s_vi) to the AMCV cookie or create a new AMCV cookie, which will be used as its replacement all together.</p>
+<p><strong>Implementing AMCV in Adobe Dynamic Tag Mangement</strong></p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png"><img class="wp-image-3939 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png" alt="Adobe Dynamic Tag Management - Marketing Cloud ID Service Tool" width="534" height="260" srcset="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png 300w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-768x374.png 768w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-600x292.png 600w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png 950w" sizes="(max-width: 534px) 100vw, 534px" /></a></p>
+<p><strong>Prerequisites &#8211; Adobe Requirements<br />
+</strong><br />
+1. Contact Client Care to obtain the Marketing Cloud Organization ID ie. (MCOrg ID)<br />
+2. Ensure your scode is on AppMeasurement version 1.3 or later, scode H.27 or later.<br />
+3. Make sure your Adobe Adobe server calls are going to Regional Data Collection, meaning your image requests are being sent to RDC tracking server ( ie. .sc.omtrdc.net) instead of a Non-RDC tracking server, (ie. .2o7.net).<br />
+4. Next, deploy your new VisitorAPI Javascript library. Log into your Admin Console and get the VisitorAPI.js file from the Code Manager. This can be in your scode file or in DTM in the tool’s setting, but it must be placed at the beginning of the file. Important Note: The placement of this code needs to fire first in the order sequence in order to be leveraged by the other Adobe JS libraries.<br />
+5. Configure your Visitor ID service.<br />
+6. Set Visitor ID in a Custom Variable (sprop or eVar) to test quality assurance. (Below is the Custom JS to capture the AMCV in a DTM Data Element that is ready to be mapped to a custom variable.) You can also set the AMCV in a cookie using a native DTM function to either map or verify in the Developers Console. (_satellite.setCookie(&#8216;cookie name&#8217;,&#8217;cookie value&#8217;,days to expire)<br />
+7. As precaution, please be sure to check Adobe Analytics server call as there should be an additional parameter called “mid”, the Marketing Cloud Visitor ID.</p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png"><img class="wp-image-3940 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png" alt="Adobe Marketing Cloud ID - Dynamic Tag Managment Data Element" width="676" height="345" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-768x393.png 768w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-600x307.png 600w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png 1107w" sizes="(max-width: 676px) 100vw, 676px" /></a></p>
+<p>Now that you have the foundation for your Adobe Target, Adobe Analytics, Adobe Media Optimizer and Adobe Audience Manager tools, you can feel confident about your data being unified and now you are finally ready to start building your campaigns, profiles, activities, and reports.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Integrating Adobe DTM, Target, Analytics &#038; AEM</title>
+		<link>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/</link>
+		<comments>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/#respond</comments>
+		<pubDate>Fri, 13 May 2016 21:40:06 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Cordova]]></category>
+		<category><![CDATA[Adobe Data Workbench]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3874</guid>
+		<description><![CDATA[At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – formally known as CQ5), Adobe Target (formally known as Test&amp;Target) and Adobe Analytics (formally known as SiteCatalyst) seamlessly into a hybrid mobile application.</p>
+<p><strong>Overview</strong></p>
+<p>Perficient was self tasked to feature a highly interactive, visually compelling Adobe Summit App built in AEM Mobile that allows users to see real-time analytics from Adobe Workbench, an interactive analytics application part of Adobe Analytics that allows you to build visualization dashboards, as well as experience personalized content based off their responses on the survey taken from their mobile device.</p>
+<p><strong>Challenge</strong></p>
+<p>Integrating DTM and Target on a single page application in AngularJs, a JavaScript front-end framework.</p>
+<p>The application was built with Cordova (formally known as Adobe PhoneGap), a hybrid app development framework which consist of HTML, CSS and JavaScript, we were able to leverage the mobile platform’s Web view to render content. Since DTM is a JavaScript based container, we were able to integrate many of the other Adobe Marketing Cloud products that we come so accustom to.</p>
+<p>Using DTM as a host for Adobe Tools such as Adobe Analytics and Target, you are able to push, configure, track, integrate and perform marketing initiatives such as performing A/B tests with different components on the page and tracking user activities on your app.</p>
+<p><strong>STEP 1</strong></p>
+<p>We built a base template for each page (&#8220;mobileapps/components/angular/ng-page”) and we extended our pages from that template by creating an AEM (CQ) project using Apache Maven, a building management tool.</p>
+<p><strong style="line-height: 1.5">STEP 2</strong></p>
+<p>After configuring our property in Adobe Dynamic Tag Management, we went to our first page in the app, in this case the login page, and inserted the DTM bootleg snippet.</p>
+<p><em><strong>“&lt;script src=&#8221;https://assets.adobedtm.com/3215e845c9690cbe968752c99b825440070e111f/satelliteLib-21077d4adfcbef88029b6d7609a4be07d51b0616-staging.js&#8221;&gt;&lt;/script&gt;”</strong></em></p>
+<p style="text-align: left"><em><strong>Notes:</strong></em> Place snippet before the end of &lt;head&gt; section in the head.jsp;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png"><img class="wp-image-3879 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png" alt="intergating adobe dynamic tag management in crxde lite" width="295" height="171" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-768x445.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-600x348.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png 1171w" sizes="(max-width: 295px) 100vw, 295px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3875 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png" alt="intergating adobe dynamic tag management in adobe experience manager - head snippet" width="323" height="175" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-768x417.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-600x325.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png 1252w" sizes="(max-width: 323px) 100vw, 323px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>STEP 3</strong></p>
+<p>In the login page component, go to body.jsp, and insert the DTM snippet in the body of the page.</p>
+<p><strong><em>“&lt;script type=&#8221;text/javascript&#8221;&gt;_satellite.pageBottom();&lt;/script&gt;”</em></strong></p>
+<p><strong><em>Notes:</em></strong> Place snippet before the end of &lt;body&gt;;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3878 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png" alt="intergating adobe dtm in crxde lite" width="286" height="166" srcset="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-768x444.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-600x347.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite.png 1174w" sizes="(max-width: 286px) 100vw, 286px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png"><img class="wp-image-3880 alignnone" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png" alt="intergating adobe dynamic tag management in adobe experience manager - body snippet" width="312" height="167" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-768x411.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-600x321.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png 1270w" sizes="(max-width: 312px) 100vw, 312px" /></a></p>
+<p><strong>STEP 4</strong></p>
+<p style="text-align: left">Since the summit app is an Angular SPA, we just needed to put the snippets in the first page, and the JS will be loaded/available for all other pages.</p>
+<p>Therefore the next step was to UAT/QA and verify the JS was getting downloaded correctly.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png"><img class="size-medium wp-image-3876 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png" alt="adobe dynamic tag management debugging adobe analytic tool" width="300" height="167" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-768x428.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-600x335.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png 1217w" sizes="(max-width: 300px) 100vw, 300px" /></a><strong>STEP 5 </strong></p>
+<p>Now we are ready to add our Adobe Analytics and Adobe Target tools in DTM, where we were able to implement our analytics solution design and run different personalize tests based data being collected from Adobe Analytics including custom variables and success events.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png"><img class="size-medium wp-image-3877 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png" alt="adobe dynamic tag management debugging" width="300" height="172" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-768x441.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-600x345.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png 1182w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Know Your Customer, Transform Their Experience</title>
+		<link>/adobe-blog/2016/03/23/adobe-summit-know-your-customer-transform-their-experience/</link>
+		<comments>/adobe-blog/2016/03/23/adobe-summit-know-your-customer-transform-their-experience/#respond</comments>
+		<pubDate>Wed, 23 Mar 2016 22:18:56 +0000</pubDate>
+		<dc:creator><![CDATA[Michael Porter]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Summit]]></category>
+		<category><![CDATA[Clicktale]]></category>
+		<category><![CDATA[customer experience]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3215</guid>
+		<description><![CDATA[Dr. Tal  Schwartz of Clicktale and Arran Peck  from Ancestry.com discussed how they transformed their experience. He started with a video. The Clicktale product pulls all the information about everything someone does on the site.  It&#8217;s an easy integration to the web site.  They also integrate to Adobe Analystics, Adobe Target, and Adobe Experience Manager. [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/23/adobe-summit-know-your-customer-transform-their-experience/">Adobe Summit: Know Your Customer, Transform Their Experience</a> was first posted on March 23, 2016 at 5:18 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Dr. Tal  Schwartz of Clicktale and Arran Peck  from Ancestry.com discussed how they transformed their experience. He started with a video.</p>
+<p>The Clicktale product pulls all the information about everything someone does on the site.  It&#8217;s an easy integration to the web site.  They also integrate to Adobe Analystics, Adobe Target, and Adobe Experience Manager. By getting these deep insights, you can use that to create better tests and more efficiently optimize your site.<img class="size-full wp-image-3216 alignleft" src="/adobe-blog/files/2016/03/clicktale-heat-map.jpeg" alt="clicktale-heat-map" width="253" height="199" /></p>
+<p>AEM Integration</p>
+<p>There&#8217;s a button on AEM site and you get a heat map to show you what users are doing on the site.</p>
+<p>Many companies like CNN and Ancestry.com are using Clicktale</p>
+<p>Mobile vs desktop: There are a number of use cases suited to mobile vs desktop.  In other words both have their place. Neither is going away.  That&#8217;s why Clicktale supports both channels.  You can get full session playback for a mobile site.  You also get a heat map for the mobile page.</p>
+<h2>Ancestry&#8217;s Usage</h2>
+<p>Arran has been with Ancestry.com for quite a while.  He ran the Australia office for a while but recently moved to the Bay Area.  He&#8217;s the senior director of conversion.<span id="more-3215"></span></p>
+<p>Ancestry</p>
+<ul>
+<li>leading online family history service</li>
+<li>Subscription allows you to access voer 2B document</li>
+<li>leading DNA test for family history
+<ul>
+<li>Genotyped 1.5 M customers</li>
+</ul>
+</li>
+<li>$680M revenue in 2015</li>
+<li>1,300 employees</li>
+<li>Offices in US, UK, Australia, Canada, and Sweden</li>
+</ul>
+<h3><strong>Conversion and Insights, a love story</strong></h3>
+<p>A lot of Ancestry&#8217;s brand is about storytelling.  The story</p>
+<ul>
+<li>Uses Adobe Analytics to get data insights and see what opportunities exist</li>
+<li>Create the hypothesis and then test it in Adobe Target</li>
+<li>Use Tableau dashboards to see the data in Target and the actual revenue.
+<ul>
+<li>Business impact</li>
+<li>Lifetime revenue</li>
+</ul>
+</li>
+<li>But were missing the customer insight.  Over 80% of the time, people were doing unexpected things.
+<ul>
+<li>Wanted to know why a test won and why a test lost</li>
+<li>It&#8217;s about that true insight in actual usage</li>
+</ul>
+</li>
+</ul>
+<h3>Case Study 1</h3>
+<p><img class="aligncenter size-large wp-image-3217" src="/adobe-blog/files/2016/03/ancestrydna-600x225.png" alt="ancestrydna" width="600" height="225" srcset="/adobe-blog/files/2016/03/ancestrydna-600x225.png 600w, /adobe-blog/files/2016/03/ancestrydna-300x112.png 300w, /adobe-blog/files/2016/03/ancestrydna-768x288.png 768w, /adobe-blog/files/2016/03/ancestrydna.png 1297w" sizes="(max-width: 600px) 100vw, 600px" /></p>
+<p>Ancestry DNA is a simple $99 test to find your ethnic mix and uncover distant relatives.  This gives</p>
+<ul>
+<li>New audience</li>
+<li>Significant increase in traffic to home page</li>
+<li>But limited insight into customer behavior</li>
+</ul>
+<p>Ran a test on the Ancestry DNA page.  They wanted to find out about the impact to different sections.  The results were good with an overall increase in sales.  However, ClickTale showed that all the middle content had little engagement.  The bottom section for FAQ&#8217;s had 53 seconds, almost 3X the other sections.</p>
+<p>Then changed the banner image from white male to Native American</p>
+<h3>Case Study 2</h3>
+<p>Iterative testing into a great experience.   This test was about onboarding.  They used a testing process:</p>
+<ul>
+<li>Think it</li>
+<li>Test it</li>
+<li>Build it</li>
+</ul>
+<p><img class=" wp-image-3218 alignleft" src="/adobe-blog/files/2016/03/ancestryfamilytree-529x600.png" alt="ancestryfamilytree" width="327" height="370" srcset="/adobe-blog/files/2016/03/ancestryfamilytree-529x600.png 529w, /adobe-blog/files/2016/03/ancestryfamilytree-265x300.png 265w, /adobe-blog/files/2016/03/ancestryfamilytree-300x340.png 300w, /adobe-blog/files/2016/03/ancestryfamilytree.png 584w" sizes="(max-width: 327px) 100vw, 327px" />So new functionality gets tested before rollout of functionality.   In this case, they wanted to make it really easy to run through your family tree.</p>
+<p>Outcome:</p>
+<ul>
+<li>Increase bill through of customers in free stage trial</li>
+<li>Users more likely to bill through after the trial if they actually build their family tree</li>
+<li>Quicker speed to discovery and to building a full product for A/B test validation (get product to release quicker)</li>
+</ul>
+<p>The process</p>
+<ol>
+<li>Setup four rounds of the experience</li>
+<li>Look at the Clicktale videos</li>
+<li>Build second prototype and test again
+<ol>
+<li>Also looked at if users were building trees quicker, etc.</li>
+</ol>
+</li>
+<li>He showed how they were able to see the test results</li>
+</ol>
+<h3>Happy Customer, Happy Life</h3>
+<p>The voice of the customer amplified</p>
+<p>The team with members who spent a minimum of two hours every six weeks watching what a customer does on the site saw far greater improvements to their designs&#8217; user experience.</p>
+<p>With Clicktale, can view videos by interest (</p>
+<ul>
+<li>Customer device
+<ul>
+<li>destktop</li>
+<li>tablet</li>
+</ul>
+</li>
+<li>customer profile
+<ul>
+<li>customer type</li>
+<li>product purchased</li>
+</ul>
+</li>
+<li>entry page</li>
+<li>Specific Tests</li>
+<li>Specific page visite</li>
+</ul>
+<p><strong>Quote:</strong> Combining conversion testing with the videos creates a better customer experience and happier results.</p>
+<p>&nbsp;</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/23/adobe-summit-know-your-customer-transform-their-experience/">Adobe Summit: Know Your Customer, Transform Their Experience</a> was first posted on March 23, 2016 at 5:18 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/23/adobe-summit-know-your-customer-transform-their-experience/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>AEM Mobile Part 2: See our Live Demo at Adobe Summit</title>
+		<link>/adobe-blog/2016/03/21/aem-mobile-part-2-see-our-live-demo-at-adobe-summit/</link>
+		<comments>/adobe-blog/2016/03/21/aem-mobile-part-2-see-our-live-demo-at-adobe-summit/#respond</comments>
+		<pubDate>Mon, 21 Mar 2016 22:30:10 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[AEM Mobile]]></category>
+		<category><![CDATA[AEM6]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3153</guid>
+		<description><![CDATA[I am very excited to show Perficient&#8217;s demo for Adobe Summit. We have created a mobile app based on the Adobe Digital Marketing technologies outlined in my AEM Mobile blog post. This app brings together many parts of Adobe Experience Manager and the Adobe Marketing Cloud to produce a mobile app that can be easily authored [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/21/aem-mobile-part-2-see-our-live-demo-at-adobe-summit/">AEM Mobile Part 2: See our Live Demo at Adobe Summit</a> was first posted on March 21, 2016 at 5:30 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<div class="content">
+<p>I am very excited to show Perficient&#8217;s demo for Adobe Summit. We have created a mobile app based on the Adobe Digital Marketing technologies outlined <a href="http://blogs.perficient.com/digexplatforms/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/" target="_blank">in my AEM Mobile blog post</a>. This app brings together many parts of Adobe Experience Manager and the Adobe Marketing Cloud to produce a mobile app that can be easily authored by non-technical users. So how did we pull this off?</p>
+<h2>Step 1: Perficient Digital&#8217;s Design and Front End Coding</h2>
+<p>Our process started by leveraging Perficient&#8217;s strong design capabiities to create the experience based on our branding at Adobe Summit. Olivia, one of our designers created the designs, iterated on the designs with our digital marketing team and then delivered the finished designs within a single week.</p>
+<p><a href="/adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results.jpg" rel="attachment wp-att-3154"><img class="aligncenter size-large wp-image-3154" src="/adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results-450x600.jpg" alt="01-Perficient_Adobe_Summit_App_Results" width="450" height="600" srcset="/adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results-450x600.jpg 450w, /adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results-225x300.jpg 225w, /adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results.jpg 768w, /adobe-blog/files/2016/03/01-Perficient_Adobe_Summit_App_Results-300x400.jpg 300w" sizes="(max-width: 450px) 100vw, 450px" /></a></p>
+<p><span id="more-3153"></span></p>
+<p>Next, one of our skilled Multi-Shoring Solution Architects, Scott, picked up these design comps and translated them into workable HTML wireframes.</p>
+<p><a href="/adobe-blog/files/2016/03/02-App-HTML.png" rel="attachment wp-att-3155"><img class="aligncenter size-large wp-image-3155" src="/adobe-blog/files/2016/03/02-App-HTML-388x600.png" alt="02-App-HTML" width="388" height="600" srcset="/adobe-blog/files/2016/03/02-App-HTML.png 388w, /adobe-blog/files/2016/03/02-App-HTML-194x300.png 194w, /adobe-blog/files/2016/03/02-App-HTML-300x464.png 300w" sizes="(max-width: 388px) 100vw, 388px" /></a></p>
+<p>&nbsp;</p>
+<h2>Step 2: Perficient Digital&#8217;s AEM Implementation</h2>
+<p>Once we had the design created, we implemented the app inside of AEM Mobile. Our developers and architects, including Anton, Harini and Eddie, implemented this application inside of AEM using the Angular framework.</p>
+<p><a href="/adobe-blog/files/2016/03/03-AEM-Mobile.png" rel="attachment wp-att-3156"><img class="aligncenter size-large wp-image-3156" src="/adobe-blog/files/2016/03/03-AEM-Mobile-511x600.png" alt="03-AEM-Mobile" width="511" height="600" srcset="/adobe-blog/files/2016/03/03-AEM-Mobile.png 511w, /adobe-blog/files/2016/03/03-AEM-Mobile-256x300.png 256w, /adobe-blog/files/2016/03/03-AEM-Mobile-300x352.png 300w" sizes="(max-width: 511px) 100vw, 511px" /></a></p>
+<p>From the AEM interface, authors can easily maintain content, publish content and release the app.</p>
+<h2>Step 3: Perficient Digital&#8217;s Analytics Implementation</h2>
+<p>As the AEM team was completing the app code, Ryan, one of our analytics experts, analyzed the application&#8217;s interactions, created an analytics tracking plan and implemented the tracking using Adobe Analytics and Adobe Digital Tag Manager. Using the powerful reporting features in Adobe Analytics, we are able to visualize user interactions in real time at the booth.</p>
+<p><a href="/adobe-blog/files/2016/03/05-Analytics-Reporting.png" rel="attachment wp-att-3157"><img class="aligncenter size-large wp-image-3157" src="/adobe-blog/files/2016/03/05-Analytics-Reporting-542x600.png" alt="05-Analytics-Reporting" width="542" height="600" srcset="/adobe-blog/files/2016/03/05-Analytics-Reporting.png 542w, /adobe-blog/files/2016/03/05-Analytics-Reporting-271x300.png 271w, /adobe-blog/files/2016/03/05-Analytics-Reporting-300x332.png 300w" sizes="(max-width: 542px) 100vw, 542px" /></a></p>
+<h2>Step 4: Success!</h2>
+<p>After weeks of development, we are excited to show the new app at Adobe Summit. We will have laptops and Kindle Fires available to show the authoring interface and the app. Stop by our booth at Adobe Summit to see it in person!</p>
+<p><a href="/adobe-blog/files/2016/03/08-End-Screen.png" rel="attachment wp-att-3158"><img class="aligncenter size-large wp-image-3158" src="/adobe-blog/files/2016/03/08-End-Screen-351x600.png" alt="08-End-Screen" width="351" height="600" srcset="/adobe-blog/files/2016/03/08-End-Screen.png 351w, /adobe-blog/files/2016/03/08-End-Screen-176x300.png 176w, /adobe-blog/files/2016/03/08-End-Screen-300x513.png 300w" sizes="(max-width: 351px) 100vw, 351px" /></a></p>
+</div>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/21/aem-mobile-part-2-see-our-live-demo-at-adobe-summit/">AEM Mobile Part 2: See our Live Demo at Adobe Summit</a> was first posted on March 21, 2016 at 5:30 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/21/aem-mobile-part-2-see-our-live-demo-at-adobe-summit/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>AEM Mobile Part 1: A Fresh Approach to Mobile Apps</title>
+		<link>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/</link>
+		<comments>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/#respond</comments>
+		<pubDate>Mon, 07 Mar 2016 15:22:35 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Mobile Experience]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Digital Publishing Suite]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+		<category><![CDATA[AEM Mobile]]></category>
+		<category><![CDATA[AEM6]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3057</guid>
+		<description><![CDATA[Recently, Adobe introduced AEM Mobile, a new way to build, maintain and deploy mobile apps. AEM Mobile makes it vastly easier to manage mobile apps by enabling marketers to maintain mobile app content, which has traditionally been done by developers. AEM Mobile is the centerpiece of a new platform Adobe has built around enabling marketing to maintain [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/">AEM Mobile Part 1: A Fresh Approach to Mobile Apps</a> was first posted on March 7, 2016 at 9:22 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><img class="aligncenter" src="/adobe-blog/files/2016/03/aem-mobile-banner.png" alt="AEM Mobile" /></p>
+<p>Recently, Adobe introduced <a href="http://blogs.adobe.com/aemmobile/2016/02/announcing-adobe-experience-manager-mobile.html">AEM Mobile</a>, a new way to build, maintain and deploy mobile apps. AEM Mobile makes it vastly easier to manage mobile apps by enabling marketers to maintain mobile app content, which has traditionally been done by developers. AEM Mobile is the centerpiece of a new platform Adobe has built around enabling marketing to maintain mobile apps and market to mobile app users.</p>
+<p>As <a href="https://solutionpartners.adobe.com/fragments/partners/a1X30000000YGZiEAO.html">one of Adobe&#8217;s top partners</a>, Perficient had a chance to preview AEM Mobile and get a glimpse into the technology underlying this new platform.</p>
+<p><span id="more-3057"></span></p>
+<h2>The Tech Behind the Scenes</h2>
+<p>This new platform is composed of several different technologies, each of which has been deeply integrated, to build a seamless mobile app publishing experience.</p>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3060" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-DPS-Logo.png" alt="Adobe DPS Logo" srcset="/adobe-blog/files/2016/03/Adobe-DPS-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-DPS-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-DPS-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Digital Publishing Suite: Easy maintenance of mobile app content</h3>
+<p><a href="https://digitalpublishing.acrobat.com/welcome.html">Adobe Digital Publishing Suite (or DPS)</a>, which Adobe unveiled in 2010, provides Marketers the ability to maintain mobile app content without having to involve developers or resubmit apps through the app store. This tool has been used by numerous organizations to manage their apps, however it does have some limits. DPS, does not give full access to the mobile APIs and has limited functionality compared to native apps. Adobe Mobile takes what is best about DPS, the Marketing content management and integrates it into the powerful PhoneGap platform.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3062" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/PhoneGap-Logo.png" alt="PhoneGap Logo" /></p>
+<h3>Adobe PhoneGap: Publish apps across all mobile platforms</h3>
+<p><a href="http://phonegap.com/">Adobe PhoneGap</a> is a powerful platform for publishing multi-platform mobile apps. These apps are built with HTML and CSS and are wrapped in a native app wrapper. The deep API integrations and powerful rendering engines in modern phones allows these apps to compete in performance and features with native apps without requiring separate development efforts for each platform. By integrating Adobe PhoneGap into AEM Mobile, Adobe has unleashed the power of the PhoneGap platform and integrated with the ease of content publication provided by Adobe Experience Manager and Adobe Digital Publishing Suite.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3063" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/AEM-Logo.png" alt="AEM Logo" /></p>
+<h3>Adobe Experience Manager: Author content &amp; managed digital assets in an friendly interface</h3>
+<p>In AEM Mobile, <a href="http://www.adobe.com/marketing-cloud/enterprise-content-management.html">Adobe Experience Manager</a> extends it&#8217;s powerful content authoring and Digital Asset Management features to enable marketers to manage and deploy mobile apps through a familiar and intuitive user interface. In AEM Mobile, mobile content authors can use the same drag and drop features to build their mobile app content via reusable components.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3059" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-Analytics-Logo.png" alt="Adobe Analytics Logo" srcset="/adobe-blog/files/2016/03/Adobe-Analytics-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-Analytics-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-Analytics-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Analytics: Quick &amp; easy measurement of mobile interactions</h3>
+<p>Adobe has created a version of <a href="http://www.adobe.com/marketing-cloud/web-analytics.html">Adobe Analytics</a> specifically targeted at measuring mobile app interactions. Of course, companies can still integrate with Adobe Analytics Standard and Premium to get the full breadth of measurement possibilities, but this mobile-specific framework enables quick and low-effort measurement of a large number of mobile-specific interactions.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3061" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-Target-Logo.png" alt="Adobe Target Logo" srcset="/adobe-blog/files/2016/03/Adobe-Target-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-Target-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-Target-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Target: Deliver dynamic content</h3>
+<p>Along with the <a href="/blogs.perficient.com/digexplatforms/2016/01/05/are-you-ready-for-at-js/">new AT.js</a>, Adobe has released a version of <a href="http://www.adobe.com/marketing-cloud/testing-targeting.html">Adobe Target</a> geared for mobile apps. Using Adobe Target, marketers can deliver dynamic content to users to market within the device, increasing relevance, conversion rates and engagement.</p>
+</div>
+<h2 style="clear: both;">Bringing it all Together</h2>
+<p>By combining all of these technologies into a single platform, Adobe has created a mobile app platform with unparalleled features, flexibility and ease of use. No longer should mobile apps be separate from the rest of your digital marketing technology or should they be unmeasured or un-marketed. By leveraging, AEM Mobile you can build and maintain more apps and derive more value out of every dollar you put into mobile.</p>
+<p>Perficient is extremely excited by the possibilities offered by AEM Mobile and for <a href="http://summit.adobe.com" target="_blank">Adobe Summit</a>, we have some very special demos planned to demonstrate the potential of the platform. Stay tuned for the second part of this blog series for more information!</p>
+<p>&nbsp;</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/">AEM Mobile Part 1: A Fresh Approach to Mobile Apps</a> was first posted on March 7, 2016 at 9:22 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Protecting Your Adobe Analytics Implementation from Start to End</title>
+		<link>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/</link>
+		<comments>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/#comments</comments>
+		<pubDate>Tue, 01 Mar 2016 15:26:54 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Digital Analytics]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2965</guid>
+		<description><![CDATA[Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier and concise free when it comes to auditing your Adobe Analytics, formally known as SiteCatalyst or Omniture, and Adobe Dynamical Tag Management (DTM) implementations and future releases.</p>
+<p>Most of today’s savvy digital analytics marketers are already either using a tag management system or started migrating their legacy clickstream hard code implementation to a TMS approach. To successfully audit your Adobe Analytics implementation, you must first understand the full process of data collection for your specific implementation. For the purpose of this post, our use case will be focus on auditing our Adobe Analytics and DTM implementation.</p>
+<p><strong>DTM Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>A data element (Cookie, URL Parameter, Custom Script, CSS Selector, or JS Object) that is mapped to a tool such as Adobe Analytics can return empty if the wrong load rule was selected.<span id="more-2965"></span></p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/DTM-Load-Rules.png" rel="attachment wp-att-2966"><img class="alignnone size-medium wp-image-2966" src="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png" alt="Adobe DTM Load Rules" width="300" height="255" srcset="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png 300w, /adobe-blog/files/2016/03/DTM-Load-Rules-600x510.png 600w, /adobe-blog/files/2016/03/DTM-Load-Rules.png 711w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source:</strong> https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Disruptive Advertising’s Adobe DTM Debugger</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>Free</p>
+<p><strong>Link: </strong><a href="http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/" target="_blank">http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/</a></p>
+<p><strong>Adobe Analytics Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>If the selected Dimensions (Custom Values, Context Data, Traffic Variables, Hit Attributes, Conversion Variables, Success Events) uses an incorrect conditional logic statement, your data collection could cause major ramifications such as overwriting variables and incorrect mapping.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png" rel="attachment wp-att-2967"><img class="alignnone size-medium wp-image-2967" src="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png" alt="Adobe Analytics Processing Order" width="300" height="75" srcset="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png 300w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-768x192.png 768w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-600x150.png 600w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png 946w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source</strong>: https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Stratigent&#8217;s Adobe Analytics SMART Bookmarklet</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>There are two pricing models for the application:</p>
+<ol>
+<li>Current version, no updates:  $5,000 for unlimited use, one-time fee</li>
+<li>Current version, plus any future updates to it:  $10,000 for unlimited use, one-time fee</li>
+</ol>
+<p><strong>Link:</strong> <a href="http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet" target="_blank">http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet</a></p>
+<p><strong>Other Considerations:</strong></p>
+<p><strong>Adobe DTM Switch: </strong>Adobe self-owned plugin extension that allows you to toggle the debug mode and staging mode for Adobe Dynamic Tag Management.</p>
+<p><strong>Web Analytics Solution Profiler (WASP</strong>): Digital Analytics quality assurance auditing tool created by Cardinal Path that allows you to visualize what and where tags are firing.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png" rel="attachment wp-att-2968"><img class="alignnone size-medium wp-image-2968" src="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png" alt="Web Analytics Solution Profiler (WASP)" width="300" height="170" srcset="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png 300w, /adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png 420w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>ObservePoint Tag Debugger</strong>: Creates a new tab in the developer tools to enable quick finding and detailed viewing of analytics tags and other technologies on the current page.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png" rel="attachment wp-att-2969"><img class="alignnone size-medium wp-image-2969" src="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png" alt="ObservePoint Tag Debugger" width="300" height="105" srcset="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png 300w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-768x269.png 768w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-600x210.png 600w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png 778w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>There are a number of digital data collection auditing options available from web packet sniffers, browser plugins, console add-ons and QA tools, but these solutions were selected for 2 reasons, which are <strong>1)</strong> Adobe centric and <strong>2)</strong> User Friendly. These solutions should help get you started and up and running with safe guarding your Adobe Analytics implementation.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Selling Your Boss on Investing in Analytics</title>
+		<link>/adobe-blog/2015/03/10/selling-your-boss-on-investing-in-analytics/</link>
+		<comments>/adobe-blog/2015/03/10/selling-your-boss-on-investing-in-analytics/#respond</comments>
+		<pubDate>Wed, 11 Mar 2015 04:04:46 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Campaigns & Marketing Automation]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Marketing Automation]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=824</guid>
+		<description><![CDATA[At Adobe Summit 2015, Jeff Allen (@JeffreyAAllen) with Adobe presented this session about justifying an investment in analytics. Jeff has developed a model for this over the past 20 years. His mantra comes from Harvard Business School professor Clay Christensen: &#8220;Instead of telling someone what to think, I taught him how to think.&#8221; Here are [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/10/selling-your-boss-on-investing-in-analytics/">Selling Your Boss on Investing in Analytics</a> was first posted on March 10, 2015 at 11:04 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At Adobe Summit 2015, Jeff Allen (@JeffreyAAllen) with Adobe presented this session about justifying an investment in analytics. Jeff has developed a model for this over the past 20 years. His mantra comes from Harvard Business School professor Clay Christensen: &#8220;Instead of telling someone what to think, I taught him how to think.&#8221;</p>
+<p>Here are the steps in Jeff&#8217;s model:</p>
+<p><strong>Learn the landscape</strong></p>
+<p><a href="/adobe-blog/files/2014/10/statistics-227173_1280.jpg"><img class="alignright size-medium wp-image-482" src="/adobe-blog/files/2014/10/statistics-227173_1280-300x212.jpg" alt="statistics-227173_1280" width="300" height="212" srcset="/adobe-blog/files/2014/10/statistics-227173_1280-300x212.jpg 300w, /adobe-blog/files/2014/10/statistics-227173_1280-768x543.jpg 768w, /adobe-blog/files/2014/10/statistics-227173_1280-600x424.jpg 600w, /adobe-blog/files/2014/10/statistics-227173_1280.jpg 1280w" sizes="(max-width: 300px) 100vw, 300px" /></a>Understand the analytics buying team. Often its a CxO teaming with a CIO.  Below the CxO is the budget approver, the decision maker and the feature evaluator.  On the IT side, there is also a feature evaluator and typically a VP/Senior leader involved.</p>
+<p>When looking at the Technology Purchaser Messaging Matrix, address the individual contributor who is a technical purchaser like an analyst, IT manager, etc. These people are the evaluators. They don&#8217;t want to hear from their peers that what they bought stinks. The IT evaluator has to make sure the product meets the IT standards.</p>
+<p>On the business side, you want to address the CMO, VP Marketing, etc.  These are the approvers. They usually approve the budget but don&#8217;t make purchase decisions.  Typically they are interested in consensus among the buying team.  They are interested in stability and reputation of the vendor.<span id="more-824"></span></p>
+<p>Somewhere in the middle are the decision makers who would be directors, sr directors, etc.  They look at how to make or save money, not features or experience. Their job is to build the business case for anything they buy.</p>
+<p>In other words, <strong>decisions are made in the middle</strong>!</p>
+<p><strong>Learn the Language</strong></p>
+<p>Schedule a meeting to discuss how this will address a specific business needs. Bring a perspective on business justification.  For analytics, dashboards are a good area.</p>
+<p>There is a fallacy that if you can get to the right executive who can single handedly approve a deal. Executives are really looking for consensus from their team to approve a purchase.</p>
+<p>When an executive gets excited about a product, they are good at handing out assignments that hold the decision makers feet to the fire. Adobe has myanalyticsscore.com that can help you figure out your maturity.</p>
+<p><strong>Weigh the Value</strong></p>
+<p>Instead of bludgeoning people with endless fact and features, bring unique insights about how the business can make or save money.  (See the book The Challenger Sale). Here are some values you can weigh in your justification:</p>
+<ul>
+<li>Multi-/Cross-Channel Analytics Views</li>
+<li>More Advanced Analytics</li>
+<li>Real time data</li>
+<li>Replacing an outdated product</li>
+<li>Overcome data limitations</li>
+<li>More functionality to support strategy change</li>
+<li>Easier to use tools</li>
+</ul>
+<p><strong>Qualify the Value</strong></p>
+<p>Here is how organizations qualified the value:</p>
+<p>Saving money</p>
+<ul>
+<li>Time Savings / Efficiencies from fewer better tools</li>
+<li>Smarter investments, Higher MROI</li>
+<li>Better Targeting</li>
+<li>Fewer Resources</li>
+<li>More useful info</li>
+<li>Ability to monetize to offset cost</li>
+</ul>
+<p>Make Money</p>
+<ul>
+<li>Identify cross selling</li>
+<li>Increased revenue</li>
+</ul>
+<p>Here are some other ways:</p>
+<ul>
+<li>Standardize on a single vendor</li>
+<li>Bringing new insights</li>
+</ul>
+<p><strong>Quantify the Value</strong></p>
+<p>You need to separate hard and soft ROI.  For hard ROI, it has to be cleaHard ROI</p>
+<ul>
+<li>Clearly quantifiable cost savings or sales/revenue increases.  For example, a 50% reduction in time required to prepare weekly scorecards</li>
+</ul>
+<p>Soft ROI</p>
+<ul>
+<li>Loosely quantifiable cost savings or sales/revenue increase.  For example, better targeting will lead to higher conversion rates.</li>
+</ul>
+<p>Jeff provided a series of equations to calculate various savings and revenue numbers for the ROI estimates.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/10/selling-your-boss-on-investing-in-analytics/">Selling Your Boss on Investing in Analytics</a> was first posted on March 10, 2015 at 11:04 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/10/selling-your-boss-on-investing-in-analytics/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit 2015: Marketing Reinvention Journey Is The Keynote</title>
+		<link>/adobe-blog/2015/03/10/adobe-summit-2015-marketing-reinvention-journey-is-the-keynote/</link>
+		<comments>/adobe-blog/2015/03/10/adobe-summit-2015-marketing-reinvention-journey-is-the-keynote/#respond</comments>
+		<pubDate>Tue, 10 Mar 2015 16:05:47 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Campaigns & Marketing Automation]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Campaigns]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Social]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+		<category><![CDATA[Marketing Automation]]></category>
+		<category><![CDATA[WCM]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=771</guid>
+		<description><![CDATA[Today, Adobe kicked off its annual Adobe Summit conference for digital marketing. This is an important year for Adobe as many of its competitors are trying to jump ahead of Adobe in this space. Adobe has excellent products and excellent vision, but still recognizes the need to reinvent their products for the evolving digital marketing [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/10/adobe-summit-2015-marketing-reinvention-journey-is-the-keynote/">Adobe Summit 2015: Marketing Reinvention Journey Is The Keynote</a> was first posted on March 10, 2015 at 11:05 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Today, Adobe kicked off its annual Adobe Summit conference for digital marketing. This is an important year for Adobe as many of its competitors are trying to jump ahead of Adobe in this space. Adobe has excellent products and excellent vision, but still recognizes the need to reinvent their products for the evolving digital marketing landscape.</p>
+<p>Brad Rencher, Adobe&#8217;s SVP for Marketing Cloud, made the argument to more than 7,000 people attending this year&#8217;s conference that customer experience is now <em>the</em> key part of your brand.</p>
+<div id="attachment_783" style="width: 306px" class="wp-caption alignright"><a href="/adobe-blog/files/2015/03/brad.png"><img class="size-medium wp-image-783" src="/adobe-blog/files/2015/03/brad-296x300.png" alt="Brad Rencher" width="296" height="300" srcset="/adobe-blog/files/2015/03/brad-296x300.png 296w, /adobe-blog/files/2015/03/brad-300x305.png 300w, /adobe-blog/files/2015/03/brad.png 463w" sizes="(max-width: 296px) 100vw, 296px" /></a><p class="wp-caption-text">Brad Rencher</p></div>
+<p>This makes Digital Marketing the epicenter of your digital transformation efforts. Of course, Adobe is at the epicenter for many brands and wants to be the epicenter of more customers.</p>
+<p class="p1"><span class="s1">Shantanu Narayen, Adobe&#8217;s CEO, talked about Changing the World Through Digital Experiences. Marketing is on a reinvention journey but fundamentals of marketing are not changing. The art of marketing creative is still a key pat of the equation. Science in the form of data analysis, behavior analytics, etc have contributed to elevating marketing to a new level. Real-time has impacted the enterprise is completely new and different ways.  </span></p>
+<p class="p1"><span class="s1">This has led to the era of &#8220;Your Product is Marketing&#8221;, according to Shantanu.  So now, you have to ask broader questions about your products and look at new ways to enhance the customer experience. This has impacted Adobe too and they are looking at how to enhance their own products into a unified experience through the Marketing Cloud. </span></p>
+<p class="p1">Brad came back onstage to talk about consumer expectations around being consistency and continuous. The customer experience is the brand and marketing has to move beyond just marketing. Marketing has to take on the many customer experiences your brand has and make them consistent and continuous.</p>
+<p class="p1"><span id="more-771"></span>Coca Cola talked about their mission is to create happiness experiences for their customers. Their marketing efforts are not just about the logo, the colors, or even the product. By creating these happiness experiences they keep consumers connected to the brand.  As an example, they created a &#8220;hug machine&#8221; for finals week at a college campus.  When a student hugged the machine, they received a Coke in return. It was a fun and creative way to help students relieve stress and connect to the Coca Cola brand.</p>
+<p class="p1">One way Adobe is developing a unified experience is through the Marketing Cloud. Adobe follows these these principles when looking at the Marketing Cloud:</p>
+<ul>
+<li class="p1">Comprehensive</li>
+<li class="p1">Integrated across channels both online and offline</li>
+<li class="p1">Actionable for both data and content</li>
+</ul>
+<p class="p1">Brad fired off a bunch of announcements that will detailed out throughout the week at Adobe Summit. Briefly, here are some of those announcements that I could capture as Brad talked:</p>
+<ul>
+<li class="p1">Adobe Analytics announced Customer Intelligence (integrate customer data) and Predictive Analytics.</li>
+<li class="p1">Experience Manager is the backbone of content in the Marketing Cloud.  AEM Assets provides asset management in a Saas environment. Adobe is also delivering a pre-built AEM to get smaller companies and departments running quickly.</li>
+<li class="p1">Campaign has been integrated across all the Marketing Cloud solutions.  They also greatly enhanced the email marketing components of Campaign</li>
+<li class="p1">Target will deliver personalization beyond just web and mobile and into IoT.</li>
+<li class="p1">Social is mobile enabled so you can publish on the go.</li>
+<li class="p1">Media Optimizer has been rebuilt to be more programmatic.</li>
+</ul>
+<p class="p1">Brad announced two new solutions:</p>
+<ul>
+<li class="p1">Adobe Prime Time &#8211; this puts the TV experience on any screen.  Marketers can track usage.  There is also continuous delivery from mobile to desktop to TV.</li>
+<li class="p1">Adobe Audience Manager connects audiences to programmatic features of the cloud and integrates across the Adobe Core Services.</li>
+</ul>
+<hr />
+<p class="p1">Connect with Perficient on <a href="https://www.linkedin.com/company/perficient" target="_blank">LinkedIn here</a>.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/10/adobe-summit-2015-marketing-reinvention-journey-is-the-keynote/">Adobe Summit 2015: Marketing Reinvention Journey Is The Keynote</a> was first posted on March 10, 2015 at 11:05 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/10/adobe-summit-2015-marketing-reinvention-journey-is-the-keynote/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:21:18 by W3 Total Cache -->

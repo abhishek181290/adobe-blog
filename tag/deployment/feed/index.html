@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Deployment &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/deployment/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Managing Adobe Campaign Packages via the Command Line</title>
+		<link>/adobe-blog/2015/11/18/managing-adobe-campaign-packages-via-the-command-line/</link>
+		<comments>/adobe-blog/2015/11/18/managing-adobe-campaign-packages-via-the-command-line/#respond</comments>
+		<pubDate>Wed, 18 Nov 2015 20:30:39 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Campaigns & Marketing Automation]]></category>
+		<category><![CDATA[Adobe Campaign]]></category>
+		<category><![CDATA[Command Line Interface]]></category>
+		<category><![CDATA[Deployment]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2609</guid>
+		<description><![CDATA[Adobe Campaign includes a command line interface by which administrators and developers can interact with the system via a command line interface, instead of the graphical user interface. Included in this command line interface is a tool for importing and exporting packages directly through the command line. This allows teams and users to more easily share and [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/11/18/managing-adobe-campaign-packages-via-the-command-line/">Managing Adobe Campaign Packages via the Command Line</a> was first posted on November 18, 2015 at 2:30 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.adobe.com/marketing-cloud/campaign-management.html" target="_blank">Adobe Campaign</a> includes a <a href="https://docs.campaign.adobe.com/doc/AC6.1/en/INS_Appendices_Command_lines.html" target="_blank">command line interface</a> by which administrators and developers can interact with the system via a command line interface, instead of the graphical user interface. Included in this command line interface is a tool for importing and exporting packages directly through the command line. This allows teams and users to more easily share and deploy configurations and content between Adobe Campaign instances.</p>
+<p>To manage packages using the Adobe Campaign command line interface, perform the following:<br />
+&nbsp;</p>
+<h3>Step 1: Create Package</h3>
+<p>To manage packages in Adobe Campaign through the command line interface, first you will need to create the package from within Adobe Campaign.</p>
+<p><img src="/digitaltech/files/2015/11/adobe-campaign-package.png" alt="Creating a Package in Adobe Campaign" /></p>
+<p>Once you have created the package and defined its contents, copy the package name. We&#8217;ll use this in the next step.<br />
+<span id="more-2609"></span><br />
+&nbsp;</p>
+<h3>Step 2: Export Package</h3>
+<p>Next, login to the Adobe Campaign Server and execute one of the following command:</p>
+<pre><code>nlserver package -instance:[instance_name] -export:[target_file] -spec:[package_name] -verbose</code></pre>
+<p>The parameters are:</p>
+<ul>
+<li><em>instance_name</em>: the name of the instance, as defined in the config-[instance_name].xml in Adobe Campaign&#8217;s conf directory</li>
+<li><em>target_file: </em>the file to write the package contents to, does not have to exist</li>
+<li><em>package_name:</em> the name of the package you defined in step 1</li>
+</ul>
+<p>I&#8217;ve also added the verbose flag to get more verbose output in the case of errors or warnings.</p>
+<p>An example of this command and its output is below:</p>
+<pre><code>C:AdobeAdobe Campaign Server v6bin&gt;nlserver package -instance:dev -export:C:UsersbootcampDesktoppackage.xml -spec:drk:devPackage -verbose<br />23:39:56 &gt; Application server for Adobe Campaign Version 6.1.1 (build 8667) of 08/04/2015<br />23:39:56 &gt; Loading configuration for instance 'dev'<br />23:39:56 &gt; Starting 1 connection(s) on pool 'default dev' (PostgreSQL, server='localhost', login='dev:dev')<br />23:39:56 &gt; Library 'libpq.dll' loaded from 'C:AdobeAdobe Campaign Server v6binlibpq.dll'<br />23:39:56 &gt; Exporting package 'drk:devPackage'...
+C:AdobeAdobe Campaign Server v6bin&gt;</code></pre>
+<p>&nbsp;</p>
+<h3>Step 3: Import Package</h3>
+<p>Once the package is exported it can be shared modified or distributed as needed. To re-import the package into the same or a different instance, execute the command:</p>
+<pre><code>nlserver package -instance:[instance_name] -import:[target_file] -verbose</code></pre>
+<p>The parameters are:</p>
+<ul>
+<li><em>instance_name</em>: same as export, this is the name of the instance, as defined in the config-[instance_name].xml in Adobe Campaign&#8217;s conf directory</li>
+<li><em>target_file: </em>the file to write read the package content from, must exist and be a valid package file</li>
+</ul>
+<p>An example of this command and its output is below:</p>
+<pre><code>C:AdobeAdobe Campaign Server v6conf&gt;nlserver package -instance:dev -import:C:Usersbootcampdesktoppackage.xml -verbose<br />00:04:49 &gt; Application server for Adobe Campaign Version 6.1.1 (build 8667) of 08/04/2015<br />00:04:49 &gt; Loading configuration for instance 'dev'<br />00:04:49 &gt; Starting 1 connection(s) on pool 'default dev' (PostgreSQL, server='localhost', login='dev:dev')<br />00:04:49 &gt; Library 'libpq.dll' loaded from 'C:AdobeAdobe Campaign Server v6binlibpq.dll'<br />00:04:49 &gt; Importing package 'C:Usersbootcampdesktoppackage.xml'...<br />00:04:50 &gt; Enumerating the file entities...<br />00:04:50 &gt; Writing entities in the database...<br />00:04:50 &gt; Saving data related to packages...<br />00:04:50 &gt; Package 'Dan Dev Package': Saving entities of type 'nms:recipient'...<br />00:04:50 &gt; Package 'Dan Dev Package': Saving entities of type 'xtk:specFile'...<br />00:04:50 &gt; Installation of packages successful.</code></pre>
+<p>&nbsp;<br />
+Hopefully this helps anyone wanting to know more about using Adobe Campaign&#8217;s powerful command line interface and to improve their process by more easily sharing and distributing content and configurations for Adobe Campaign.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/11/18/managing-adobe-campaign-packages-via-the-command-line/">Managing Adobe Campaign Packages via the Command Line</a> was first posted on November 18, 2015 at 2:30 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/11/18/managing-adobe-campaign-packages-via-the-command-line/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:45:41 by W3 Total Cache -->

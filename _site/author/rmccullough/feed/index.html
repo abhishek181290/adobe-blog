@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Ryan McCullough &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/author/rmccullough/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Start AEM Automatically Using SystemD</title>
+		<link>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/</link>
+		<comments>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/#respond</comments>
+		<pubDate>Fri, 17 Jun 2016 17:34:20 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan McCullough]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+
+		<guid isPermaLink="false">/adobe-blog/?p=8851</guid>
+		<description><![CDATA[With the release of RedHat and CentOS 7.x, the previously used method, init.d, for starting AEM as a service will no longer function.  Out with the old SysV, in with system.d!  This has a long history that I won&#8217;t get into here, but for your reference here is a great article which articulates why the previous [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/">Start AEM Automatically Using SystemD</a> was first posted on June 17, 2016 at 12:34 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>With the release of RedHat and CentOS 7.x, the previously used method, init.d, for starting AEM as a service will no longer function.  Out with the old SysV, in with system.d!  This has a long history that I won&#8217;t get into here, but for your reference <a href="https://wiki.debian.org/Debate/initsystem/systemd">here is a great article</a> which articulates why the previous init SysV method is being depreciated in favour of system.d.</p>
+<p><span id="more-8851"></span></p>
+<p>Now, onto the fun stuff.  How can we modify (or create) a system.d init script that will work with AEM?  Well, I&#8217;ll walk you through how to do this using the standard init.d AEM script.  If you have your own already, feel free to substitute it into the instructions.</p>
+<p>You can grab a copy of the <a href="https://helpx.adobe.com/experience-manager/kb/linux-init-script.html">standard AEM init.d here</a> (or <a href="https://drive.google.com/file/d/0B5bUPWJxysFCTnZLNE9DNFdldWc/view?usp=sharing">here</a>).</p>
+<p>And here is the <a href="https://drive.google.com/file/d/0B5bUPWJxysFCRmI4WG9Tb0tzRDg/view?usp=sharing">corresponding system.d file</a>.</p>
+<h2>Now that we&#8217;re on the same page, lets get a few things straight:</h2>
+<ul>
+<li>If you generated your init.d script (from above) these instructions use the filename <code>aem</code> and location <code>/usr/bin/aem</code> for the location of this script.  If you are using different values, please ensure the <code>aem.system</code> script is updated accordingly.
+<ul>
+<li>This script should be readable and executable by the root</li>
+<li>AEM_USER
+<ul>
+<li>The system user in which AEM is expected to run under.  Be certain to start up an AEM instance using this user prior to going through these instructions to be sure they have appropriate permissions to the crx-quickstart folder</li>
+<li>Default value is &#8220;aem&#8221;</li>
+</ul>
+</li>
+<li>AEM_ROOT
+<ul>
+<li>The root folder of AEM, or the parent folder of the <code>crx-quickstart</code> folder.</li>
+<li>ex. if your crx-quickstart folder is <code>/opt/aem6/crx-quickstart</code>, the root folder would be <code>/opt/aem6</code></li>
+<li>Default value is <code>/opt/aem6</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>aem.system</code> is a (very) basic system.d script generated for your standard AEM init.d.  In it there are several places which reference the existing aem script.  It is assuming that your aem init.d script (see above for link) is located at <code>/usr/bin/aem</code>.  This location can be modified to any you like, just ensure that:</li>
+<li>
+<ul>
+<li>It must be readable and executable by the root user</li>
+<li>If the location of your aem script is not /usr/bin/aem, update references to ExecStart, ExecStop, and ExecReload accordingly</li>
+<li>If your aem script does not include a restart, feel free to remove the ExecReload line as it will not function as expected.</li>
+</ul>
+</li>
+</ul>
+<h2>Now for the official instructions:</h2>
+<ol>
+<li>(If no existing init.d) Download the sample init.d script <a href="https://drive.google.com/file/d/0B5bUPWJxysFCTnZLNE9DNFdldWc/view?usp=sharing">here</a>
+<ol>
+<li>Open the file and modify the <code>AEM_USER</code> and <code>AEM_ROOT</code> variables to suit your environment (see above for description)</li>
+<li>Save the file to your file system.  This can be saved anywhere &#8211; the example aem.system file uses <code>/usr/bin/aem</code>.</li>
+<li>Ensure that the file is readable and writable as root:<br />
+<code># sudo chmod u+rwx /usr/bin/aem</code></li>
+<li>Test the file works as expected<br />
+<code># ./usr/bin/aem start</code></li>
+</ol>
+</li>
+<li>Download the <a href="https://drive.google.com/open?id=0B5bUPWJxysFCRmI4WG9Tb0tzRDg">aem.system</a> file.
+<ol>
+<li>(If you are not using /usr/bin/aem) &#8211; Modify the aem.system file by updating the location referenced by ExecStart, ExecStop, and ExecReload to match the scripts location</li>
+<li>Save the script to /etc/system.d/system/aem.system</li>
+<li>Ensure that the file is readable and writable as root:
+<ol>
+<li><code># sudo chmod u+rwx /etc/system.d/system/aem.system</code></li>
+</ol>
+</li>
+<li>Enable the system.d entry:
+<ol>
+<li><code># cd /etc/system.d/system<br />
+# systemctl enable aem.system</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>That&#8217;s it!  On your next reboot, AEM should be started as expected.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/">Start AEM Automatically Using SystemD</a> was first posted on June 17, 2016 at 12:34 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:16:04 by W3 Total Cache -->

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/category/adobe/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Start AEM Automatically Using SystemD</title>
+		<link>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/</link>
+		<comments>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/#respond</comments>
+		<pubDate>Fri, 17 Jun 2016 17:34:20 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan McCullough]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+
+		<guid isPermaLink="false">/adobe-blog/?p=8851</guid>
+		<description><![CDATA[With the release of RedHat and CentOS 7.x, the previously used method, init.d, for starting AEM as a service will no longer function.  Out with the old SysV, in with system.d!  This has a long history that I won&#8217;t get into here, but for your reference here is a great article which articulates why the previous [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/">Start AEM Automatically Using SystemD</a> was first posted on June 17, 2016 at 12:34 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>With the release of RedHat and CentOS 7.x, the previously used method, init.d, for starting AEM as a service will no longer function.  Out with the old SysV, in with system.d!  This has a long history that I won&#8217;t get into here, but for your reference <a href="https://wiki.debian.org/Debate/initsystem/systemd">here is a great article</a> which articulates why the previous init SysV method is being depreciated in favour of system.d.</p>
+<p><span id="more-8851"></span></p>
+<p>Now, onto the fun stuff.  How can we modify (or create) a system.d init script that will work with AEM?  Well, I&#8217;ll walk you through how to do this using the standard init.d AEM script.  If you have your own already, feel free to substitute it into the instructions.</p>
+<p>You can grab a copy of the <a href="https://helpx.adobe.com/experience-manager/kb/linux-init-script.html">standard AEM init.d here</a> (or <a href="https://drive.google.com/file/d/0B5bUPWJxysFCTnZLNE9DNFdldWc/view?usp=sharing">here</a>).</p>
+<p>And here is the <a href="https://drive.google.com/file/d/0B5bUPWJxysFCRmI4WG9Tb0tzRDg/view?usp=sharing">corresponding system.d file</a>.</p>
+<h2>Now that we&#8217;re on the same page, lets get a few things straight:</h2>
+<ul>
+<li>If you generated your init.d script (from above) these instructions use the filename <code>aem</code> and location <code>/usr/bin/aem</code> for the location of this script.  If you are using different values, please ensure the <code>aem.system</code> script is updated accordingly.
+<ul>
+<li>This script should be readable and executable by the root</li>
+<li>AEM_USER
+<ul>
+<li>The system user in which AEM is expected to run under.  Be certain to start up an AEM instance using this user prior to going through these instructions to be sure they have appropriate permissions to the crx-quickstart folder</li>
+<li>Default value is &#8220;aem&#8221;</li>
+</ul>
+</li>
+<li>AEM_ROOT
+<ul>
+<li>The root folder of AEM, or the parent folder of the <code>crx-quickstart</code> folder.</li>
+<li>ex. if your crx-quickstart folder is <code>/opt/aem6/crx-quickstart</code>, the root folder would be <code>/opt/aem6</code></li>
+<li>Default value is <code>/opt/aem6</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>aem.system</code> is a (very) basic system.d script generated for your standard AEM init.d.  In it there are several places which reference the existing aem script.  It is assuming that your aem init.d script (see above for link) is located at <code>/usr/bin/aem</code>.  This location can be modified to any you like, just ensure that:</li>
+<li>
+<ul>
+<li>It must be readable and executable by the root user</li>
+<li>If the location of your aem script is not /usr/bin/aem, update references to ExecStart, ExecStop, and ExecReload accordingly</li>
+<li>If your aem script does not include a restart, feel free to remove the ExecReload line as it will not function as expected.</li>
+</ul>
+</li>
+</ul>
+<h2>Now for the official instructions:</h2>
+<ol>
+<li>(If no existing init.d) Download the sample init.d script <a href="https://drive.google.com/file/d/0B5bUPWJxysFCTnZLNE9DNFdldWc/view?usp=sharing">here</a>
+<ol>
+<li>Open the file and modify the <code>AEM_USER</code> and <code>AEM_ROOT</code> variables to suit your environment (see above for description)</li>
+<li>Save the file to your file system.  This can be saved anywhere &#8211; the example aem.system file uses <code>/usr/bin/aem</code>.</li>
+<li>Ensure that the file is readable and writable as root:<br />
+<code># sudo chmod u+rwx /usr/bin/aem</code></li>
+<li>Test the file works as expected<br />
+<code># ./usr/bin/aem start</code></li>
+</ol>
+</li>
+<li>Download the <a href="https://drive.google.com/open?id=0B5bUPWJxysFCRmI4WG9Tb0tzRDg">aem.system</a> file.
+<ol>
+<li>(If you are not using /usr/bin/aem) &#8211; Modify the aem.system file by updating the location referenced by ExecStart, ExecStop, and ExecReload to match the scripts location</li>
+<li>Save the script to /etc/system.d/system/aem.system</li>
+<li>Ensure that the file is readable and writable as root:
+<ol>
+<li><code># sudo chmod u+rwx /etc/system.d/system/aem.system</code></li>
+</ol>
+</li>
+<li>Enable the system.d entry:
+<ol>
+<li><code># cd /etc/system.d/system<br />
+# systemctl enable aem.system</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>That&#8217;s it!  On your next reboot, AEM should be started as expected.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/">Start AEM Automatically Using SystemD</a> was first posted on June 17, 2016 at 12:34 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/06/17/start-aem-automatically-using-systemd/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Rise of the Millennials: How a New Generation is Shaping B2B Marketing</title>
+		<link>/adobe-blog/2016/06/14/rise-of-the-millennials-how-a-new-generation-is-shaping-b2b-marketing/</link>
+		<comments>/adobe-blog/2016/06/14/rise-of-the-millennials-how-a-new-generation-is-shaping-b2b-marketing/#respond</comments>
+		<pubDate>Tue, 14 Jun 2016 14:37:13 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[B2B]]></category>
+		<category><![CDATA[Digital Marketing]]></category>
+		<category><![CDATA[Millennial]]></category>
+		<category><![CDATA[Personalization]]></category>
+
+		<guid isPermaLink="false">/adobe-blog/?p=8833</guid>
+		<description><![CDATA[Millennials became the largest generation in the workforce in early 2015. The rise of the Millennials in the workspace will have a profound impact on how companies operate. At the same time, many organizations fail to anticipate how this generation will change B2B commerce. Millennials approach information sources differently than previous generations. This, coupled with their increased customer experience expectations presents [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/14/rise-of-the-millennials-how-a-new-generation-is-shaping-b2b-marketing/">Rise of the Millennials: How a New Generation is Shaping B2B Marketing</a> was first posted on June 14, 2016 at 9:37 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Millennials became the largest generation in the <a href="http://www.pewresearch.org/fact-tank/2015/05/11/millennials-surpass-gen-xers-as-the-largest-generation-in-u-s-labor-force/">workforce in early 2015</a>. The rise of the Millennials in the workspace will have a profound impact on how companies operate. At the same time, many organizations fail to anticipate how this generation will change B2B commerce.</p>
+<p>Millennials approach information sources differently than previous generations. This, coupled with their increased customer experience expectations presents a challenge for B2B companies.</p>
+<h2>Rise of the Millennials</h2>
+<p>As shown in the illustration below, there are over 53 million millennials are in the workforce, making up 28.5% of the overall total. With Millennials <a href="https://www.pwc.com/m1/en/services/consulting/documents/millennials-at-work.pdf">focused on promotions</a> and Baby Boomers retiring, soon Millennials will hold many purchasing positions.</p>
+<p><a href="http://www.pewresearch.org/fact-tank/2015/05/11/millennials-surpass-gen-xers-as-the-largest-generation-in-u-s-labor-force/ft_15-05-04_genlaborforcecomposition-2/"><img class="img-responsive center-block" src="http://www.pewresearch.org/files/2015/05/FT_15.05.04_genLaborForceComposition1.png" alt="U.S. Labor Force by Generation, 1995-2015" /></a></p>
+<p>Millennials, having grown up exposed to technology, no longer see technology as an add-on or gimmick. Instead, they expect technology to complement all experiences whether digital or analog. At the same time, Millennials emphasize the human factor. In an era of digitization, providing a humanized, personal experience sets a company apart.</p>
+<p>Because Millennials view technology as a part of the human experience, they also expect technology to adapt to them. These expectations will especially challenge B2B companies, which already struggle with digital marketing.</p>
+<h2>B2B: Laggards in Digital Marketing</h2>
+<p>While many B2B companies have made tremendous strides in their digital marketing, many still struggle. The industry lags far behind their consumer-facing peers. In a <a href="http://www.fiercecmo.com/story/survey-b2b-marketers-struggle-digital-marketing-roi-measurement/2016-03-01">recent survey</a>, 70% of digital marketers from B2B companies said: &#8220;their organization&#8217;s digital advertising strategy fails to meet expectations&#8221;. This is due to the difficulty in gathering quality leads and in measuring the return on digital marketing spend.</p>
+<figure class="figure" style="padding: 10px 0"><img class="aligncenter center-block size-large wp-image-8834" src="/adobe-blog/files/2016/06/2010_Canadian_GP_race_start-600x400.jpg" alt="2010_Canadian_GP_race_start" width="600" height="400" srcset="/adobe-blog/files/2016/06/2010_Canadian_GP_race_start.jpg 600w, /adobe-blog/files/2016/06/2010_Canadian_GP_race_start-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /><br />
+<figcaption class="text-center figure-caption"><small><em>By <a class="external text" href="http://flickr.com/people/12169388@N05" rel="nofollow">Mark McArdle</a> &#8211; originally posted to <a class="mw-redirect" title="Flickr" href="//commons.wikimedia.org/wiki/Flickr">Flickr</a> as <a class="external text" href="http://flickr.com/photos/12169388@N05/4698614072" rel="nofollow">Race Start!</a>, <a title="Creative Commons Attribution-Share Alike 2.0" href="http://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>, https://commons.wikimedia.org/w/index.php?curid=10643007</em></small></figcaption>
+</figure>
+<p>This challenge is especially acute in personalizing experiences. B2B companies are <a href="http://venturebeat.com/2015/11/05/b2b-buyers-expect-b2c-like-personalization-but-b2b-sellers-struggle/">struggling to deliver personalized experiences</a>, often citing technical challenges. Another major challenge is the inherent differences in how B2B and B2C companies go to market.</p>
+<p>B2B companies <a href="http://www.demandgenreport.com/industry-topics/content-strategies/2669-b2b-marketers-look-to-personalize-web-content-by-company-industry-and-role.html">personalize based on company and role, rather than individuals</a>. By personalizing too much to individuals, B2B companies can actually hurt sales cycles. This reduces the number of data-points available and requires a judicious approach to personalization.</p>
+<p>Another challenge for B2B companies is the disconnect between digital experiences and the actual sale. While B2B buyers research online, most do not buy through digital platforms. Without direct conversions, companies struggle to attribute leads and personalize experiences.</p>
+<h2>Millennials: New Challenges for B2B Marketers</h2>
+<p>The rise of millennials poses another digital marketing challenge to B2B companies. According to a <a href="http://arketi.com/three-generations-survey">recent survey by the Arketi Group</a>, Millennials expect more of digital experiences than other generations. This is especially true at the top of the buying funnel, Millennials&#8217; favored channels include:</p>
+<ul>
+<li>Blogs</li>
+<li>eBooks</li>
+<li>Infographics</li>
+<li>Online Ads</li>
+<li>Vendor Texts</li>
+<li>Social Media</li>
+</ul>
+<p>Millennials find traditional B2B sales and marketing channels less effective throughout the buying process, and view the following channels significantly less engaging than other generations:</p>
+<ul>
+<li>Analyst Reports</li>
+<li>Vendor Websites</li>
+<li>In-Person Demos and Meetings</li>
+<li>Phone Calls</li>
+<li>Product brochures, datasheets, sales literature</li>
+<li>Trade shows and conferences</li>
+<li>Whitepapers</li>
+</ul>
+<p>A few patterns emerge when looking at different methods millennials prefer for B2B marketing. Millennials favor channels that are digital, interactive, and social. In-person, print, and traditional channels are far less popular than for previous generations.</p>
+<figure class="figure" style="padding: 10px 0"><img class="aligncenter size-full center-block wp-image-8835" src="/adobe-blog/files/2016/06/LinuxWorldBoston2006.agr_.jpeg" alt="LinuxWorldBoston2006.agr" width="500" height="375" srcset="/adobe-blog/files/2016/06/LinuxWorldBoston2006.agr_.jpeg 500w, /adobe-blog/files/2016/06/LinuxWorldBoston2006.agr_-300x225.jpeg 300w" sizes="(max-width: 500px) 100vw, 500px" /><br />
+<figcaption class="text-center figure-caption"><small><em>By <a href="ArnoldReinhold" rel="nofollow">agr</a>, <a title="Creative Commons Attribution 2.5" href="http://creativecommons.org/licenses/by/2.5">CC BY 2.5</a>, https://commons.wikimedia.org/w/index.php?curid=6879977</em></small></figcaption>
+</figure>
+<p>Contrast these channel preferences to these indicated by B2B marketers as <a href="http://www.regalix.com/wp-content/uploads/2015/01/State-of-B2B-Marketing-2015.pdf">the most effective</a> in reaching their goals:</p>
+<ul>
+<li>Events (exhibitions, conferences, trade shows etc) 84%</li>
+<li>Print Media 13%</li>
+<li>Direct Mail 22%</li>
+<li>Outdoor Ads 6%</li>
+<li>Television 4%</li>
+<li>Radio 4%</li>
+</ul>
+<p>This poses a challenge, as the channels preferred by B2B marketers are the ones millennials find less engaging. If B2B companies do not evolve their marketing to better serve millennial workers&#8217; desires and expectations, millennials will leave for competitors.</p>
+<h2>B2B Digital Marketing for Millennials</h2>
+<p>So how do B2B marketers market to millennials?</p>
+<p>First, B2B marketers need to lay a foundation for excellent digital marketing experiences. This means eliminating data silos, developing customer 360 profiles and building a strong platform. This requires an effective implementation team and modern technical platform.</p>
+<p>With this solid platform, marketers can build technology-enabled solutions to market to every generation. This includes omni-channel marketing, to message consistently across all forms of media, and building personalized experiences across all digital platforms to deliver the correct message. Finally, sales and knowledge enablement platforms help deliver the best content.</p>
+<p>Finally, Digital marketers need to market specifically to millennials. Marketers should include mobile, social, and interactive media to capture and hold the attention of millennial buyers. These new forms of media also offer the benefits of increased conversion points and data. These grant marketers a richer data source to inform their marketing efforts.</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<p>The rise of the millennial generation poses significant challenges to B2B marketing strategies. They are less likely to be persuaded by traditional B2B marketing approaches. Yet, this presents an opportunity to companies that choose to implement technology-enabled digital marketing. Companies that embrace this opportunity will win Millennials&#8217; business from their less-agile competition.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/06/14/rise-of-the-millennials-how-a-new-generation-is-shaping-b2b-marketing/">Rise of the Millennials: How a New Generation is Shaping B2B Marketing</a> was first posted on June 14, 2016 at 9:37 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/06/14/rise-of-the-millennials-how-a-new-generation-is-shaping-b2b-marketing/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>One Visitor ID To Rule Them All</title>
+		<link>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/</link>
+		<comments>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/#respond</comments>
+		<pubDate>Tue, 17 May 2016 21:38:19 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[adobe audience manager]]></category>
+		<category><![CDATA[Adobe Campaigns]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe Media Optimizer]]></category>
+		<category><![CDATA[Adobe Mobile Services]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3937</guid>
+		<description><![CDATA[Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to setting their version of a third party cookie, called “s_vi”. As a temporarily solution, Adobe set a default backup cookie, “s_fid”, in case the cookie was deleted since these cookies were being set by servers outside the parent domain on a browser. The other option and more cumbersome solution for implementing the first party visitor ID cookie was to use a CNAME record on our client&#8217;s DNS in order to avoid setting a 3rd party cookie altogether. Obviously, there was a need and room to grow from Adobe’s side.<br />
+The Marketing Cloud Visitor ID service, AMCV ID, is supported by the following libraries and SDKs: Adobe Dynamic Tag Mnagement, Adobe Analytyics, Adobe Audience Manager, Adobe Target and Adobe Mobile Services.</p>
+<p><em><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png"><img class=" wp-image-3938 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png" alt="Adobe Marketing Cloud Visitor ID framework" width="460" height="221" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png 600w" sizes="(max-width: 460px) 100vw, 460px" /></a></em></p>
+<p><em>Source: https://blogs.adobe.com/digitalmarketing/analytics/why-new-adobe-marketing-cloud-id-service-should-be-on-your-radar/<br />
+</em><br />
+<strong>Migrating from Adobe Analytics Legacy Visitor ID</strong><br />
+This migration will either store the legacy cookie (s_vi) to the AMCV cookie or create a new AMCV cookie, which will be used as its replacement all together.</p>
+<p><strong>Implementing AMCV in Adobe Dynamic Tag Mangement</strong></p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png"><img class="wp-image-3939 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png" alt="Adobe Dynamic Tag Management - Marketing Cloud ID Service Tool" width="534" height="260" srcset="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png 300w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-768x374.png 768w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-600x292.png 600w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png 950w" sizes="(max-width: 534px) 100vw, 534px" /></a></p>
+<p><strong>Prerequisites &#8211; Adobe Requirements<br />
+</strong><br />
+1. Contact Client Care to obtain the Marketing Cloud Organization ID ie. (MCOrg ID)<br />
+2. Ensure your scode is on AppMeasurement version 1.3 or later, scode H.27 or later.<br />
+3. Make sure your Adobe Adobe server calls are going to Regional Data Collection, meaning your image requests are being sent to RDC tracking server ( ie. .sc.omtrdc.net) instead of a Non-RDC tracking server, (ie. .2o7.net).<br />
+4. Next, deploy your new VisitorAPI Javascript library. Log into your Admin Console and get the VisitorAPI.js file from the Code Manager. This can be in your scode file or in DTM in the tool’s setting, but it must be placed at the beginning of the file. Important Note: The placement of this code needs to fire first in the order sequence in order to be leveraged by the other Adobe JS libraries.<br />
+5. Configure your Visitor ID service.<br />
+6. Set Visitor ID in a Custom Variable (sprop or eVar) to test quality assurance. (Below is the Custom JS to capture the AMCV in a DTM Data Element that is ready to be mapped to a custom variable.) You can also set the AMCV in a cookie using a native DTM function to either map or verify in the Developers Console. (_satellite.setCookie(&#8216;cookie name&#8217;,&#8217;cookie value&#8217;,days to expire)<br />
+7. As precaution, please be sure to check Adobe Analytics server call as there should be an additional parameter called “mid”, the Marketing Cloud Visitor ID.</p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png"><img class="wp-image-3940 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png" alt="Adobe Marketing Cloud ID - Dynamic Tag Managment Data Element" width="676" height="345" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-768x393.png 768w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-600x307.png 600w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png 1107w" sizes="(max-width: 676px) 100vw, 676px" /></a></p>
+<p>Now that you have the foundation for your Adobe Target, Adobe Analytics, Adobe Media Optimizer and Adobe Audience Manager tools, you can feel confident about your data being unified and now you are finally ready to start building your campaigns, profiles, activities, and reports.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Integrating Adobe DTM, Target, Analytics &#038; AEM</title>
+		<link>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/</link>
+		<comments>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/#respond</comments>
+		<pubDate>Fri, 13 May 2016 21:40:06 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Cordova]]></category>
+		<category><![CDATA[Adobe Data Workbench]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3874</guid>
+		<description><![CDATA[At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – formally known as CQ5), Adobe Target (formally known as Test&amp;Target) and Adobe Analytics (formally known as SiteCatalyst) seamlessly into a hybrid mobile application.</p>
+<p><strong>Overview</strong></p>
+<p>Perficient was self tasked to feature a highly interactive, visually compelling Adobe Summit App built in AEM Mobile that allows users to see real-time analytics from Adobe Workbench, an interactive analytics application part of Adobe Analytics that allows you to build visualization dashboards, as well as experience personalized content based off their responses on the survey taken from their mobile device.</p>
+<p><strong>Challenge</strong></p>
+<p>Integrating DTM and Target on a single page application in AngularJs, a JavaScript front-end framework.</p>
+<p>The application was built with Cordova (formally known as Adobe PhoneGap), a hybrid app development framework which consist of HTML, CSS and JavaScript, we were able to leverage the mobile platform’s Web view to render content. Since DTM is a JavaScript based container, we were able to integrate many of the other Adobe Marketing Cloud products that we come so accustom to.</p>
+<p>Using DTM as a host for Adobe Tools such as Adobe Analytics and Target, you are able to push, configure, track, integrate and perform marketing initiatives such as performing A/B tests with different components on the page and tracking user activities on your app.</p>
+<p><strong>STEP 1</strong></p>
+<p>We built a base template for each page (&#8220;mobileapps/components/angular/ng-page”) and we extended our pages from that template by creating an AEM (CQ) project using Apache Maven, a building management tool.</p>
+<p><strong style="line-height: 1.5">STEP 2</strong></p>
+<p>After configuring our property in Adobe Dynamic Tag Management, we went to our first page in the app, in this case the login page, and inserted the DTM bootleg snippet.</p>
+<p><em><strong>“&lt;script src=&#8221;https://assets.adobedtm.com/3215e845c9690cbe968752c99b825440070e111f/satelliteLib-21077d4adfcbef88029b6d7609a4be07d51b0616-staging.js&#8221;&gt;&lt;/script&gt;”</strong></em></p>
+<p style="text-align: left"><em><strong>Notes:</strong></em> Place snippet before the end of &lt;head&gt; section in the head.jsp;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png"><img class="wp-image-3879 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png" alt="intergating adobe dynamic tag management in crxde lite" width="295" height="171" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-768x445.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-600x348.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png 1171w" sizes="(max-width: 295px) 100vw, 295px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3875 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png" alt="intergating adobe dynamic tag management in adobe experience manager - head snippet" width="323" height="175" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-768x417.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-600x325.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png 1252w" sizes="(max-width: 323px) 100vw, 323px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>STEP 3</strong></p>
+<p>In the login page component, go to body.jsp, and insert the DTM snippet in the body of the page.</p>
+<p><strong><em>“&lt;script type=&#8221;text/javascript&#8221;&gt;_satellite.pageBottom();&lt;/script&gt;”</em></strong></p>
+<p><strong><em>Notes:</em></strong> Place snippet before the end of &lt;body&gt;;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3878 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png" alt="intergating adobe dtm in crxde lite" width="286" height="166" srcset="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-768x444.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-600x347.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite.png 1174w" sizes="(max-width: 286px) 100vw, 286px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png"><img class="wp-image-3880 alignnone" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png" alt="intergating adobe dynamic tag management in adobe experience manager - body snippet" width="312" height="167" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-768x411.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-600x321.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png 1270w" sizes="(max-width: 312px) 100vw, 312px" /></a></p>
+<p><strong>STEP 4</strong></p>
+<p style="text-align: left">Since the summit app is an Angular SPA, we just needed to put the snippets in the first page, and the JS will be loaded/available for all other pages.</p>
+<p>Therefore the next step was to UAT/QA and verify the JS was getting downloaded correctly.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png"><img class="size-medium wp-image-3876 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png" alt="adobe dynamic tag management debugging adobe analytic tool" width="300" height="167" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-768x428.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-600x335.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png 1217w" sizes="(max-width: 300px) 100vw, 300px" /></a><strong>STEP 5 </strong></p>
+<p>Now we are ready to add our Adobe Analytics and Adobe Target tools in DTM, where we were able to implement our analytics solution design and run different personalize tests based data being collected from Adobe Analytics including custom variables and success events.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png"><img class="size-medium wp-image-3877 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png" alt="adobe dynamic tag management debugging" width="300" height="172" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-768x441.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-600x345.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png 1182w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:17:12 by W3 Total Cache -->

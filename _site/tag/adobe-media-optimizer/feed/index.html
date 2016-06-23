@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe Media Optimizer &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/adobe-media-optimizer/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>One Visitor ID To Rule Them All</title>
+		<link>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/</link>
+		<comments>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/#respond</comments>
+		<pubDate>Tue, 17 May 2016 21:38:19 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[adobe audience manager]]></category>
+		<category><![CDATA[Adobe Campaigns]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe Media Optimizer]]></category>
+		<category><![CDATA[Adobe Mobile Services]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3937</guid>
+		<description><![CDATA[Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to setting their version of a third party cookie, called “s_vi”. As a temporarily solution, Adobe set a default backup cookie, “s_fid”, in case the cookie was deleted since these cookies were being set by servers outside the parent domain on a browser. The other option and more cumbersome solution for implementing the first party visitor ID cookie was to use a CNAME record on our client&#8217;s DNS in order to avoid setting a 3rd party cookie altogether. Obviously, there was a need and room to grow from Adobe’s side.<br />
+The Marketing Cloud Visitor ID service, AMCV ID, is supported by the following libraries and SDKs: Adobe Dynamic Tag Mnagement, Adobe Analytyics, Adobe Audience Manager, Adobe Target and Adobe Mobile Services.</p>
+<p><em><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png"><img class=" wp-image-3938 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png" alt="Adobe Marketing Cloud Visitor ID framework" width="460" height="221" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png 600w" sizes="(max-width: 460px) 100vw, 460px" /></a></em></p>
+<p><em>Source: https://blogs.adobe.com/digitalmarketing/analytics/why-new-adobe-marketing-cloud-id-service-should-be-on-your-radar/<br />
+</em><br />
+<strong>Migrating from Adobe Analytics Legacy Visitor ID</strong><br />
+This migration will either store the legacy cookie (s_vi) to the AMCV cookie or create a new AMCV cookie, which will be used as its replacement all together.</p>
+<p><strong>Implementing AMCV in Adobe Dynamic Tag Mangement</strong></p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png"><img class="wp-image-3939 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png" alt="Adobe Dynamic Tag Management - Marketing Cloud ID Service Tool" width="534" height="260" srcset="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png 300w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-768x374.png 768w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-600x292.png 600w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png 950w" sizes="(max-width: 534px) 100vw, 534px" /></a></p>
+<p><strong>Prerequisites &#8211; Adobe Requirements<br />
+</strong><br />
+1. Contact Client Care to obtain the Marketing Cloud Organization ID ie. (MCOrg ID)<br />
+2. Ensure your scode is on AppMeasurement version 1.3 or later, scode H.27 or later.<br />
+3. Make sure your Adobe Adobe server calls are going to Regional Data Collection, meaning your image requests are being sent to RDC tracking server ( ie. .sc.omtrdc.net) instead of a Non-RDC tracking server, (ie. .2o7.net).<br />
+4. Next, deploy your new VisitorAPI Javascript library. Log into your Admin Console and get the VisitorAPI.js file from the Code Manager. This can be in your scode file or in DTM in the tool’s setting, but it must be placed at the beginning of the file. Important Note: The placement of this code needs to fire first in the order sequence in order to be leveraged by the other Adobe JS libraries.<br />
+5. Configure your Visitor ID service.<br />
+6. Set Visitor ID in a Custom Variable (sprop or eVar) to test quality assurance. (Below is the Custom JS to capture the AMCV in a DTM Data Element that is ready to be mapped to a custom variable.) You can also set the AMCV in a cookie using a native DTM function to either map or verify in the Developers Console. (_satellite.setCookie(&#8216;cookie name&#8217;,&#8217;cookie value&#8217;,days to expire)<br />
+7. As precaution, please be sure to check Adobe Analytics server call as there should be an additional parameter called “mid”, the Marketing Cloud Visitor ID.</p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png"><img class="wp-image-3940 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png" alt="Adobe Marketing Cloud ID - Dynamic Tag Managment Data Element" width="676" height="345" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-768x393.png 768w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-600x307.png 600w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png 1107w" sizes="(max-width: 676px) 100vw, 676px" /></a></p>
+<p>Now that you have the foundation for your Adobe Target, Adobe Analytics, Adobe Media Optimizer and Adobe Audience Manager tools, you can feel confident about your data being unified and now you are finally ready to start building your campaigns, profiles, activities, and reports.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:21:28 by W3 Total Cache -->

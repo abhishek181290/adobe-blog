@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+
+	>
+<channel>
+	<title>Comments for Adobe</title>
+	<atom:link href="/adobe-blog/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Fri, 27 May 2016 18:28:01 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<item>
+		<title>Comment on AEM and Google Cloud Vision &#8211; Impressions to Implementation by Shannon Sumner</title>
+		<link>/adobe-blog/2016/04/29/aem-and-googles-cloud-vision-api-impressions-to-implementation/#comment-67</link>
+		<dc:creator><![CDATA[Shannon Sumner]]></dc:creator>
+		<pubDate>Fri, 27 May 2016 18:28:01 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3760#comment-67</guid>
+		<description><![CDATA[Hi Nono,
+
+
+
+Please see our implementation here:
+
+
+
+/adobe-blog/files/2016/05/visionapi.zip
+
+
+
+You will need to edit the VisionApiServiceAccount.json file and insert your own project_id, private_key_id, private_key, client_email, and client_id.
+
+
+
+Thanks,
+
+
+
+Shannon Sumner]]></description>
+		<content:encoded><![CDATA[<p>Hi Nono,</p>
+<p>Please see our implementation here:</p>
+<p><a href="/adobe-blog/files/2016/05/visionapi.zip" rel="nofollow">/adobe-blog/files/2016/05/visionapi.zip</a></p>
+<p>You will need to edit the VisionApiServiceAccount.json file and insert your own project_id, private_key_id, private_key, client_email, and client_id.</p>
+<p>Thanks,</p>
+<p>Shannon Sumner</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on AEM and Google Cloud Vision &#8211; Impressions to Implementation by Nono Junang</title>
+		<link>/adobe-blog/2016/04/29/aem-and-googles-cloud-vision-api-impressions-to-implementation/#comment-18</link>
+		<dc:creator><![CDATA[Nono Junang]]></dc:creator>
+		<pubDate>Tue, 17 May 2016 09:29:16 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3760#comment-18</guid>
+		<description><![CDATA[Thanks Shannon for your reply.
+I looked at the pricing and that seems quite reasonable.  Let&#039;s see what the pricing model for Adobe Smart Tags will be.
+
+Any chance that you can share your implementation?
+
+Regards,]]></description>
+		<content:encoded><![CDATA[<p>Thanks Shannon for your reply.<br />
+I looked at the pricing and that seems quite reasonable.  Let&#8217;s see what the pricing model for Adobe Smart Tags will be.</p>
+<p>Any chance that you can share your implementation?</p>
+<p>Regards,</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on AEM and Google Cloud Vision &#8211; Impressions to Implementation by Shannon Sumner</title>
+		<link>/adobe-blog/2016/04/29/aem-and-googles-cloud-vision-api-impressions-to-implementation/#comment-17</link>
+		<dc:creator><![CDATA[Shannon Sumner]]></dc:creator>
+		<pubDate>Mon, 16 May 2016 15:05:16 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3760#comment-17</guid>
+		<description><![CDATA[Hi Nono,
+
+As far as I know, Google;s Cloud Vision API does not restrict the amount of calls made through a key.  Anything over a thousand inquiries a month will cost a bit.  Pricing can be found here:  https://cloud.google.com/vision/docs/pricing.
+
+It does look like a batch mode is supported up to 4MB (https://cloud.google.com/vision/docs/image-best-practices#google_cloud_storage_image_files).    The larger the image, the more Google will be able to accurately label the image.  Since images usually run pretty big - batch processing is not realistic.
+
+We extended the existing DAM workflow instead of creating a custom workflow for expediency sake.  The process has evolved since this blog post.  We now use an event listener to observe when a node of type &quot;nt:file&quot; is added to the DAM.  We then check the size of this asset.  If the size is under 4MB - we send the file to Google&#039;s Cloud Vision API.  If it is over 4MB, we send a rendition of the asset.]]></description>
+		<content:encoded><![CDATA[<p>Hi Nono,</p>
+<p>As far as I know, Google;s Cloud Vision API does not restrict the amount of calls made through a key.  Anything over a thousand inquiries a month will cost a bit.  Pricing can be found here:  <a href="https://cloud.google.com/vision/docs/pricing" rel="nofollow">https://cloud.google.com/vision/docs/pricing</a>.</p>
+<p>It does look like a batch mode is supported up to 4MB (<a href="https://cloud.google.com/vision/docs/image-best-practices#google_cloud_storage_image_files" rel="nofollow">https://cloud.google.com/vision/docs/image-best-practices#google_cloud_storage_image_files</a>).    The larger the image, the more Google will be able to accurately label the image.  Since images usually run pretty big &#8211; batch processing is not realistic.</p>
+<p>We extended the existing DAM workflow instead of creating a custom workflow for expediency sake.  The process has evolved since this blog post.  We now use an event listener to observe when a node of type &#8220;nt:file&#8221; is added to the DAM.  We then check the size of this asset.  If the size is under 4MB &#8211; we send the file to Google&#8217;s Cloud Vision API.  If it is over 4MB, we send a rendition of the asset.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on AEM Infrastructure Series:  Oak Clustering by Nono Junang</title>
+		<link>/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/#comment-9</link>
+		<dc:creator><![CDATA[Nono Junang]]></dc:creator>
+		<pubDate>Mon, 02 May 2016 02:02:32 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3554#comment-9</guid>
+		<description><![CDATA[Nice!]]></description>
+		<content:encoded><![CDATA[<p>Nice!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on AEM and Google Cloud Vision &#8211; Impressions to Implementation by Nono Junang</title>
+		<link>/adobe-blog/2016/04/29/aem-and-googles-cloud-vision-api-impressions-to-implementation/#comment-15</link>
+		<dc:creator><![CDATA[Nono Junang]]></dc:creator>
+		<pubDate>Mon, 02 May 2016 01:54:49 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3760#comment-15</guid>
+		<description><![CDATA[Very nice.
+Does the Google Cloud Vision API restricts the amount of calls made through a key?
+Any batch mode supported?
+Also why extend the existing DAM Workflow instead of creating a custom workflow with custom launcher.
+
+But overall very nice!]]></description>
+		<content:encoded><![CDATA[<p>Very nice.<br />
+Does the Google Cloud Vision API restricts the amount of calls made through a key?<br />
+Any batch mode supported?<br />
+Also why extend the existing DAM Workflow instead of creating a custom workflow with custom launcher.</p>
+<p>But overall very nice!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on 4 New Invaluable Translation Features in AEM 6.2 by Dan Klco</title>
+		<link>/adobe-blog/2016/03/31/4-new-invaluable-translation-features-in-aem-6-2/#comment-14</link>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+		<pubDate>Wed, 06 Apr 2016 14:16:01 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3284#comment-14</guid>
+		<description><![CDATA[@Sridhar, thanks for the additional notes and correction on language copy, I updated the post to reflect the correct functionality.]]></description>
+		<content:encoded><![CDATA[<p>@Sridhar, thanks for the additional notes and correction on language copy, I updated the post to reflect the correct functionality.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on 4 New Invaluable Translation Features in AEM 6.2 by Sridhar Jayakumar</title>
+		<link>/adobe-blog/2016/03/31/4-new-invaluable-translation-features-in-aem-6-2/#comment-13</link>
+		<dc:creator><![CDATA[Sridhar Jayakumar]]></dc:creator>
+		<pubDate>Sun, 03 Apr 2016 01:48:17 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3284#comment-13</guid>
+		<description><![CDATA[Hi Dan,
+
+A couple of notes:
+
+1)The override option creates language copy, not a live copy.
+2) we also have added support for XLIFF/XML support
+3) Approve/Reject lifestyle part of the translation jobs.
+4) Translation of assets now automatically adds the translated assets to appropriate language folders.]]></description>
+		<content:encoded><![CDATA[<p>Hi Dan,</p>
+<p>A couple of notes:</p>
+<p>1)The override option creates language copy, not a live copy.<br />
+2) we also have added support for XLIFF/XML support<br />
+3) Approve/Reject lifestyle part of the translation jobs.<br />
+4) Translation of assets now automatically adds the translated assets to appropriate language folders.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Adobe Summit: Future Telling 2016 by Chris</title>
+		<link>/adobe-blog/2016/03/22/adobe-summit-future-telling-2016/#comment-8</link>
+		<dc:creator><![CDATA[Chris]]></dc:creator>
+		<pubDate>Fri, 25 Mar 2016 17:49:03 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3175#comment-8</guid>
+		<description><![CDATA[This sounds more interesting than a lot of Summit presos.  Is there a recording?]]></description>
+		<content:encoded><![CDATA[<p>This sounds more interesting than a lot of Summit presos.  Is there a recording?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Adobe Summit: Wed General Session Abbie Wombach &#038; George Clooney by ow.ly</title>
+		<link>/adobe-blog/2016/03/23/adobe-summit-wed-general-session-abbie-wombach-george-clooney/#comment-12</link>
+		<dc:creator><![CDATA[ow.ly]]></dc:creator>
+		<pubDate>Fri, 25 Mar 2016 06:55:34 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3205#comment-12</guid>
+		<description><![CDATA[There is a good reason that all business enterprise organizations, not only 
+big organizations demand to have a continuity of business program in place in case of a catastrophe.]]></description>
+		<content:encoded><![CDATA[<p>There is a good reason that all business enterprise organizations, not only<br />
+big organizations demand to have a continuity of business program in place in case of a catastrophe.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Adobe CQ5 as a Portal by Ajitha</title>
+		<link>/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/#comment-39</link>
+		<dc:creator><![CDATA[Ajitha]]></dc:creator>
+		<pubDate>Sat, 19 Mar 2016 13:56:25 +0000</pubDate>
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=4180#comment-39</guid>
+		<description><![CDATA[We are using Adobe AEM as WCM , since we have other enterprise applications as well to be integrated along with  SSO in to website we are considering Liferay portal. In this scenario what are the integration  alternatives i have leveraging AEM (all presentation logic) for content authors at the same time integrating this with in Liferay portal ?]]></description>
+		<content:encoded><![CDATA[<p>We are using Adobe AEM as WCM , since we have other enterprise applications as well to be integrated along with  SSO in to website we are considering Liferay portal. In this scenario what are the integration  alternatives i have leveraging AEM (all presentation logic) for content authors at the same time integrating this with in Liferay portal ?</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:14:21 by W3 Total Cache -->

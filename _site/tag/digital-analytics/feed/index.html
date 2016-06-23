@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Digital Analytics &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/digital-analytics/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Protecting Your Adobe Analytics Implementation from Start to End</title>
+		<link>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/</link>
+		<comments>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/#comments</comments>
+		<pubDate>Tue, 01 Mar 2016 15:26:54 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Digital Analytics]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2965</guid>
+		<description><![CDATA[Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier and concise free when it comes to auditing your Adobe Analytics, formally known as SiteCatalyst or Omniture, and Adobe Dynamical Tag Management (DTM) implementations and future releases.</p>
+<p>Most of today’s savvy digital analytics marketers are already either using a tag management system or started migrating their legacy clickstream hard code implementation to a TMS approach. To successfully audit your Adobe Analytics implementation, you must first understand the full process of data collection for your specific implementation. For the purpose of this post, our use case will be focus on auditing our Adobe Analytics and DTM implementation.</p>
+<p><strong>DTM Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>A data element (Cookie, URL Parameter, Custom Script, CSS Selector, or JS Object) that is mapped to a tool such as Adobe Analytics can return empty if the wrong load rule was selected.<span id="more-2965"></span></p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/DTM-Load-Rules.png" rel="attachment wp-att-2966"><img class="alignnone size-medium wp-image-2966" src="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png" alt="Adobe DTM Load Rules" width="300" height="255" srcset="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png 300w, /adobe-blog/files/2016/03/DTM-Load-Rules-600x510.png 600w, /adobe-blog/files/2016/03/DTM-Load-Rules.png 711w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source:</strong> https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Disruptive Advertising’s Adobe DTM Debugger</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>Free</p>
+<p><strong>Link: </strong><a href="http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/" target="_blank">http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/</a></p>
+<p><strong>Adobe Analytics Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>If the selected Dimensions (Custom Values, Context Data, Traffic Variables, Hit Attributes, Conversion Variables, Success Events) uses an incorrect conditional logic statement, your data collection could cause major ramifications such as overwriting variables and incorrect mapping.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png" rel="attachment wp-att-2967"><img class="alignnone size-medium wp-image-2967" src="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png" alt="Adobe Analytics Processing Order" width="300" height="75" srcset="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png 300w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-768x192.png 768w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-600x150.png 600w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png 946w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source</strong>: https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Stratigent&#8217;s Adobe Analytics SMART Bookmarklet</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>There are two pricing models for the application:</p>
+<ol>
+<li>Current version, no updates:  $5,000 for unlimited use, one-time fee</li>
+<li>Current version, plus any future updates to it:  $10,000 for unlimited use, one-time fee</li>
+</ol>
+<p><strong>Link:</strong> <a href="http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet" target="_blank">http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet</a></p>
+<p><strong>Other Considerations:</strong></p>
+<p><strong>Adobe DTM Switch: </strong>Adobe self-owned plugin extension that allows you to toggle the debug mode and staging mode for Adobe Dynamic Tag Management.</p>
+<p><strong>Web Analytics Solution Profiler (WASP</strong>): Digital Analytics quality assurance auditing tool created by Cardinal Path that allows you to visualize what and where tags are firing.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png" rel="attachment wp-att-2968"><img class="alignnone size-medium wp-image-2968" src="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png" alt="Web Analytics Solution Profiler (WASP)" width="300" height="170" srcset="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png 300w, /adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png 420w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>ObservePoint Tag Debugger</strong>: Creates a new tab in the developer tools to enable quick finding and detailed viewing of analytics tags and other technologies on the current page.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png" rel="attachment wp-att-2969"><img class="alignnone size-medium wp-image-2969" src="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png" alt="ObservePoint Tag Debugger" width="300" height="105" srcset="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png 300w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-768x269.png 768w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-600x210.png 600w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png 778w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>There are a number of digital data collection auditing options available from web packet sniffers, browser plugins, console add-ons and QA tools, but these solutions were selected for 2 reasons, which are <strong>1)</strong> Adobe centric and <strong>2)</strong> User Friendly. These solutions should help get you started and up and running with safe guarding your Adobe Analytics implementation.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:30:09 by W3 Total Cache -->

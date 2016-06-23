@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Optimization &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/optimization/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>5 Steps to Delight Customers with Personalization in AEM &#038; Target</title>
+		<link>/adobe-blog/2016/05/17/5-steps-to-delight-customers-with-personalization-in-aem-and-target/</link>
+		<comments>/adobe-blog/2016/05/17/5-steps-to-delight-customers-with-personalization-in-aem-and-target/#respond</comments>
+		<pubDate>Tue, 17 May 2016 18:27:40 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+		<category><![CDATA[AEM 6.2]]></category>
+		<category><![CDATA[Digital Marketing]]></category>
+		<category><![CDATA[Optimization]]></category>
+		<category><![CDATA[Personalization]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3919</guid>
+		<description><![CDATA[Consumers want relevant content, yet many brands have difficulty providing relevant and personalized content. One reason for this is duplicate authoring of website and personalized content. This duplication causes confusion and extra work, as authors must log into at least two systems to maintain site content. In the latest release of Adobe Experience Manager, Adobe has [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/5-steps-to-delight-customers-with-personalization-in-aem-and-target/">5 Steps to Delight Customers with Personalization in AEM &amp; Target</a> was first posted on May 17, 2016 at 1:27 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><a href="http://janrain.com/about/newsroom/press-releases/online-consumers-fed-up-with-irrelevant-content-on-favorite-websites-according-to-janrain-study/">Consumers want relevant content</a>, yet many brands have difficulty providing relevant and personalized content. One reason for this is duplicate authoring of website and personalized content. This duplication causes confusion and extra work, as authors must log into at least two systems to maintain site content.</p>
+<p>In the <a href="https://docs.adobe.com/docs/en/aem/6-2/release-notes.html">latest release</a> of <a href="http://www.adobe.com/marketing-cloud/enterprise-content-management.html">Adobe Experience Manager</a>, Adobe has simplified authoring personalized content. In addition to some <a href="https://blogs.adobe.com/digitalmarketing/digital-marketing/adobe-experience-manager-6-2-new-features/">exciting new features</a>, this release includes a new integration with <a href="http://www.adobe.com/marketing-cloud/testing-targeting.html">Adobe Target</a>. The new integration allows authors to edit personalized content directly within AEM.</p>
+<p>Given the <a href="https://blogs.adobe.com/digitalmarketing/personalization/personalization-payoff-roi-getting-personal/">strong ROI of personalization,</a> the improved AEM / Target integration will be a big win for Adobe customers.</p>
+<h2>Authoring Personalized Experiences with AEM &amp; Target</h2>
+<p>While at Adobe Summit, I attended the lab <em>&#8220;Integrating Experience Manager with Adobe Analytics, Target and DTM&#8221;</em>, which showcased the new AEM / Target integration. In only one hour, we were able to set up the integration and personalize content.</p>
+<p>In this post, I&#8217;ll show the process for authoring personalized content in AEM with Adobe Target. For more information on setting up the integration, please see the <a href="https://adobesummit.lanyonevents.com/2016/connect/sessionDetail.ww?SESSION_ID=1462">Summit Session documents</a>. The images below are credits the <a href="https://adobesummit.lanyonevents.com/2016/connect/sessionDetail.ww?SESSION_ID=1462">authors of the lab</a>.</p>
+<h3>1. Configure an Activity in AEM</h3>
+<p>The first step to using Adobe Target in AEM is to configure your Activity. An activity is an instance of targeting on a page. Each activity gets a name and you can configure which targeting engine, configuration and targeting type to use.</p>
+<p><a href="/adobe-blog/files/2016/05/02-Configure-Activity.png"><img class="aligncenter size-large wp-image-3920" src="/adobe-blog/files/2016/05/02-Configure-Activity-600x374.png" alt="Configure an Activity" width="600" height="374" srcset="/adobe-blog/files/2016/05/02-Configure-Activity.png 600w, /adobe-blog/files/2016/05/02-Configure-Activity-300x187.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>To create a new Activity, first, select the Brand (which is a container of activities for a particular brand or site) and then click the + button. If you wanted to modify an existing activity, you would select the name of activity from the drop-down.</p>
+<h3>2. Define Targets</h3>
+<p>Next, define the components to be targeted. You can define any number of components to be targeted on the page. To do so, simply select the Targeting icon on the component&#8217;s edit bar while in targeting mode.</p>
+<p><a href="/adobe-blog/files/2016/05/03-Manage-Audiences.png"><img class="aligncenter size-large wp-image-3921" src="/adobe-blog/files/2016/05/03-Manage-Audiences-600x141.png" alt="Managing Audiences" width="600" height="141" srcset="/adobe-blog/files/2016/05/03-Manage-Audiences.png 600w, /adobe-blog/files/2016/05/03-Manage-Audiences-300x71.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>When you target a component, AEM replaces the existing component with a targeting container and makes the existing content the default.</p>
+<h3>3. Create Experiences</h3>
+<p>Once you have your components selected for the Activity, you need to create the experiences. Experiences are content variants shown to a particular audience or are groups of users based on criteria. By default, only the DEFAULT experience will be displayed when the Activity is first created.</p>
+<p>To add an experience, select &#8220;+ Add Experience Targeting&#8221;. This will allow you to choose from among the pre-defined audiences or create a new audience to target.</p>
+<p><a href="/adobe-blog/files/2016/05/04-Choose-Audience.png"><img class="aligncenter size-large wp-image-3922" src="/adobe-blog/files/2016/05/04-Choose-Audience-600x184.png" alt="Choosing Audiences" width="600" height="184" srcset="/adobe-blog/files/2016/05/04-Choose-Audience.png 600w, /adobe-blog/files/2016/05/04-Choose-Audience-300x92.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>You can create any number of audiences and order them in order in which they will be selected by Target.</p>
+<h3>4. Create the Experience Content</h3>
+<p>Once you&#8217;ve defined the experiences, select each one and update the content in the targeted components. You can change content, images or anything else you can edit within an AEM component.</p>
+<p><a href="/adobe-blog/files/2016/05/07-Create-Experience-Content.png"><img class="aligncenter size-large wp-image-3923" src="/adobe-blog/files/2016/05/07-Create-Experience-Content-600x374.png" alt="Creating Experience Content" width="600" height="374" srcset="/adobe-blog/files/2016/05/07-Create-Experience-Content.png 600w, /adobe-blog/files/2016/05/07-Create-Experience-Content-300x187.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>You can quickly switch between experiences in authoring mode by selecting the experience name on the right. This allows you to see how the content appears in each experience.</p>
+<h3>5. Finish and Publish</h3>
+<p>Once you have created the content for the experiences, review and finish the setup of the Activity.</p>
+<p><a href="/adobe-blog/files/2016/05/08-Finish-Configuration.png"><img class="aligncenter size-large wp-image-3924" src="/adobe-blog/files/2016/05/08-Finish-Configuration-600x374.png" alt="Finishing Configuration" width="600" height="374" srcset="/adobe-blog/files/2016/05/08-Finish-Configuration.png 600w, /adobe-blog/files/2016/05/08-Finish-Configuration-300x187.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>From this screen, you can define how reporting will be tracked for the Activity as well as the goals for the Activity. This will allow marketers to see reports on the success of the personalization activity.</p>
+<p>Once you have verified and finished the Activity, publish the page to push the changes to the live website. AEM will publish all the content to the live site simultaneously to ensure website consistency.</p>
+<h2>Bonus: Testing Experiences</h2>
+<p>To ensure your targeting is working correctly, AEM includes the ability to view and modify the Client Context. The Client Context stores data on the current user and can / should be used for configuring segments inside AEM and Target. To view the Client Context, switch to Preview mode in AEM and then select the Client Context Hub icon. This will allow you to modify the variables in the client context and switch between segments to see the different experiences.</p>
+<p><a href="/adobe-blog/files/2016/05/09-Test-Experiences.png"><img class="aligncenter size-large wp-image-3925" src="/adobe-blog/files/2016/05/09-Test-Experiences-600x374.png" alt="Testing Experiences" width="600" height="374" srcset="/adobe-blog/files/2016/05/09-Test-Experiences.png 600w, /adobe-blog/files/2016/05/09-Test-Experiences-300x187.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<h2>Personalization Unleashed</h2>
+<p>With AEM and Target, brands can delight their customers by providing rich, personalized experiences. At the same time, the new integration means authors have less overhead maintaining content.</p>
+<p><a href="https://econsultancy.com/blog/62583-94-of-businesses-say-personalisation-is-critical-to-their-success">Brands understand the need of personalization</a> and the new AEM / Target integration allows them to make it happen.</p>
+<p>Need help with understanding personalization with AEM &amp; Target? Leave a comment below and I&#8217;d be happy to help!</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/5-steps-to-delight-customers-with-personalization-in-aem-and-target/">5 Steps to Delight Customers with Personalization in AEM &amp; Target</a> was first posted on May 17, 2016 at 1:27 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/17/5-steps-to-delight-customers-with-personalization-in-aem-and-target/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:21:41 by W3 Total Cache -->

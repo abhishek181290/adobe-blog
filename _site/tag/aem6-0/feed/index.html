@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>AEM6.0 &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/aem6-0/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>FSClassLoader Now In AEM6.0 SP3</title>
+		<link>/adobe-blog/2015/10/28/fsclassloader-now-in-aem6-0-sp3/</link>
+		<comments>/adobe-blog/2015/10/28/fsclassloader-now-in-aem6-0-sp3/#respond</comments>
+		<pubDate>Wed, 28 Oct 2015 13:01:56 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM6.0]]></category>
+		<category><![CDATA[Apache Sling]]></category>
+		<category><![CDATA[WCM]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2581</guid>
+		<description><![CDATA[Customers and developers upgrading to AEM 6.0 SP3 will find that there&#8217;s a new bundle in use, FSClassLoader. As I described in my previous post this bundle offers superior performance as compared to the repository based classloader, however it does remove the option for developers to access the generated Java code for their JSP&#8217;s under /var/classes. Luckily, [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/10/28/fsclassloader-now-in-aem6-0-sp3/">FSClassLoader Now In AEM6.0 SP3</a> was first posted on October 28, 2015 at 8:01 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Customers and developers upgrading to AEM 6.0 SP3 will find that there&#8217;s a new bundle in use, FSClassLoader. As I described in my <a href="http://labs.6dglobal.com/blog/2015-06-23/new-apache-sling-fs-classloader-console/" target="_blank">previous post</a> this bundle offers superior performance as compared to the repository based classloader, however it does remove the option for developers to access the generated Java code for their JSP&#8217;s under <code>/var/classes</code>.</p>
+<p>Luckily, when Adobe built AEM 6.0 SP3, they used FSClassLoader version 1.0.2 which includes an OSGi console allowing developers to view the compiled Java files. To view this, open up the OSGi console at <a href="http://localhost:4502/system/console">http://localhost:4502/system/console</a> and select the console under Sling &gt;&gt; File System Class Loader</p>
+<p><img class="img-responsive" src="/adobe-blog/files/2015/10/finding-console.png" alt="Finding the FSClassLoader OSGi Console" /><br />
+<span id="more-2581"></span></p>
+<p>From the console you can view or download the compiled .class file, generated .java file or the .deps file which lists the JSP scripts and TagLibs the files depends on.</p>
+<p><img class="img-responsive" src="/adobe-blog/files/2015/10/viewing-files.png" alt="Viewing files in the FSClassLoader OSGi Console" /></p>
+<p>Hopefully this helps anyone upgrading to AEM 6.0 SP3 and wondering why their generated Java files aren&#8217;t appearing under <code>/var/classes</code></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/10/28/fsclassloader-now-in-aem6-0-sp3/">FSClassLoader Now In AEM6.0 SP3</a> was first posted on October 28, 2015 at 8:01 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/10/28/fsclassloader-now-in-aem6-0-sp3/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:45:42 by W3 Total Cache -->

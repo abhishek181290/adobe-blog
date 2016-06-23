@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe Data Workbench &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/adobe-data-workbench/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Adobe Summit: Integrating Adobe DTM, Target, Analytics &#038; AEM</title>
+		<link>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/</link>
+		<comments>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/#respond</comments>
+		<pubDate>Fri, 13 May 2016 21:40:06 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Cordova]]></category>
+		<category><![CDATA[Adobe Data Workbench]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3874</guid>
+		<description><![CDATA[At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – formally known as CQ5), Adobe Target (formally known as Test&amp;Target) and Adobe Analytics (formally known as SiteCatalyst) seamlessly into a hybrid mobile application.</p>
+<p><strong>Overview</strong></p>
+<p>Perficient was self tasked to feature a highly interactive, visually compelling Adobe Summit App built in AEM Mobile that allows users to see real-time analytics from Adobe Workbench, an interactive analytics application part of Adobe Analytics that allows you to build visualization dashboards, as well as experience personalized content based off their responses on the survey taken from their mobile device.</p>
+<p><strong>Challenge</strong></p>
+<p>Integrating DTM and Target on a single page application in AngularJs, a JavaScript front-end framework.</p>
+<p>The application was built with Cordova (formally known as Adobe PhoneGap), a hybrid app development framework which consist of HTML, CSS and JavaScript, we were able to leverage the mobile platform’s Web view to render content. Since DTM is a JavaScript based container, we were able to integrate many of the other Adobe Marketing Cloud products that we come so accustom to.</p>
+<p>Using DTM as a host for Adobe Tools such as Adobe Analytics and Target, you are able to push, configure, track, integrate and perform marketing initiatives such as performing A/B tests with different components on the page and tracking user activities on your app.</p>
+<p><strong>STEP 1</strong></p>
+<p>We built a base template for each page (&#8220;mobileapps/components/angular/ng-page”) and we extended our pages from that template by creating an AEM (CQ) project using Apache Maven, a building management tool.</p>
+<p><strong style="line-height: 1.5">STEP 2</strong></p>
+<p>After configuring our property in Adobe Dynamic Tag Management, we went to our first page in the app, in this case the login page, and inserted the DTM bootleg snippet.</p>
+<p><em><strong>“&lt;script src=&#8221;https://assets.adobedtm.com/3215e845c9690cbe968752c99b825440070e111f/satelliteLib-21077d4adfcbef88029b6d7609a4be07d51b0616-staging.js&#8221;&gt;&lt;/script&gt;”</strong></em></p>
+<p style="text-align: left"><em><strong>Notes:</strong></em> Place snippet before the end of &lt;head&gt; section in the head.jsp;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png"><img class="wp-image-3879 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png" alt="intergating adobe dynamic tag management in crxde lite" width="295" height="171" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-768x445.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-600x348.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png 1171w" sizes="(max-width: 295px) 100vw, 295px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3875 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png" alt="intergating adobe dynamic tag management in adobe experience manager - head snippet" width="323" height="175" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-768x417.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-600x325.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png 1252w" sizes="(max-width: 323px) 100vw, 323px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>STEP 3</strong></p>
+<p>In the login page component, go to body.jsp, and insert the DTM snippet in the body of the page.</p>
+<p><strong><em>“&lt;script type=&#8221;text/javascript&#8221;&gt;_satellite.pageBottom();&lt;/script&gt;”</em></strong></p>
+<p><strong><em>Notes:</em></strong> Place snippet before the end of &lt;body&gt;;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3878 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png" alt="intergating adobe dtm in crxde lite" width="286" height="166" srcset="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-768x444.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-600x347.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite.png 1174w" sizes="(max-width: 286px) 100vw, 286px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png"><img class="wp-image-3880 alignnone" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png" alt="intergating adobe dynamic tag management in adobe experience manager - body snippet" width="312" height="167" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-768x411.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-600x321.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png 1270w" sizes="(max-width: 312px) 100vw, 312px" /></a></p>
+<p><strong>STEP 4</strong></p>
+<p style="text-align: left">Since the summit app is an Angular SPA, we just needed to put the snippets in the first page, and the JS will be loaded/available for all other pages.</p>
+<p>Therefore the next step was to UAT/QA and verify the JS was getting downloaded correctly.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png"><img class="size-medium wp-image-3876 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png" alt="adobe dynamic tag management debugging adobe analytic tool" width="300" height="167" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-768x428.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-600x335.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png 1217w" sizes="(max-width: 300px) 100vw, 300px" /></a><strong>STEP 5 </strong></p>
+<p>Now we are ready to add our Adobe Analytics and Adobe Target tools in DTM, where we were able to implement our analytics solution design and run different personalize tests based data being collected from Adobe Analytics including custom variables and success events.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png"><img class="size-medium wp-image-3877 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png" alt="adobe dynamic tag management debugging" width="300" height="172" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-768x441.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-600x345.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png 1182w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:25:56 by W3 Total Cache -->

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe Dynamic Tag Management &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/adobe-dynamic-tag-management/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>One Visitor ID To Rule Them All</title>
+		<link>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/</link>
+		<comments>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/#respond</comments>
+		<pubDate>Tue, 17 May 2016 21:38:19 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[adobe audience manager]]></category>
+		<category><![CDATA[Adobe Campaigns]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe Media Optimizer]]></category>
+		<category><![CDATA[Adobe Mobile Services]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3937</guid>
+		<description><![CDATA[Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Using Visitor ID to connect visitor profiles across Adobe Analytics, Target, and Audience Manager has been on Adobe’s to do list for a long time and many marketers as well. Far too long, integration between the Adobe products included many gaps and data integration issues such cookie deletion and dependency on data collection servers to setting their version of a third party cookie, called “s_vi”. As a temporarily solution, Adobe set a default backup cookie, “s_fid”, in case the cookie was deleted since these cookies were being set by servers outside the parent domain on a browser. The other option and more cumbersome solution for implementing the first party visitor ID cookie was to use a CNAME record on our client&#8217;s DNS in order to avoid setting a 3rd party cookie altogether. Obviously, there was a need and room to grow from Adobe’s side.<br />
+The Marketing Cloud Visitor ID service, AMCV ID, is supported by the following libraries and SDKs: Adobe Dynamic Tag Mnagement, Adobe Analytyics, Adobe Audience Manager, Adobe Target and Adobe Mobile Services.</p>
+<p><em><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png"><img class=" wp-image-3938 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png" alt="Adobe Marketing Cloud Visitor ID framework" width="460" height="221" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework-300x144.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-Visitor-ID-framework.png 600w" sizes="(max-width: 460px) 100vw, 460px" /></a></em></p>
+<p><em>Source: https://blogs.adobe.com/digitalmarketing/analytics/why-new-adobe-marketing-cloud-id-service-should-be-on-your-radar/<br />
+</em><br />
+<strong>Migrating from Adobe Analytics Legacy Visitor ID</strong><br />
+This migration will either store the legacy cookie (s_vi) to the AMCV cookie or create a new AMCV cookie, which will be used as its replacement all together.</p>
+<p><strong>Implementing AMCV in Adobe Dynamic Tag Mangement</strong></p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png"><img class="wp-image-3939 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png" alt="Adobe Dynamic Tag Management - Marketing Cloud ID Service Tool" width="534" height="260" srcset="/adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-300x146.png 300w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-768x374.png 768w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool-600x292.png 600w, /adobe-blog/files/2016/05/Adobe-Dynamic-Tag-Management-Marketing-Cloud-ID-Service-Tool.png 950w" sizes="(max-width: 534px) 100vw, 534px" /></a></p>
+<p><strong>Prerequisites &#8211; Adobe Requirements<br />
+</strong><br />
+1. Contact Client Care to obtain the Marketing Cloud Organization ID ie. (MCOrg ID)<br />
+2. Ensure your scode is on AppMeasurement version 1.3 or later, scode H.27 or later.<br />
+3. Make sure your Adobe Adobe server calls are going to Regional Data Collection, meaning your image requests are being sent to RDC tracking server ( ie. .sc.omtrdc.net) instead of a Non-RDC tracking server, (ie. .2o7.net).<br />
+4. Next, deploy your new VisitorAPI Javascript library. Log into your Admin Console and get the VisitorAPI.js file from the Code Manager. This can be in your scode file or in DTM in the tool’s setting, but it must be placed at the beginning of the file. Important Note: The placement of this code needs to fire first in the order sequence in order to be leveraged by the other Adobe JS libraries.<br />
+5. Configure your Visitor ID service.<br />
+6. Set Visitor ID in a Custom Variable (sprop or eVar) to test quality assurance. (Below is the Custom JS to capture the AMCV in a DTM Data Element that is ready to be mapped to a custom variable.) You can also set the AMCV in a cookie using a native DTM function to either map or verify in the Developers Console. (_satellite.setCookie(&#8216;cookie name&#8217;,&#8217;cookie value&#8217;,days to expire)<br />
+7. As precaution, please be sure to check Adobe Analytics server call as there should be an additional parameter called “mid”, the Marketing Cloud Visitor ID.</p>
+<p><a href="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png"><img class="wp-image-3940 aligncenter" src="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png" alt="Adobe Marketing Cloud ID - Dynamic Tag Managment Data Element" width="676" height="345" srcset="/adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-300x153.png 300w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-768x393.png 768w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element-600x307.png 600w, /adobe-blog/files/2016/05/Adobe-Marketing-Cloud-ID-Dynamic-Tag-Managment-Data-Element.png 1107w" sizes="(max-width: 676px) 100vw, 676px" /></a></p>
+<p>Now that you have the foundation for your Adobe Target, Adobe Analytics, Adobe Media Optimizer and Adobe Audience Manager tools, you can feel confident about your data being unified and now you are finally ready to start building your campaigns, profiles, activities, and reports.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/">One Visitor ID To Rule Them All</a> was first posted on May 17, 2016 at 4:38 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/17/one-visitor-id-to-rule-them-all/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Integrating Adobe DTM, Target, Analytics &#038; AEM</title>
+		<link>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/</link>
+		<comments>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/#respond</comments>
+		<pubDate>Fri, 13 May 2016 21:40:06 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Cordova]]></category>
+		<category><![CDATA[Adobe Data Workbench]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3874</guid>
+		<description><![CDATA[At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – formally known as CQ5), Adobe Target (formally known as Test&amp;Target) and Adobe Analytics (formally known as SiteCatalyst) seamlessly into a hybrid mobile application.</p>
+<p><strong>Overview</strong></p>
+<p>Perficient was self tasked to feature a highly interactive, visually compelling Adobe Summit App built in AEM Mobile that allows users to see real-time analytics from Adobe Workbench, an interactive analytics application part of Adobe Analytics that allows you to build visualization dashboards, as well as experience personalized content based off their responses on the survey taken from their mobile device.</p>
+<p><strong>Challenge</strong></p>
+<p>Integrating DTM and Target on a single page application in AngularJs, a JavaScript front-end framework.</p>
+<p>The application was built with Cordova (formally known as Adobe PhoneGap), a hybrid app development framework which consist of HTML, CSS and JavaScript, we were able to leverage the mobile platform’s Web view to render content. Since DTM is a JavaScript based container, we were able to integrate many of the other Adobe Marketing Cloud products that we come so accustom to.</p>
+<p>Using DTM as a host for Adobe Tools such as Adobe Analytics and Target, you are able to push, configure, track, integrate and perform marketing initiatives such as performing A/B tests with different components on the page and tracking user activities on your app.</p>
+<p><strong>STEP 1</strong></p>
+<p>We built a base template for each page (&#8220;mobileapps/components/angular/ng-page”) and we extended our pages from that template by creating an AEM (CQ) project using Apache Maven, a building management tool.</p>
+<p><strong style="line-height: 1.5">STEP 2</strong></p>
+<p>After configuring our property in Adobe Dynamic Tag Management, we went to our first page in the app, in this case the login page, and inserted the DTM bootleg snippet.</p>
+<p><em><strong>“&lt;script src=&#8221;https://assets.adobedtm.com/3215e845c9690cbe968752c99b825440070e111f/satelliteLib-21077d4adfcbef88029b6d7609a4be07d51b0616-staging.js&#8221;&gt;&lt;/script&gt;”</strong></em></p>
+<p style="text-align: left"><em><strong>Notes:</strong></em> Place snippet before the end of &lt;head&gt; section in the head.jsp;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png"><img class="wp-image-3879 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png" alt="intergating adobe dynamic tag management in crxde lite" width="295" height="171" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-768x445.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-600x348.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png 1171w" sizes="(max-width: 295px) 100vw, 295px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3875 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png" alt="intergating adobe dynamic tag management in adobe experience manager - head snippet" width="323" height="175" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-768x417.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-600x325.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png 1252w" sizes="(max-width: 323px) 100vw, 323px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>STEP 3</strong></p>
+<p>In the login page component, go to body.jsp, and insert the DTM snippet in the body of the page.</p>
+<p><strong><em>“&lt;script type=&#8221;text/javascript&#8221;&gt;_satellite.pageBottom();&lt;/script&gt;”</em></strong></p>
+<p><strong><em>Notes:</em></strong> Place snippet before the end of &lt;body&gt;;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3878 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png" alt="intergating adobe dtm in crxde lite" width="286" height="166" srcset="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-768x444.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-600x347.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite.png 1174w" sizes="(max-width: 286px) 100vw, 286px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png"><img class="wp-image-3880 alignnone" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png" alt="intergating adobe dynamic tag management in adobe experience manager - body snippet" width="312" height="167" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-768x411.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-600x321.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png 1270w" sizes="(max-width: 312px) 100vw, 312px" /></a></p>
+<p><strong>STEP 4</strong></p>
+<p style="text-align: left">Since the summit app is an Angular SPA, we just needed to put the snippets in the first page, and the JS will be loaded/available for all other pages.</p>
+<p>Therefore the next step was to UAT/QA and verify the JS was getting downloaded correctly.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png"><img class="size-medium wp-image-3876 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png" alt="adobe dynamic tag management debugging adobe analytic tool" width="300" height="167" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-768x428.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-600x335.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png 1217w" sizes="(max-width: 300px) 100vw, 300px" /></a><strong>STEP 5 </strong></p>
+<p>Now we are ready to add our Adobe Analytics and Adobe Target tools in DTM, where we were able to implement our analytics solution design and run different personalize tests based data being collected from Adobe Analytics including custom variables and success events.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png"><img class="size-medium wp-image-3877 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png" alt="adobe dynamic tag management debugging" width="300" height="172" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-768x441.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-600x345.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png 1182w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Protecting Your Adobe Analytics Implementation from Start to End</title>
+		<link>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/</link>
+		<comments>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/#comments</comments>
+		<pubDate>Tue, 01 Mar 2016 15:26:54 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Digital Analytics]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2965</guid>
+		<description><![CDATA[Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Part of every implementation requires multiple environments, load order rules, data collection processing and User Acceptance Testing (UAT). Unfortunately, there currently isn’t a solution in the market that can unify all these moving pieces due to the complex nature of data collection but I have a list of tools that can make your life easier and concise free when it comes to auditing your Adobe Analytics, formally known as SiteCatalyst or Omniture, and Adobe Dynamical Tag Management (DTM) implementations and future releases.</p>
+<p>Most of today’s savvy digital analytics marketers are already either using a tag management system or started migrating their legacy clickstream hard code implementation to a TMS approach. To successfully audit your Adobe Analytics implementation, you must first understand the full process of data collection for your specific implementation. For the purpose of this post, our use case will be focus on auditing our Adobe Analytics and DTM implementation.</p>
+<p><strong>DTM Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>A data element (Cookie, URL Parameter, Custom Script, CSS Selector, or JS Object) that is mapped to a tool such as Adobe Analytics can return empty if the wrong load rule was selected.<span id="more-2965"></span></p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/DTM-Load-Rules.png" rel="attachment wp-att-2966"><img class="alignnone size-medium wp-image-2966" src="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png" alt="Adobe DTM Load Rules" width="300" height="255" srcset="/adobe-blog/files/2016/03/DTM-Load-Rules-300x255.png 300w, /adobe-blog/files/2016/03/DTM-Load-Rules-600x510.png 600w, /adobe-blog/files/2016/03/DTM-Load-Rules.png 711w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source:</strong> https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Disruptive Advertising’s Adobe DTM Debugger</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>Free</p>
+<p><strong>Link: </strong><a href="http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/" target="_blank">http://www.disruptiveadvertising.com/analytics/introducing-the-adobe-dtm-debugger/</a></p>
+<p><strong>Adobe Analytics Process</strong></p>
+<p><strong>Potential Issues:</strong></p>
+<p>If the selected Dimensions (Custom Values, Context Data, Traffic Variables, Hit Attributes, Conversion Variables, Success Events) uses an incorrect conditional logic statement, your data collection could cause major ramifications such as overwriting variables and incorrect mapping.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png" rel="attachment wp-att-2967"><img class="alignnone size-medium wp-image-2967" src="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png" alt="Adobe Analytics Processing Order" width="300" height="75" srcset="/adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-300x75.png 300w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-768x192.png 768w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order-600x150.png 600w, /adobe-blog/files/2016/03/Adobe-Analytics-Processing-Order.png 946w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>Source</strong>: https://marketing.adobe.com/resources/help/en_US/reference/processing_rule_order.html</p>
+<p><strong>Solution: </strong>Stratigent&#8217;s Adobe Analytics SMART Bookmarklet</p>
+<p><strong>Description: </strong>Easily view your Processing Rule Sets and Processing Order.</p>
+<p><strong>Pricing: </strong>There are two pricing models for the application:</p>
+<ol>
+<li>Current version, no updates:  $5,000 for unlimited use, one-time fee</li>
+<li>Current version, plus any future updates to it:  $10,000 for unlimited use, one-time fee</li>
+</ol>
+<p><strong>Link:</strong> <a href="http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet" target="_blank">http://www.stratigent.com/our-solutions/partner-specific-solutions/adobe-analytics-smart-bookmarklet</a></p>
+<p><strong>Other Considerations:</strong></p>
+<p><strong>Adobe DTM Switch: </strong>Adobe self-owned plugin extension that allows you to toggle the debug mode and staging mode for Adobe Dynamic Tag Management.</p>
+<p><strong>Web Analytics Solution Profiler (WASP</strong>): Digital Analytics quality assurance auditing tool created by Cardinal Path that allows you to visualize what and where tags are firing.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png" rel="attachment wp-att-2968"><img class="alignnone size-medium wp-image-2968" src="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png" alt="Web Analytics Solution Profiler (WASP)" width="300" height="170" srcset="/adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP-300x170.png 300w, /adobe-blog/files/2016/03/Web-Analytics-Solution-Profiler-WASP.png 420w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><strong>ObservePoint Tag Debugger</strong>: Creates a new tab in the developer tools to enable quick finding and detailed viewing of analytics tags and other technologies on the current page.</p>
+<p style="text-align: center"><a href="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png" rel="attachment wp-att-2969"><img class="alignnone size-medium wp-image-2969" src="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png" alt="ObservePoint Tag Debugger" width="300" height="105" srcset="/adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-300x105.png 300w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-768x269.png 768w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger-600x210.png 600w, /adobe-blog/files/2016/03/ObservePoint-Tag-Debugger.png 778w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>There are a number of digital data collection auditing options available from web packet sniffers, browser plugins, console add-ons and QA tools, but these solutions were selected for 2 reasons, which are <strong>1)</strong> Adobe centric and <strong>2)</strong> User Friendly. These solutions should help get you started and up and running with safe guarding your Adobe Analytics implementation.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/">Protecting Your Adobe Analytics Implementation from Start to End</a> was first posted on March 1, 2016 at 9:26 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/01/protecting-your-adobe-analytics-implementation-from-start-to-end/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:21:27 by W3 Total Cache -->

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Bash &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/bash/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Managing Multiple AEM Instances</title>
+		<link>/adobe-blog/2015/12/08/managing-multiple-aem-instances/</link>
+		<comments>/adobe-blog/2015/12/08/managing-multiple-aem-instances/#respond</comments>
+		<pubDate>Tue, 08 Dec 2015 16:00:40 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[Bash]]></category>
+		<category><![CDATA[Best Practices]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2632</guid>
+		<description><![CDATA[One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a quick test.</p>
+<p>To make starting, stopping and resetting AEM instances on my computer quick and easy, I created a small script and a structure to support easily managing multiple AEM instances on the same computer.</p>
+<p class="text-center" style="text-align: center"><img class="img-responsive center-block aligncenter" style="max-width: 300px" src="/adobe-blog/files/2015/12/juggling.jpg" alt="Juggling AEM Instances" /><br />
+&#8220;<a class="external text" href="https://commons.wikimedia.org/wiki/File:Y%C3%BCcelzorlu_(3).JPG">Yücelzorlu</a>&#8221; by <a class="external text" href="https://commons.wikimedia.org/wiki/User:SepiNs" rel="nofollow">SepiNs</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC SA 2.0</a></p>
+<p><span id="more-2632"></span></p>
+<h3>Folder Structure</h3>
+<p>First, from a structure perspective, create the following folders:</p>
+<pre>/[user-home]
+    /dev
+        /aem
+            /instance1
+            /instance2
+        ...
+</pre>
+<p>This structure is pretty simple, but it does help a lot to be consistent and makes it pretty quick to navigate folders via terminal or finder; cd <code>~/dev/aem/6.1</code> is pretty darn easy to type, easy to remember and makes sense from a taxonomy perspective. This structure also allows me to add other applications in parallel, such as MongoDB, Tomcat or anything else with which I may need to integrate as sibling folders to the aem folder.</p>
+<h3>AEM Manager Script</h3>
+<p>Next, I <a href="https://github.com/PerficientDigital/AEM-Manager/blob/master/aem-mgr.sh" target="_blank">created a shell script</a> to manage the individual AEM instances under this structure. The script allows you to start, stop and clear the repositories of instances. When starting, the script clears the AEM logs before starting, can start the instance in debug mode, start multiple publisher instances, can run without the GUI and allows you to configure the JVM settings for the AEM instances.</p>
+<p>This script also allows you to clear the repository, removing everything under the crx-quickstart folder to quickly restore the repository to the starting state. This can be especially useful if you are trying to save space or need to install two incompatible codebases.</p>
+<h3>Examples</h3>
+<p>The commands for the script are relatively straightforward:</p>
+<p><strong>Starting an AEM Instance</strong></p>
+<pre><code>aem-mgr start -i 6.1.0</code></pre>
+<p><strong>Starting an AEM Author and Publishers</strong></p>
+<pre><code>aem-mgr start -i 6.1.0 -p</code></pre>
+<p>It&#8217;s probably worth mentioning that what this will do is start the author instance found in the folder ~/dev/aem/6.1.0 and all of the instances in folders which look like ~/dev/aem/6.1.0-publish-[N].</p>
+<p><strong>Stopping an AEM Instance</strong></p>
+<pre><code>aem-mgr stop -i 6.1.0</code></pre>
+<p><strong>Clearing an AEM Instance</strong></p>
+<pre><code>aem-mgr clear -i 6.1.0</code></pre>
+<p>A quick note, if you want to run multiple instances in parallel, you will need to pass in the -nd flag to disable debugging on the non-primary instances. The script handles this automatically for publish instances by incrementing all of the port numbers.</p>
+<h3>Defaults</h3>
+<p>By default, the script will look for AEM instances under the ~/dev/aem folder I described above. Each instance is assumed to be in a sub-folder with a JAR inside with a name matching <code>^.<span class="pl-k">*</span>aem.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code> or <code>^.<span class="pl-k">*cq</span>.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code>.</p>
+<p>Each instance with debug enabled will start by default with the Java debug port set to 30303 and the JMX port to 9999. Additionally, by default the JVM is granted a maximum of 1GB heap and 256MB of Permanent Generation. These values can be configured in the &#8220;Default Settings&#8221; section of the script.</p>
+<h3>Installation</h3>
+<p>To install the script either <a href="https://raw.githubusercontent.com/PerficientDigital/AEM-Manager/master/aem-mgr.sh" target="_blank">download it directly from GitHub</a> or clone the git repository and add it into your computer&#8217;s PATH variable. It has been tested in Linux and Mac and I would suspect it would work on windows with GNUTools or Cygwin installed.</p>
+<p>Hopefully you find the script and structure useful!</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/12/08/managing-multiple-aem-instances/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:29:36 by W3 Total Cache -->

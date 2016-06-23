@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Greg Dawson &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/author/gdawson/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>AEM Infrastructure Series:  Oak Clustering</title>
+		<link>/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/</link>
+		<comments>/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/#comments</comments>
+		<pubDate>Fri, 22 Apr 2016 14:25:47 +0000</pubDate>
+		<dc:creator><![CDATA[Greg Dawson]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM Foundation]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3554</guid>
+		<description><![CDATA[In the application server world, clustering is typically implemented to promote redundancy and scalability, subsequently with a goal toward high availability—that is maintaining uptime on customer facing sites or services. It’s a common assumption that these same concepts apply when it comes to clustering on Adobe Experience Manager 6.x. Right? Not so fast. If you [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/">AEM Infrastructure Series:  Oak Clustering</a> was first posted on April 22, 2016 at 9:25 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>In the application server world, clustering is typically implemented to promote redundancy and scalability, subsequently with a goal toward high availability—that is maintaining uptime on customer facing sites or services. It’s a common assumption that these same concepts apply when it comes to clustering on Adobe Experience Manager 6.x. Right?</p>
+<p>Not so fast.</p>
+<p>If you read the fine print, clustering on AEM is not recommended by Adobe on publish instances. You see, clustering on AEM introduces a new level of dependencies and complexity due to the reliance on MongoDB secondaries across data centers, and thus the argument is that clustering in AEM can decrease reliability and performance. That direction from Adobe pretty much throws the the whole high availability clustering use case we find in the application server world out the window.</p>
+<p>Instead Adobe recommends stand-alone TarMK farms for failover of publish instances. Farms have better performance, are easily scaled, and because they are synced with the Author instance, are inherently fault tolerant. But where to cluster then?</p>
+<p><strong>Author! Author!</strong></p>
+<p>There are several uses cases for clustering the AEM Author instances, but as you may have read in my other posts, I am not a fan of clustering author instances simply for failover. That can be achieved using TarMK Cold Standby’s with far less complexity and moving parts. See: <a href="http://AEM Infrastructure Series: Disaster Recovery Basics">AEM Infrastructure Series: Disaster Recovery Basics</a>.</p>
+<p>For me to recommend a clustering deployment, I like to see one of these use cases:</p>
+<ul>
+<li><strong>Exceeding the authoring capacity limits</strong> of concurrent editors and contributors (the users accessing the authoring server). And (this is important) where sharding the author instance is not feasible. More about this later.</li>
+<li>Where <strong>regional performance</strong> of the authoring instance is important. Authoring in AEM tends to be “chatty” and low latency can vastly improve the perceived performance of an author instance.</li>
+<li>Where <strong>uptime of the authoring instance is critical</strong>—organizations that cannot survive even a few minutes of authoring downtime (I’ve yet to encounter this when you dig deep).</li>
+</ul>
+<p><strong>Sharding?</strong></p>
+<p>In simple terms, sharding is a technique used to split very large databases into smaller, faster more easily managed parts. An often overlooked option is to manually shard the authoring instances, that is to physically split the sites into separate AEM authoring instances. These could be:</p>
+<ul>
+<li>Physical sites, e.g. a primary www vs. a support or intranet site.</li>
+<li>Portions of existing sites, e.g. localized sites where live copies are not required.</li>
+<li>Separating global assets from the primary site authoring instance, e.g. a Global Corporate DAM.</li>
+</ul>
+<p>Keep in mind that with independent author instances, each can have their own TarMK Cold Standby, be regionally located to reduce latency, and have separate maintenance cycles. And you don’t need Mongo DBA resources.</p>
+<p>Sharding requires careful forethought and planning, often digging deep into the use cases and asking lots of questions and making decisions. This should be done during your initial AEM standup—questions and advice your AEM consultants should be providing.</p>
+<p><strong>Performance Tips</strong></p>
+<p>Why performance tips? Because maximizing performance of your authoring instances can reduce or eliminate the need for clustering based on concurrency. Remember that Oak uses out of process memory for deserialization, speeding up performance. Thus where in a 5.x system we could get along with 8-12 GB of memory, in a 6.x system we recommend 64 GB with 8 GB of JVM. Also:</p>
+<ul>
+<li>Dedicated CPU cores can increase performance. We typically recommend 12 or 16 cores.</li>
+<li>SSD storage for the repository folder.</li>
+<li>If your internal infrastructure team is balking at that much SSD storage, using Oak <em>FileDataStore</em> to separate the document store to slower magnetic media, while leaving the node store on the faster SSD media. <em>Note: we are still waiting for Adobe’s blessing on using the newer and more efficient Oak </em>FileBlobStore<em>. As of this writing it’s technically available, but not supported. </em></li>
+<li>Use Sling Offloading to offload high CPU jobs.</li>
+</ul>
+<p>All of the above will help you extract more performance out of a single licensed AEM author instance, and thus further reduce the need for clustering due to concurrency.</p>
+<p><strong>Adobe Resources</strong></p>
+<ul>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/deploy/recommended-deploys.html">Recommended Deployments</a></li>
+<li><a href="https://helpx.adobe.com/experience-manager/kb/performance-tuning-tips.html">Adobe Performance Tuning Tips for 6.x</a></li>
+<li><a href="http://Jackrabbit Oak - the next generation content repository">Jackrabbit Oak &#8211; the next generation content repository</a></li>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/develop/platform/dev-offloading.html">Creating and Consuming Jobs for Offloading</a></li>
+</ul>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/">AEM Infrastructure Series:  Oak Clustering</a> was first posted on April 22, 2016 at 9:25 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/04/22/aem-infrastructure-series-oak-clustering/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>AEM Infrastructure Series: Disaster Recovery Basics</title>
+		<link>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/</link>
+		<comments>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/#respond</comments>
+		<pubDate>Thu, 14 Apr 2016 19:12:45 +0000</pubDate>
+		<dc:creator><![CDATA[Greg Dawson]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Disaster Recovery]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3474</guid>
+		<description><![CDATA[As I woke up this morning and turned on the coffee maker, the buttons would not work. Trying the light switch, and the lights would not turn on. Sometime during the night my power went out. I realized this was the day to write about disaster recovery for Adobe Experience Manager, but in my case [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/">AEM Infrastructure Series: Disaster Recovery Basics</a> was first posted on April 14, 2016 at 2:12 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><img class="size-medium wp-image-3476 alignright" src="/adobe-blog/files/2016/04/aem-unplug-300x200.jpg" alt="aem-unplug" width="300" height="200" srcset="/adobe-blog/files/2016/04/aem-unplug-300x200.jpg 300w, /adobe-blog/files/2016/04/aem-unplug.jpg 500w" sizes="(max-width: 300px) 100vw, 300px" />As I woke up this morning and turned on the coffee maker, the buttons would not work. Trying the light switch, and the lights would not turn on. Sometime during the night my power went out. I realized this was the day to write about disaster recovery for Adobe Experience Manager, but in my case the blocker was not about my computer (plenty of battery), or Internet (thank you tethering), but about how to survive for the next few hours without a hot cup of coffee. Here goes.</p>
+<p>When planning an Adobe Experience Manager on premise deployment, I always ask the the question “What is your tolerance for a site outage?” And the answer is almost always “None.” This is not surprising as I knew the answer before I asked the question.</p>
+<p>It may seem obvious that loss of your ecommerce site, even temporarily, can be severely detrimental to sales. But the truth is that all types of businesses suffer&#8211;expectations are high that your site is always available or your corporate image may be tarnished. Why then is redundancy and disaster recovery not a part of all AEM stand-ups?</p>
+<p>Cost? Most IT organizations have disaster recovery plans and initiatives in place, and when properly planned, an AEM infrastructure that is regionally fault tolerant is not necessarily an expensive proposition. Once I explain the options, it’ll be hard to say no.</p>
+<p><strong>Author Instances</strong></p>
+<p>First let’s look at a fault tolerant authoring instance. As you’ll see in other blog posts, I’m not a fan of Oak clustering as an answer for fault tolerance, and there are very specific use cases that need to be met before I’ll bless a 6.x clustering design. Clustering increases complexity, is slower than native TarMK and requires specialized DBAs to manage MongoDB instances. DBA resources that few customers have. With AEM 6.x there are other database options, but they require “Engineering / Support approval” and few, if any customers are actually running this in production. Do you want to be first?</p>
+<p>A better alternative is to use the TarMK Cold Standby feature, spanning the standbys across physical data centers. Sure, a Cold Standby requires a short amount of downtime as they must be manually activated, but most organizations can tolerate Authoring outages for short periods of time.</p>
+<p><img class="aligncenter wp-image-3477 size-medium" src="/adobe-blog/files/2016/04/aem-tarmk-cold-standby-300x141.png" alt="AEM TarMK Cold Standby" width="300" height="141" srcset="/adobe-blog/files/2016/04/aem-tarmk-cold-standby-300x141.png 300w, /adobe-blog/files/2016/04/aem-tarmk-cold-standby-600x282.png 600w, /adobe-blog/files/2016/04/aem-tarmk-cold-standby.png 715w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+<p><strong>Publish Instances</strong></p>
+<p>It’s simpler than you think. Load balanced publishers in multiple data centers protect against complete data center outages and if licensed, can provide increased capacity. A global load balancer can route traffic among data centers handing out IP addresses to visitors. Talk to your Adobe rep about licensing for instances that will be accepting traffic (an active/active scenario), versus instances that will only accept traffic in a disaster recovery situation (active/passive).</p>
+<p>Configure dependent services like LDAP, SMTP and federated search with fallback when possible.</p>
+<p><img class="aligncenter wp-image-3478" src="/adobe-blog/files/2016/04/aem-dr-global-lb-600x342.png" alt="AEM with a Global Load Balancer" width="400" height="228" srcset="/adobe-blog/files/2016/04/aem-dr-global-lb-600x342.png 600w, /adobe-blog/files/2016/04/aem-dr-global-lb-300x171.png 300w, /adobe-blog/files/2016/04/aem-dr-global-lb-768x438.png 768w, /adobe-blog/files/2016/04/aem-dr-global-lb.png 1037w" sizes="(max-width: 400px) 100vw, 400px" /></p>
+<p><strong>Creating a Disaster Recovery Plan</strong></p>
+<p>Your organization likely already has a disaster recovery plan template created for other projects, and may require you use the template when creating your AEM disaster recovery plan. Using a common template provides documentation consistency for system administrators while executing a plan in a real DR situation. Elements a disaster recovery plan should include:</p>
+<ul>
+<li>Basic information around the plan purpose, scope, objectives and strategies;</li>
+<li>Primary contacts and call lists;</li>
+<li>Hardware and software inventories with sizing, mounts, IP, DNS names, login information, and any other special information required to understand the platform;</li>
+<li>Infrastructure diagrams to visually show connectivity and interaction between devices, including port numbers, firewalls, IP addresses and DNS names;</li>
+<li>Upstream dependencies, how to validate and who to contact;</li>
+<li>Tasking orders with detailed recovery procedures, and return to normal procedures;</li>
+<li>Detailed testing procedures and the results when initially tested (always test your plan!);</li>
+</ul>
+<p>When writing a disaster recovery plan, assume the reader knows literally nothing about the platform. This helps you write and test with clarity to help ensure success during recovery.</p>
+<p>And yes, pouring hot water through a coffee filter into a cup does render a decent cup of coffee. Thank you. Disaster averted.</p>
+<p><strong>Adobe Resources</strong></p>
+<ul>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/deploy/recommended-deploys.html">Recommended Deployments</a></li>
+<li><a href="https://docs.adobe.com/docs/en/aem/6-1/deploy/recommended-deploys/tarmk-cold-standby.html">How to Run AEM with TarMK Cold Standby</a></li>
+</ul>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/">AEM Infrastructure Series: Disaster Recovery Basics</a> was first posted on April 14, 2016 at 2:12 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/04/14/aem-infrastructure-series-disaster-recovery-basics/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>AEM Infrastructure Series:  Making the Case for Consistency</title>
+		<link>/adobe-blog/2016/04/06/aem-infrastructure-series-making-the-case-for-consistency/</link>
+		<comments>/adobe-blog/2016/04/06/aem-infrastructure-series-making-the-case-for-consistency/#respond</comments>
+		<pubDate>Wed, 06 Apr 2016 13:42:06 +0000</pubDate>
+		<dc:creator><![CDATA[Greg Dawson]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[AEM Foundation]]></category>
+		<category><![CDATA[Infrastructure]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3366</guid>
+		<description><![CDATA[&#160; The Adobe Deploying and Maintaining AEM documents are an invaluable reference for the new or experienced systems administrator installing and configuring Adobe Experience Manager on premise. Despite the wealth of references, I all too often see installations that were not well thought through and result in maintenance headaches that would have been easy to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/06/aem-infrastructure-series-making-the-case-for-consistency/">AEM Infrastructure Series:  Making the Case for Consistency</a> was first posted on April 6, 2016 at 8:42 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>&nbsp;</p>
+<p><img class="size-medium wp-image-3379 alignright" src="/adobe-blog/files/2016/04/Oreo-Two-Cookies-300x154.jpg" alt="Oreo Cookie" width="300" height="154" srcset="/adobe-blog/files/2016/04/Oreo-Two-Cookies-300x154.jpg 300w, /adobe-blog/files/2016/04/Oreo-Two-Cookies-768x395.jpg 768w, /adobe-blog/files/2016/04/Oreo-Two-Cookies-600x309.jpg 600w" sizes="(max-width: 300px) 100vw, 300px" /><span style="font-weight: 400">The Adobe </span><a href="https://docs.adobe.com/docs/en/aem/6-1.html" target="_blank"><span style="font-weight: 400">Deploying and Maintaining AEM</span></a><span style="font-weight: 400"> documents are an invaluable reference for the new or experienced systems administrator installing and configuring Adobe Experience Manager on premise. Despite the wealth of references, I all too often see installations that were not well thought through and result in maintenance headaches that would have been easy to avoid, but can be challenging to remedy after-the-fact. Common problems include: </span></p>
+<ul>
+<li style="font-weight: 400"><span style="font-weight: 400">Inconsistent installation paths, permissions, and ownership; </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Inconsistent startup settings and overall configuration; </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">No planning or forethought for disaster recovery and expansion;</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Little or no monitoring of AEM instances;</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Poorly documented release processes and inconsistent access restrictions; </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Lack of, or not adhering to a standardized maintenance plan;</span></li>
+</ul>
+<p><span id="more-3366"></span></p>
+<p><span style="font-weight: 400">These are just a few of the challenges customers face; employee turnover and juggling multiple vendors only aggravates the problem. Deploying AEM for the long-term involves careful planning, clear and repeatable documentation, and a maintenance plan that follows established best practices not just from Adobe, but from your internal IT team.</span></p>
+<p><span style="font-weight: 400">It seems obvious, right?</span></p>
+<p><span style="font-weight: 400">Not always. For organizations that are new to AEM, getting up and running initially on the platform in a way that adheres best practices and promotes long-term maintainability is often overlooked. This task is sometimes given to an experienced AEM developer, but with little or no actual system skills, or an experienced system administrator, but with no AEM experience. </span></p>
+<p><span style="font-weight: 400">If you are embarking on a new project to stand-up your AEM foundation, here are some tips: </span></p>
+<p><b>Pre-Installation Tips</b></p>
+<ul>
+<li style="font-weight: 400"><span style="font-weight: 400">Understand best practices from your internal IT organization around separation of systems (e.g. dispatcher zones vs. author/publish instance zones, firewalls, load balancers, etc.).</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Create a detailed topology diagram for all environments showing each server and device along with detailed port maps. This visually communicates infrastructure needs, shows how internal and external system interact with one another, as well as what firewall ports and load balancer pools, etc. need to be created.</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Obtain the necessary approvals and get started on build sheets early. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Understand Disaster Recovery requirements, AEM Cold Standby’s, clustering, Jackrabbit Oak Document Store configuration options, and physical sizing requirements. All of these decisions will affect infrastructure topology and build.</span></li>
+</ul>
+<p><b>Installation Tips</b></p>
+<ul>
+<li style="font-weight: 400"><img class="size-full wp-image-3368 alignright" src="/adobe-blog/files/2016/04/aem-install-text.png" alt="mkdir /opt/aem" width="278" height="65" srcset="/adobe-blog/files/2016/04/aem-install-text.png 278w, /adobe-blog/files/2016/04/aem-install-text-276x65.png 276w" sizes="(max-width: 278px) 100vw, 278px" /><span style="font-weight: 400">Completely read Adobe’s </span><a href="https://docs.adobe.com/docs/en/aem/6-1.html"><span style="font-weight: 400">Deploying and Maintaining AEM</span></a><span style="font-weight: 400">.</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">I encourage anyone that will be deploying and maintenance AEM in an enterprise environment to attend the Adobe AEM System Administration. This training can be invaluable and offers a well-rounded view of how to deploy AEM. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Draft and </span><i><span style="font-weight: 400">fully test</span></i><span style="font-weight: 400"> detailed step-by-step installation documentation locally or on test servers before finalizing. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Establish a set of configuration parameters that can be used both during the initial system stand-up and as a health check guide for the future. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Read through the Adobe Security Hardening Checklist, and maintain a list of your own hardening instructions. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Don’t always go for the latest version, unless there is a compelling feature you can’t live without. Our general rule is to wait until the first service pack is released. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Implement a change management process that includes updating all relevant documentation, including disaster recovery, service packs, hotfixes, health check and hardening guides, etc.</span></li>
+</ul>
+<p><b>Development, Build and Release Processes Tips</b></p>
+<ul>
+<li style="font-weight: 400"><span style="font-weight: 400">It’s likely your organization has standardized release process guidelines that can be adopted for AEM, and if not you’ll need to develop them.</span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Make sure the guidelines include necessary security and code scans, release notes templates, rollback procedures, and any other checkpoints required before moving between environments.  </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">Establish source control and document a branching structure early on, before the first line of code is developed. </span></li>
+<li style="font-weight: 400"><span style="font-weight: 400">A developer Standard Operating Procedures document should be created to accelerate developer onboarding and again provide consistency.</span></li>
+</ul>
+<p><span style="font-weight: 400">And if you are choosing an AEM vendor for the first time, you are now armed with knowledge to quiz their maturity level around AEM on premise deployments. </span></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/04/06/aem-infrastructure-series-making-the-case-for-consistency/">AEM Infrastructure Series:  Making the Case for Consistency</a> was first posted on April 6, 2016 at 8:42 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/04/06/aem-infrastructure-series-making-the-case-for-consistency/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:17:59 by W3 Total Cache -->

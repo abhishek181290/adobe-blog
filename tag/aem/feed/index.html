@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>AEM &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/aem/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Managing Multiple AEM Instances</title>
+		<link>/adobe-blog/2015/12/08/managing-multiple-aem-instances/</link>
+		<comments>/adobe-blog/2015/12/08/managing-multiple-aem-instances/#respond</comments>
+		<pubDate>Tue, 08 Dec 2015 16:00:40 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[Bash]]></category>
+		<category><![CDATA[Best Practices]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2632</guid>
+		<description><![CDATA[One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a quick test.</p>
+<p>To make starting, stopping and resetting AEM instances on my computer quick and easy, I created a small script and a structure to support easily managing multiple AEM instances on the same computer.</p>
+<p class="text-center" style="text-align: center"><img class="img-responsive center-block aligncenter" style="max-width: 300px" src="/adobe-blog/files/2015/12/juggling.jpg" alt="Juggling AEM Instances" /><br />
+&#8220;<a class="external text" href="https://commons.wikimedia.org/wiki/File:Y%C3%BCcelzorlu_(3).JPG">Yücelzorlu</a>&#8221; by <a class="external text" href="https://commons.wikimedia.org/wiki/User:SepiNs" rel="nofollow">SepiNs</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC SA 2.0</a></p>
+<p><span id="more-2632"></span></p>
+<h3>Folder Structure</h3>
+<p>First, from a structure perspective, create the following folders:</p>
+<pre>/[user-home]
+    /dev
+        /aem
+            /instance1
+            /instance2
+        ...
+</pre>
+<p>This structure is pretty simple, but it does help a lot to be consistent and makes it pretty quick to navigate folders via terminal or finder; cd <code>~/dev/aem/6.1</code> is pretty darn easy to type, easy to remember and makes sense from a taxonomy perspective. This structure also allows me to add other applications in parallel, such as MongoDB, Tomcat or anything else with which I may need to integrate as sibling folders to the aem folder.</p>
+<h3>AEM Manager Script</h3>
+<p>Next, I <a href="https://github.com/PerficientDigital/AEM-Manager/blob/master/aem-mgr.sh" target="_blank">created a shell script</a> to manage the individual AEM instances under this structure. The script allows you to start, stop and clear the repositories of instances. When starting, the script clears the AEM logs before starting, can start the instance in debug mode, start multiple publisher instances, can run without the GUI and allows you to configure the JVM settings for the AEM instances.</p>
+<p>This script also allows you to clear the repository, removing everything under the crx-quickstart folder to quickly restore the repository to the starting state. This can be especially useful if you are trying to save space or need to install two incompatible codebases.</p>
+<h3>Examples</h3>
+<p>The commands for the script are relatively straightforward:</p>
+<p><strong>Starting an AEM Instance</strong></p>
+<pre><code>aem-mgr start -i 6.1.0</code></pre>
+<p><strong>Starting an AEM Author and Publishers</strong></p>
+<pre><code>aem-mgr start -i 6.1.0 -p</code></pre>
+<p>It&#8217;s probably worth mentioning that what this will do is start the author instance found in the folder ~/dev/aem/6.1.0 and all of the instances in folders which look like ~/dev/aem/6.1.0-publish-[N].</p>
+<p><strong>Stopping an AEM Instance</strong></p>
+<pre><code>aem-mgr stop -i 6.1.0</code></pre>
+<p><strong>Clearing an AEM Instance</strong></p>
+<pre><code>aem-mgr clear -i 6.1.0</code></pre>
+<p>A quick note, if you want to run multiple instances in parallel, you will need to pass in the -nd flag to disable debugging on the non-primary instances. The script handles this automatically for publish instances by incrementing all of the port numbers.</p>
+<h3>Defaults</h3>
+<p>By default, the script will look for AEM instances under the ~/dev/aem folder I described above. Each instance is assumed to be in a sub-folder with a JAR inside with a name matching <code>^.<span class="pl-k">*</span>aem.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code> or <code>^.<span class="pl-k">*cq</span>.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code>.</p>
+<p>Each instance with debug enabled will start by default with the Java debug port set to 30303 and the JMX port to 9999. Additionally, by default the JVM is granted a maximum of 1GB heap and 256MB of Permanent Generation. These values can be configured in the &#8220;Default Settings&#8221; section of the script.</p>
+<h3>Installation</h3>
+<p>To install the script either <a href="https://raw.githubusercontent.com/PerficientDigital/AEM-Manager/master/aem-mgr.sh" target="_blank">download it directly from GitHub</a> or clone the git repository and add it into your computer&#8217;s PATH variable. It has been tested in Linux and Mac and I would suspect it would work on windows with GNUTools or Cygwin installed.</p>
+<p>Hopefully you find the script and structure useful!</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/12/08/managing-multiple-aem-instances/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Accurate Websites Are Critical – In Any Language</title>
+		<link>/adobe-blog/2015/05/08/accurate-websites-are-critical-in-any-language/</link>
+		<comments>/adobe-blog/2015/05/08/accurate-websites-are-critical-in-any-language/#respond</comments>
+		<pubDate>Fri, 08 May 2015 13:30:26 +0000</pubDate>
+		<dc:creator><![CDATA[Eugene Sefanov]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[cms]]></category>
+		<category><![CDATA[Content Management System]]></category>
+		<category><![CDATA[FDA]]></category>
+		<category><![CDATA[Liferay]]></category>
+		<category><![CDATA[Sitecore]]></category>
+		<category><![CDATA[WCM]]></category>
+		<category><![CDATA[website content management system]]></category>
+		<category><![CDATA[Websites]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/lifesciences/?p=1941</guid>
+		<description><![CDATA[&#160; A recent article that I read alluded to the fact that regulatory bodies are struggling to keep their websites updated, which could lead to misinformation or a lack of information for consumers and companies interested in a country&#8217;s regulations and policies. The story specifically pointed to the English and Korean versions of South Korea&#8217;s [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/05/08/accurate-websites-are-critical-in-any-language/">Accurate Websites Are Critical – In Any Language</a> was first posted on May 8, 2015 at 8:30 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<div style="text-align: center"><img class="alignnone wp-image-1944" src="https://blogs.perficient.com/lifesciences/files/2015/05/multilingual-websites-sitecore-liferay.jpg" alt="multilingual-websites-sitecore-liferay" width="651" height="396" /></div>
+<p>&nbsp;</p>
+<p>A recent <a href="http://www.raps.org/Regulatory-Focus/News/2015/05/04/22094/The-Biggest-Challenge-for-Regulators-That-No-Ones-Talking-About-Translation/" target="_blank">article</a> that I read alluded to the fact that regulatory bodies are struggling to keep their websites updated, which could lead to misinformation or a lack of information for consumers and companies interested in a country&#8217;s regulations and policies. The story specifically pointed to the English and Korean versions of South Korea&#8217;s Ministry of Food and Drug Safety&#8217;s (MFDS) website. While the website in Korean was up-to-date, the English version was not nearly as well maintained. <span id="more-1941"></span></p>
+<p>A few visits to other regulatory agency websites in other countries led me to find that most countries, especially less wealthy ones, offer information only in their official languages. Some wealthier nations, like South Korea, did provide their website in multiple languages; typically those that are more frequently spoken among their constituents. For example, the Food and Drug Administration (FDA) offers their website in English and Spanish. Health Canada offers theirs in English and French, and Israel’s Ministry of Health offers theirs in Hebrew, Russian, Arabic, French, and Spanish. Less wealthy countries, like Columbia, offer information in a single language, like Spanish.</p>
+<p>Maintaining a website can be a big undertaking, let alone multiple versions in different languages. However, if you’re a government agency or a life sciences company looking to operate in a global environment, and you decide to take the leap and operate a multilingual website, it&#8217;s critical to make sure it&#8217;s maintained with accurate information &#8211; otherwise, it becomes a disservice. Bad information is often worse than no information.</p>
+<p>From a technology standpoint, there are plenty of solutions (e.g., <a href="http://www.perficient.com/Partners/Sitecore">Sitecore</a>, <a href="http://www.perficient.com/liferay">Liferay</a>, <a href="http://www.perficient.com/Partners/Adobe">Adobe Experience Manager</a>, etc.) available to help create and manage large, multilingual websites. There are also a handful of APIs, like Google&#8217;s Translate API, that you can plug into your website, largely eliminating the need to maintain multiple versions (although, Google’s API isn’t always accurate).</p>
+<p>To learn more about streamlining the digital experience for your customers, <a href="http://www.perficient.com/Industries/Life-Sciences/">drop us a line</a>.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/05/08/accurate-websites-are-critical-in-any-language/">Accurate Websites Are Critical – In Any Language</a> was first posted on May 8, 2015 at 8:30 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/05/08/accurate-websites-are-critical-in-any-language/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe unveils web management service for mid-sized businesses</title>
+		<link>/adobe-blog/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/</link>
+		<comments>/adobe-blog/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/#respond</comments>
+		<pubDate>Wed, 29 Apr 2015 12:59:42 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[WCM]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=1931</guid>
+		<description><![CDATA[Adobe introduced a new managed service &#8211; Adobe Experience Manager Sites &#8211; for medium sized businesses and smaller departments in large corporations.  This service has been available to large customers, but Adobe now feels confident that they can service many more customers.  With this new managed service, Adobe will host the AEM system, the customer&#8217;s site [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/">Adobe unveils web management service for mid-sized businesses</a> was first posted on April 29, 2015 at 7:59 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Adobe introduced a new managed service &#8211; Adobe Experience Manager Sites &#8211; for medium sized businesses and smaller departments in large corporations.  This service has been available to large customers, but Adobe now feels confident that they can service many more customers.  With this new managed service, Adobe will host the AEM system, the customer&#8217;s site and will supply experts for provisioning, testing, backing up and monitoring the systems 24/7.  <img class="alignright" src="https://blogs.adobe.com/digitalmarketing/wp-content/uploads/2015/03/AEM_Screens-e1425773645430-1200x675.png" alt="Adobe Experience Manager" width="512" height="288" /></p>
+<p>In addition to AEM Sites, Adobe is making their digital asset management system into software as a service, so these same customers can manage images and video as well.  AEM Sites integrates with the digital asset management system, which also allows customers to deliver video and images directly to their marketing sites.</p>
+<p>Source: <em><a href="http://venturebeat.com/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/">Adobe unveils web management service for mid-sized businesses | VentureBeat | Marketing | by Barry Levine</a></em></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/">Adobe unveils web management service for mid-sized businesses</a> was first posted on April 29, 2015 at 7:59 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/04/29/adobe-unveils-web-management-service-for-mid-sized-businesses/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Boost Engagement with Online Communities</title>
+		<link>/adobe-blog/2015/03/12/adobe-summit-boost-engagement-with-online-communities/</link>
+		<comments>/adobe-blog/2015/03/12/adobe-summit-boost-engagement-with-online-communities/#respond</comments>
+		<pubDate>Thu, 12 Mar 2015 20:13:47 +0000</pubDate>
+		<dc:creator><![CDATA[Michael Porter]]></dc:creator>
+				<category><![CDATA[Campaigns & Marketing Automation]]></category>
+		<category><![CDATA[Adobe Summit]]></category>
+		<category><![CDATA[Adobe Summit 2015]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[aem communties]]></category>
+		<category><![CDATA[responsive design]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=913</guid>
+		<description><![CDATA[Bertrand de Coatpont and Scott Date of Adobe about online communities.  This is communities within Experience Manager. Specifically, it&#8217;s version 6.1 which has completely redone Communities. There&#8217;s a thought that a community project is an overwhelming effort from a time and engineering perspective.   With that in mind, Adobe has made a lot of simplifications. [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/12/adobe-summit-boost-engagement-with-online-communities/">Adobe Summit: Boost Engagement with Online Communities</a> was first posted on March 12, 2015 at 3:13 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Bertrand de Coatpont and Scott Date of Adobe about online communities.  This is communities within Experience Manager. Specifically, it&#8217;s version 6.1 which has completely redone Communities.</p>
+<p><a href="/adobe-blog/files/2015/02/hand_writing_strategy_shutterstock_wordpress.jpg"><img class="alignright size-medium wp-image-662" src="/adobe-blog/files/2015/02/hand_writing_strategy_shutterstock_wordpress-300x211.jpg" alt="hand_writing_strategy_shutterstock_wordpress" width="300" height="211" srcset="/adobe-blog/files/2015/02/hand_writing_strategy_shutterstock_wordpress-300x211.jpg 300w, /adobe-blog/files/2015/02/hand_writing_strategy_shutterstock_wordpress-600x421.jpg 600w, /adobe-blog/files/2015/02/hand_writing_strategy_shutterstock_wordpress.jpg 651w" sizes="(max-width: 300px) 100vw, 300px" /></a>There&#8217;s a thought that a community project is an overwhelming effort from a time and engineering perspective.   With that in mind, Adobe has made a lot of simplifications.</p>
+<p>Who uses the site:<span id="more-913"></span></p>
+<p>Builders</p>
+<ul>
+<li>Community administrators</li>
+<li>Content and brand managers</li>
+</ul>
+<p>Members</p>
+<ul>
+<li>Community Manager &#8211; not a company employee but is a trusted individual</li>
+<li>Community members &#8211; those who have joined the site and participate in the communities. (likes, voting, article creation, commenting</li>
+<li>Community User &#8211; a simple viewer of the content</li>
+</ul>
+<h3>Let&#8217;s Build a Community Site</h3>
+<p>Pain Point: I need something now and I need it to be simple. A business user should be able to do this.</p>
+<p>They showed a live demo of the new Communities. It will be released on May 7th.</p>
+<ul>
+<li>Rebecca is a community administrator
+<ul>
+<li>She already has a couple communities up and running but needs a new one</li>
+</ul>
+</li>
+<li>The new version has the revised UI which matches the themes from Marketing Cloud</li>
+<li>In administration page of the new UI
+<ul>
+<li>Each community has a set of building blocks called community functions
+<ul>
+<li>Activity Stream</li>
+<li>Forum</li>
+<li>Group</li>
+<li>Page</li>
+<li>Assignments</li>
+<li>File Library</li>
+<li>each is a normal AEM component but already wired together for community context</li>
+<li>Blogs and calendars are coming soon</li>
+</ul>
+</li>
+<li>AEM provides a number of reference site templates you can use or choose to make your own
+<ul>
+<li>These templates have a structure tab that shows what functions are used in that template</li>
+<li>You can add additional functions to any communities via a drag and drop interface</li>
+</ul>
+</li>
+<li>The concept of group is a place where community members can have sub-communities
+<ul>
+<li>Still uses the same building blocks</li>
+</ul>
+</li>
+<li>There is a new wizard to create a community site
+<ul>
+<li>Press a create site button</li>
+<li>Fill in key information like Title, description, community name, and default template</li>
+<li>Choose which design you want. This is the theme, color, etc.
+<ul>
+<li>based on twitter bootstrap so that&#8217;s where the default themes are derived</li>
+<li>It&#8217;s fully responsive</li>
+<li>Can add your own branding</li>
+<li>Can configure basic things like a header image</li>
+</ul>
+</li>
+<li>Define options like
+<ul>
+<li>allow self registration</li>
+<li>allow anonymous access</li>
+<li>allow private messaging</li>
+<li>allow social logins like Facebook or Twitter</li>
+<li>other settings include
+<ul>
+<li>Tags for the community</li>
+<li>Moderation
+<ul>
+<li>Is it moderated</li>
+<li>flagging threshold</li>
+<li>definition of community moderators (admins or members)</li>
+</ul>
+</li>
+<li>Group Management
+<ul>
+<li>Can create sub-groups, admins for those groups, etc.</li>
+</ul>
+</li>
+<li>Translation
+<ul>
+<li>Define default language</li>
+<li>Check a box to allow machine translation into multiple languages</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hit the finish button and you get a new site</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Created the site but then went to another existing community that had more content</li>
+<li>Reporting: Not in this release. It&#8217;s coming shortly after</li>
+</ul>
+<p><strong>Second pain point</strong>: I don&#8217;t want a rigid community. Make it easy to administer</p>
+<p>Back to the demo but from a content manager standpoint</p>
+<ul>
+<li>Login gives a number of options like sites, moderation of site, users, etc.</li>
+<li>As a content manager, the manager has flexibility to put features on different pages and parts of pages.</li>
+<li>Uses the same layout tools from AEM Web Content Management
+<ul>
+<li>Add an image</li>
+<li>add a community function</li>
+<li>Preview in responsive scenarios</li>
+<li>resizing of images</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Can also do targeting and personalization within the community</li>
+</ul>
+<p>Now switch to the community manager (non-employees who help to manage the site)</p>
+<p>This is a manage groups and moderate content scenario</p>
+<ul>
+<li>From the web site (community is a sub-site)
+<ul>
+<li>Community manager can login and see the community manager options</li>
+</ul>
+</li>
+<li>The UI lets you do moderation for each piece of content in context (e.g. no admin screen, just embedded in the normal page)
+<ul>
+<li>Reply, Flag, Delete, Edit, Deny</li>
+<li>Flag puts it in a workflow</li>
+</ul>
+</li>
+<li>Does have access to the administration link
+<ul>
+<li>This includes bulk administration option</li>
+<li>Find all flagged content</li>
+<li>approve any content</li>
+<li>deny or delete the content</li>
+<li>Search can be for status of content (pending , approved, denied, closed)</li>
+</ul>
+</li>
+<li>As a group manager, the user accesses and manages the group(s)
+<ul>
+<li>Can add a new group to the community site</li>
+<li>Invite users
+<ul>
+<li>Use a type ahead to find users</li>
+</ul>
+</li>
+<li>Make the group public or private</li>
+<li>Choose a group template</li>
+<li>add an image</li>
+<li>Post has a rich text editor embedded
+<ul>
+<li>can also attach images or files</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Pain Point</strong>: Has to have a rich community experience. More than just a forum.</p>
+<ul>
+<li>Members can see private messages in their inbox (assuming it&#8217;s allowed)</li>
+<li>The activity stream lets you see what&#8217;s happening in all the community functions.
+<ul>
+<li>Has a following concept within the community
+<ul>
+<li>follow users and pages</li>
+</ul>
+</li>
+<li>Activity stream only shows activities for people / content you follow. Content includes threads</li>
+</ul>
+</li>
+<li>Can update your personal profile</li>
+</ul>
+<p><strong>Fifth Persona: Community Users</strong></p>
+<p>Pain Point: find it online and make it available via multiple devices</p>
+<ul>
+<li>By default, this user is not logged in.</li>
+<li>The pages use a nice structure to allow it to be easily indexed
+<ul>
+<li>Google can thus find the public content</li>
+</ul>
+</li>
+<li>has an internal search as well</li>
+</ul>
+<p>&nbsp;</p>
+<p>So as you can see, each user type has a robust set of functionality available to them.</p>
+<p>&nbsp;</p>
+<h3>License:</h3>
+<p>This is a license product separate from AEM.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/12/adobe-summit-boost-engagement-with-online-communities/">Adobe Summit: Boost Engagement with Online Communities</a> was first posted on March 12, 2015 at 3:13 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/12/adobe-summit-boost-engagement-with-online-communities/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Content Optimization and Personalization</title>
+		<link>/adobe-blog/2015/03/11/adobe-summit-content-optimization-and-personalization/</link>
+		<comments>/adobe-blog/2015/03/11/adobe-summit-content-optimization-and-personalization/#respond</comments>
+		<pubDate>Wed, 11 Mar 2015 20:47:39 +0000</pubDate>
+		<dc:creator><![CDATA[Michael Porter]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Summit]]></category>
+		<category><![CDATA[Adobe Summit 2015]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[content optimization]]></category>
+		<category><![CDATA[content strategy]]></category>
+		<category><![CDATA[Personalization]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=881</guid>
+		<description><![CDATA[Today at Adobe Summit, Urosh Pajic and Peter Krmpotic of Adobe spoke about best practices in content optimization with Adobe Experience Manager. Remember the time when it was enough to just put your content out there and gain customer attention? These times are long gone, and today’s customers expect personalized and relevant content across all [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/11/adobe-summit-content-optimization-and-personalization/">Adobe Summit: Content Optimization and Personalization</a> was first posted on March 11, 2015 at 3:47 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Today at Adobe Summit, Urosh Pajic and Peter Krmpotic of Adobe spoke about best practices in content optimization with Adobe Experience Manager.</p>
+<blockquote>
+<p class="p1"><span class="s1">Remember the time when it was enough to just put your content out there and gain customer attention? These times are long gone, and today’s customers expect personalized and relevant content across all touchpoints. To amaze customers and gain their loyalty, marketers need multiple content optimization point products that work seamlessly together out of the box. Along with cross-channel content analytics, every modern digital strategy needs real-time customer segmentation as well as actionable content insights and the ability to deliver dynamic creative content at scale. This session provides tips on how to pair Adobe Experience Manager best-in-class experience delivery with industry-leading content personalization and optimization tools.</span></p>
+</blockquote>
+<p class="p1">They started out with the idea that not all interaction are the same. Those interaction that build trust and fulfill your needs are the ones that will make an impact.</p>
+<p class="p1"><strong>Key Goal:</strong> Become an organization your customers trust</p>
+<p class="p1">Key Takeaways</p>
+<ol>
+<li class="p1">Shorten the cycle for iterations</li>
+<li class="p1">Close the feedback loop</li>
+<li class="p1">Empower people with great technology</li>
+</ol>
+<h3>Personalization</h3>
+<p>It&#8217;s now a necessity.  you don&#8217;t want to serve the Seahawks jersey to the Patriots fan.</p>
+<p>Many today look like this:<span id="more-881"></span></p>
+<ul>
+<li>Slow time to market for personalization</li>
+<li>Disparate teams owning content authoring, delivery and personalization</li>
+</ul>
+<p>What you need</p>
+<ol>
+<li>Deliver relevant content</li>
+<li>Streamline cooperation between content authoring and delivery</li>
+<li>Leverages personalization capabilities when authoring content</li>
+</ol>
+<p>Demo:</p>
+<ul>
+<li>Start with the Adobe Marketing Cloud screen. Yes, it&#8217;s not AEM but highlights the ever increasing integration of the entire Marketing Cloud
+<ul>
+<li>Includes an add button for additional services like analytics and Test / Target</li>
+</ul>
+</li>
+<li>Showed the admin interface (similar interface styles for all Marketing Cloud)</li>
+<li>Found a site to edit and go to a specific page to edit.</li>
+<li>Note: All functionality lies within AEM</li>
+<li>Changed from edit to targeting mode
+<ul>
+<li>Changed the options in the top bar of the page</li>
+<li>Created an activity (way to create several experiences across pages)</li>
+<li>select a component to test by clicking on that section of the page.</li>
+<li>Chose a few experiences.  (e.g. A/B)
+<ul>
+<li>an offer is an html fragment you will put in the personalized area</li>
+</ul>
+</li>
+<li>New feature in AEM 6.1 &#8211; the offer library. Makes it easier to store all your offers.</li>
+<li>Approve the content and voila, experience B is ready</li>
+</ul>
+</li>
+<li>He repeated by creating an experience C using the same set of tasks.</li>
+<li>Hit step two in the activity: Diagram the activity
+<ul>
+<li>This is the step where you map all your segments to the experiences</li>
+<li>This could be segments from profiles and audiences or from Adobe Target</li>
+</ul>
+</li>
+<li>Step three is the settings like start date, duration, etc.
+<ul>
+<li>This is the final step</li>
+</ul>
+</li>
+<li>Overview of the offer library (again, new in 6.1)
+<ul>
+<li>Accessible from the personalization menu</li>
+</ul>
+</li>
+</ul>
+<p>Adobe thinks of AEM as the hub of all personalization and content delivery. This includes facebook, video streams, crm, twitter, etc. Can include some competitors to the Marketing Cloud.</p>
+<p>Demo of integration to Bright Edge &#8211; SaaS marketing platform</p>
+<ul>
+<li>Edit the page as before</li>
+<li>Switch to Target mode</li>
+<li>Integration with BrightEdge works like this
+<ul>
+<li>Think, wouldn&#8217;t it be good to see what your competition is doing</li>
+<li>Click on the Bright Edge Icon</li>
+<li>Pop up the BE interface</li>
+<li>it shows the top 10 competing <strong>pages</strong> for that specific page</li>
+<li>Will let you quickly browse those pages</li>
+<li>Can switch between desktop and mobile versions of these pages</li>
+</ul>
+</li>
+<li>Test Now feature of BE integration
+<ul>
+<li>This to the presenter is the coolest feature</li>
+<li>You choose the # of experiences and BrightEdge will create that first part.</li>
+<li>Then BE creates experience A, B, and C in AEM. (tight integration)
+<ul>
+<li>it actually created the text of the message</li>
+<li>You review the message and can make the changes you want.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Content Optimization</h3>
+<p>People may have great content but not all content is consumed equally by your audience.</p>
+<p>Now</p>
+<ul>
+<li>Slow time to market to identify best content</li>
+</ul>
+<p>What it should be</p>
+<ul>
+<li>Server the most relevant content first</li>
+<li>proactively author content based on trend</li>
+<li>Leverage analytics to author content</li>
+</ul>
+<p><strong>Demo</strong></p>
+<p>This is an analytics and AEM Demo.</p>
+<ul>
+<li>Note: the integration now is much closer and much more out of the box</li>
+<li>Adobe Analytics: the best tool in the analytics space.  (True, viewed as the Cadillac by the industry)</li>
+<li>In site admin, you can see analytics APIs now when you have added Adobe Analytics
+<ul>
+<li>Better than going to the tool to find the high level KPI&#8217;s</li>
+<li>You can configure this to define which KPI&#8217;s you want to see.</li>
+<li>Search is integrated.
+<ul>
+<li>e.g. give me those pages that meet these analytics criteria</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Third parties can also be integrated here as well.</p>
+<ul>
+<li>This is integration with a company called Skyward
+<ul>
+<li>They help you crowd source content integration</li>
+<li>From within AEM, the presenter presented a blank page</li>
+<li>Clicked the Skyword content button
+<ul>
+<li>filled out the assignment summary, gave a deadline, and submitted</li>
+</ul>
+</li>
+<li>Received proposals for the assignment and choose</li>
+<li>Choose the one you like best</li>
+<li>Automatically integrate that content straight to your CMS</li>
+</ul>
+</li>
+</ul>
+<h3> Wrap-up</h3>
+<p>All the features previewed come in May.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/11/adobe-summit-content-optimization-and-personalization/">Adobe Summit: Content Optimization and Personalization</a> was first posted on March 11, 2015 at 3:47 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/11/adobe-summit-content-optimization-and-personalization/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Top new features in Adobe Experience Manager WCM</title>
+		<link>/adobe-blog/2014/03/26/adobe-summit-top-new-features-in-adobe-experience-manager-wcm/</link>
+		<comments>/adobe-blog/2014/03/26/adobe-summit-top-new-features-in-adobe-experience-manager-wcm/#respond</comments>
+		<pubDate>Wed, 26 Mar 2014 21:01:54 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[WCM]]></category>
+		<category><![CDATA[web content management]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=7183</guid>
+		<description><![CDATA[Cedric Huesler @keepthebyte is a Product Manager at Adobe and works on the web content management aspect of AEM.  Cedric demoed 10 new features coming in AEM 6.0, which was announced yesterday.  A new major version (6.0 vs 5.6) for AEM indicates a major architectural change in the product.  Adobe expects the new architecture to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/26/adobe-summit-top-new-features-in-adobe-experience-manager-wcm/">Adobe Summit: Top new features in Adobe Experience Manager WCM</a> was first posted on March 26, 2014 at 4:01 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Cedric Huesler <a href="https://twitter.com/keepthebyte">@keepthebyte</a> is a Product Manager at Adobe and works on the web content management aspect of AEM.  Cedric demoed 10 new features coming in AEM 6.0, which was announced yesterday.  A new major version (6.0 vs 5.6) for AEM indicates a major architectural change in the product.  Adobe expects the new architecture to work seemlessy with prior versions, but will allow for more scalability, etc.</p>
+<p>I&#8217;ve included a video of Cedric talking about new features in AEM 6.0.  Cedric demo&#8217;d the new features using a tablet to show how they&#8217;ve fully enabled the touch interface for the authoring environment.</p>
+<p>The first new feature deals with <strong>language translation</strong>.  This release does a better job of managing translations.  A site contains a language master for the content and then Live Copy is used to created the translated content for each country.  A new References feature allows you too see where a content item is used and where it has been translated.  The translation workflow goes out to a translation vendor through an API that Adobe has built into AEM.<span id="more-7183"></span></p>
+<p>One common problem with language translation that Adobe has addressed is updating translated content when the master changes.  AEM also includes a &#8216;diff&#8217; tool so you can compare two different copies and identify the differences.</p>
+<p>Feature two deals with creating impactful content.  Creating good content is now what drives ranking in search engines, so there is added emphasis on creating good content.  AEM brings in interesting information to help a content author create better content. <strong>Content Insight</strong> brings charts about how your content is doing on the site or it could be a list of recommendations from third party providers.  These providers (like <a title="BrightEdge.com" href="http://www.brightedge.com/home" target="_blank">BrightEdge</a>) can seamlessly integrate with AEM when enabled.</p>
+<p><strong>App Authoring</strong> &#8211; or PhoneGap Enterprise combined with AEM &#8211; allows you to create and manage mobile apps right in AEM. The application also runs within AEM, but it really consists of components that you can combine to create the app.  These components are specific to the mobile app, so you wouldn&#8217;t use it on the web site.  The best use case for Apps is a content heavy site.  By using PhoneGap Enterprise, you can include Adobe Analytics in the Adobe Marketing Cloud to track usage of the mobile apps. Other Marketing Cloud components (like Campaigns) can also be leveraged.</p>
+<p>Adobe has brought a lot of functionality from Scene 7 and baked it right into AEM.  Scene 7 is really useful for changing images on the fly for personalization among other items.  SpinSet is used to take images and make them into a 360 view.  All the <strong>image manipulation</strong> you can do in Scene 7 will be available in AEM directly.</p>
+<p><strong>Digital asset management</strong> has been enhanced with workflow that allows you to create tasks on the fly.  Tasks are integrated with the AEM dashboard.  When dealing with multiple assets &#8211; like picking a photo from photo shoot &#8211; you can see all the images on one page and then pick or approve the one you like best.</p>
+<p>When integrated with the Adobe Marketing Cloud and Adobe Social, you can find and manage social conversations from within AEM.  This is done by pushing external content into Adobe Social where you can create content, reply to conversations. Adobe Social calls this <strong>Unified Moderation</strong>.  You can correlate user profiles on the website with users on social media.</p>
+<p>In addition the Adobe Social integration, there are some social features in AEM.  Now you will be able to moderate posts in forums and other places where users can make comments.  You can also translate comments through the same translation workflow as other content.</p>
+<p><strong>communities.adobe.com</strong> is now available to discover and support communities across the globe.  This feature is not just for AEM, but is useful for all Marketing Cloud products.  Adobe wants to have communities for Marketing professionals and web site owners as well as developers.</p>
+<p>Building sites more efficiently using <strong>Developer Mode</strong>.  Adobe has developed tools to convert HTML into the components that AEM requires to build a site.  This would eliminate some steps needed today to translate a site&#8217;s design into actual usable components.  Tools are also included to help a developer understand how a page has been constructed, how long each component takes to load, and also see what code is being executed in the components.</p>
+<p>Adobe is also including a new <strong>tag language</strong> that can help you create components without code.  These tags can grab data from the server and put it into the HTML at run time.  This looks similar to using JSP tags on a page.</p>
+<p><strong>Integration, Front-end Testing</strong> can also be done right within the interface.  Tests can be scripted and then run right within AEM.  This can eliminate some manual testing of web sites in the SDLC.  Results show you right in the interface where problems occurred.</p>
+<p>There are new <strong>Heatlh Dashboards</strong> targeted for system admins.  The dashboard shows the status of various parts of AEM and highlights any areas where problems exist.  These dashboards can also show when maintenance tasks must be run.</p>
+<p>Finally, <strong>Projects</strong> is a new feature. Projects group content together with other items, such as tasks, experiences, workflows, etc. These are presented as a Dashboard for the project so you don&#8217;t have to hunt for all these items across the AEM interface.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/26/adobe-summit-top-new-features-in-adobe-experience-manager-wcm/">Adobe Summit: Top new features in Adobe Experience Manager WCM</a> was first posted on March 26, 2014 at 4:01 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2014/03/26/adobe-summit-top-new-features-in-adobe-experience-manager-wcm/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Building a social listening program with Adobe Social</title>
+		<link>/adobe-blog/2014/03/25/adobe-summit-building-a-social-listening-program-with-adobe-social/</link>
+		<comments>/adobe-blog/2014/03/25/adobe-summit-building-a-social-listening-program-with-adobe-social/#comments</comments>
+		<pubDate>Tue, 25 Mar 2014 18:04:59 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Social]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[social business]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=7152</guid>
+		<description><![CDATA[I made it to Adobe Summit 2014 and my first session is How to build a social program using Adobe Social. This is a technical session presented by Carmen Sutter, Adobe&#8217;s Product Manager for Adobe Social and Greg Greenstreet VP Engineering at Gnip. 550 million tweets were sent in one day. Yet, there is almost [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/25/adobe-summit-building-a-social-listening-program-with-adobe-social/">Adobe Summit: Building a social listening program with Adobe Social</a> was first posted on March 25, 2014 at 1:04 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>I made it to Adobe Summit 2014 and my first session is How to build a social program using Adobe Social. This is a technical session presented by Carmen Sutter, Adobe&#8217;s Product Manager for Adobe Social and Greg Greenstreet VP Engineering at Gnip.  </p>
+<p>550 million tweets were sent in one day.  Yet, there is almost no organization to those tweets.  You can&#8217;t easily go find tweets about your brand, posted by your employees etc.  Add in Facebook, Instagram, Google+ and others you can see that mining social data is not easy.  But you must mine this data if you want to understand what people are saying about you.</p>
+<p>To make sense of all this data, you want to &#8220;cast the right size net for your social campaign&#8221;.  In other words you want to filter all the data using various techniques.  The most basic technique is to use boolean And, Or, and Negation.  Gnip uses this kind of filtering as the starting point to filter the huge amount of data coming from the social platforms. Adobe Social then takes that filtered data to further refine the data.</p>
+<p>In addition to Boolean, you can also filter on geo-tagging. However only 1-2% of users actually make it easy by supplying or using geo-encoding when tweeting.  So Gnip uses other techniques to grab geo-information.</p>
+<p>Using public APIs you can also filter on language, hashtags and many other attributes of social data.  </p>
+<p>Next, you have to figure out what to do with the filtered data.  Look at the goals of what you are trying to accomplish. This will affect the workflows you set up for monitoring and responding.  </p>
+<p>In the session the presenters talked about monitoring the Olympics Twitter feed. So they&#8217;ve already performed one level of filtering. Then they looked at specific hashtags, event names, event types and more.</p>
+<p><a href="/adobe-blog/files/2014/03/20140325-110957.jpg"><img src="/adobe-blog/files/2014/03/20140325-110957.jpg" alt="20140325-110957.jpg" class="alignnone size-full" /></a></p>
+<p><span id="more-7152"></span></p>
+<p>A Social Buzz report showed distinct spikes during the Olympics &#8211; one at the opening and one at the closing.  When looking at post by platform, Twitter represented 100 times the volume of any other platform.  We then drilled down into specific tweets to see the actual contents.</p>
+<p>In Adobe Social, you can go back into the history of Tweets.  As an example, nobody expected Bob Costas to get pink eye, so no rules were available to monitor that when it happened.  Using the historical data, they were able to set up a monitor for that and bring in the historical tweets. </p>
+<p>Greg talked about the importance of <a href="http://disqus.com">Disqus</a>.  Disqus is a commenting engine that is easy to integrate into web sites. They have 9 billion comments and millions of commenter profiles.  Often the comments made through Disqus are more meaningful than what you would see in Twitter. Of course, Adobe Social includes the ability to track Disqus as easily as Twitter and other data.  </p>
+<p><a href="https://www.tumblr.com">Tumblr</a> is another platform that is important.  They have 165m blogs and 72b posts.  Tumblr content is repurposed and reused which accounts for 95% of all posts. These re-blogs can be important to monitor as they can show when something explodes in popularity. Tumblr has become the second most volume that Adobe sees.</p>
+<p>Other platforms mentioned included Foursquare and VK.  VK is the largest social platform in Eastern Europe. </p>
+<p>I think the main point of this session is that Adobe Social gives you access to all the most important social content.  Setting up a social program involves monitoring the right content at the right time.  When you look to set up your own program, don&#8217;t just look at Twitter and Facebook.  Many of the other social platforms are also tremendously important both for monitorIng and in which to participate.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/25/adobe-summit-building-a-social-listening-program-with-adobe-social/">Adobe Summit: Building a social listening program with Adobe Social</a> was first posted on March 25, 2014 at 1:04 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2014/03/25/adobe-summit-building-a-social-listening-program-with-adobe-social/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:29:34 by W3 Total Cache -->

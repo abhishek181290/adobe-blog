@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Best Practices &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/best-practices/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Managing Multiple AEM Instances</title>
+		<link>/adobe-blog/2015/12/08/managing-multiple-aem-instances/</link>
+		<comments>/adobe-blog/2015/12/08/managing-multiple-aem-instances/#respond</comments>
+		<pubDate>Tue, 08 Dec 2015 16:00:40 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[AEM]]></category>
+		<category><![CDATA[Bash]]></category>
+		<category><![CDATA[Best Practices]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=2632</guid>
+		<description><![CDATA[One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>One of the challenges I&#8217;ve had over the last few years is how to easily manage multiple AEM instances concurrently. Over the last few years, I&#8217;ve often had to have several different AEM instances running during the course of the day, whether it be different versions, client codebases or for just for standing up a quick test.</p>
+<p>To make starting, stopping and resetting AEM instances on my computer quick and easy, I created a small script and a structure to support easily managing multiple AEM instances on the same computer.</p>
+<p class="text-center" style="text-align: center"><img class="img-responsive center-block aligncenter" style="max-width: 300px" src="/adobe-blog/files/2015/12/juggling.jpg" alt="Juggling AEM Instances" /><br />
+&#8220;<a class="external text" href="https://commons.wikimedia.org/wiki/File:Y%C3%BCcelzorlu_(3).JPG">Yücelzorlu</a>&#8221; by <a class="external text" href="https://commons.wikimedia.org/wiki/User:SepiNs" rel="nofollow">SepiNs</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC SA 2.0</a></p>
+<p><span id="more-2632"></span></p>
+<h3>Folder Structure</h3>
+<p>First, from a structure perspective, create the following folders:</p>
+<pre>/[user-home]
+    /dev
+        /aem
+            /instance1
+            /instance2
+        ...
+</pre>
+<p>This structure is pretty simple, but it does help a lot to be consistent and makes it pretty quick to navigate folders via terminal or finder; cd <code>~/dev/aem/6.1</code> is pretty darn easy to type, easy to remember and makes sense from a taxonomy perspective. This structure also allows me to add other applications in parallel, such as MongoDB, Tomcat or anything else with which I may need to integrate as sibling folders to the aem folder.</p>
+<h3>AEM Manager Script</h3>
+<p>Next, I <a href="https://github.com/PerficientDigital/AEM-Manager/blob/master/aem-mgr.sh" target="_blank">created a shell script</a> to manage the individual AEM instances under this structure. The script allows you to start, stop and clear the repositories of instances. When starting, the script clears the AEM logs before starting, can start the instance in debug mode, start multiple publisher instances, can run without the GUI and allows you to configure the JVM settings for the AEM instances.</p>
+<p>This script also allows you to clear the repository, removing everything under the crx-quickstart folder to quickly restore the repository to the starting state. This can be especially useful if you are trying to save space or need to install two incompatible codebases.</p>
+<h3>Examples</h3>
+<p>The commands for the script are relatively straightforward:</p>
+<p><strong>Starting an AEM Instance</strong></p>
+<pre><code>aem-mgr start -i 6.1.0</code></pre>
+<p><strong>Starting an AEM Author and Publishers</strong></p>
+<pre><code>aem-mgr start -i 6.1.0 -p</code></pre>
+<p>It&#8217;s probably worth mentioning that what this will do is start the author instance found in the folder ~/dev/aem/6.1.0 and all of the instances in folders which look like ~/dev/aem/6.1.0-publish-[N].</p>
+<p><strong>Stopping an AEM Instance</strong></p>
+<pre><code>aem-mgr stop -i 6.1.0</code></pre>
+<p><strong>Clearing an AEM Instance</strong></p>
+<pre><code>aem-mgr clear -i 6.1.0</code></pre>
+<p>A quick note, if you want to run multiple instances in parallel, you will need to pass in the -nd flag to disable debugging on the non-primary instances. The script handles this automatically for publish instances by incrementing all of the port numbers.</p>
+<h3>Defaults</h3>
+<p>By default, the script will look for AEM instances under the ~/dev/aem folder I described above. Each instance is assumed to be in a sub-folder with a JAR inside with a name matching <code>^.<span class="pl-k">*</span>aem.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code> or <code>^.<span class="pl-k">*cq</span>.<span class="pl-k">*</span><span class="pl-cce">.</span>jar$</code>.</p>
+<p>Each instance with debug enabled will start by default with the Java debug port set to 30303 and the JMX port to 9999. Additionally, by default the JVM is granted a maximum of 1GB heap and 256MB of Permanent Generation. These values can be configured in the &#8220;Default Settings&#8221; section of the script.</p>
+<h3>Installation</h3>
+<p>To install the script either <a href="https://raw.githubusercontent.com/PerficientDigital/AEM-Manager/master/aem-mgr.sh" target="_blank">download it directly from GitHub</a> or clone the git repository and add it into your computer&#8217;s PATH variable. It has been tested in Linux and Mac and I would suspect it would work on windows with GNUTools or Cygwin installed.</p>
+<p>Hopefully you find the script and structure useful!</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/12/08/managing-multiple-aem-instances/">Managing Multiple AEM Instances</a> was first posted on December 8, 2015 at 10:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/12/08/managing-multiple-aem-instances/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>The &#8216;Age Of The Customer&#8217; Is Here. What Are You Doing About It?</title>
+		<link>/adobe-blog/2015/04/30/the-age-of-the-customer-is-here-what-are-you-doing-about-it/</link>
+		<pubDate>Thu, 30 Apr 2015 12:00:17 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[CMO]]></category>
+		<category><![CDATA[Customer Centric]]></category>
+		<category><![CDATA[marketing]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=8523</guid>
+		<description><![CDATA[Customer centricity is no longer just a loaded buzzword used by marketers preaching tactics such as personalization and customer experience. Customer centricity is now a mind-set that companies need to adopt throughout the entire organization—not just marketing—to thrive in the digital world. This quote from CMO.com&#8217;s article The &#8216;Age of The Customer&#8217; Is Here. What [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/04/30/the-age-of-the-customer-is-here-what-are-you-doing-about-it/">The &#8216;Age Of The Customer&#8217; Is Here. What Are You Doing About It?</a> was first posted on April 30, 2015 at 7:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<blockquote><p>Customer centricity is no longer just a loaded buzzword used by marketers preaching tactics such as personalization and customer experience. Customer centricity is now a mind-set that companies need to adopt throughout the entire organization—not just marketing—to thrive in the digital world.</p></blockquote>
+<p>This quote from CMO.com&#8217;s article <em>The &#8216;Age of The Customer&#8217; Is Here. What Are You Doing About It?</em> sums up nicely how we have evolved (or maybe suddenly transformed) into the customer-centric epoch.  The term &#8220;Age of the Customer&#8221; was coined by Forrester and aptly describes how access to information and the customer experience has shifted from companies to customers. This is why we keep seeing trends toward enhancing customer experience (see: <a href="http://blogs.perficient.com/digitaltransformation/2015/03/03/is-customer-experience-the-top-digital-trend-for-2015/">Is Customer Experience the Top Digital Trend for 2015?</a>).</p>
+<p>Michael Hinshaw, CEO of McorpCX describes this the &#8220;Era of Smart Customers&#8221;.  He says, “Smart customers are customers that leverage digital devices to access information, anywhere and anytime. What that means is the power in the relationship between companies and customers is in the process of shifting.”<img class="alignright" src="https://www.cmo.com/content/cmo-com/home/articles/2015/4/21/a-road-map-to-true-customercentric-thinking-and-strategy/_jcr_content/image.articles.jpg/1430137954719.jpg" alt="Customer Centricity" width="432" height="278" /></p>
+<p>Customer-centricity is one of the driving factors for Digital Transformation.  To be customer-centric, companies need to bring together people, processes and systems from across the company, especially sales, marketing, customer service. If your company is acting in silos across these areas, customers will see it and move on if they can.</p>
+<p>The article, linked below, provides a good overall description of the challenges in becoming customer-centric. Some key steps to take to overcome these challenges include the following:</p>
+<ul>
+<li>Define ownership for becoming customer-centric.  This could mean appointing a Chief Customer Officer, setting up a steering committee, or some other organizational technique.</li>
+<li>Define metrics and continually measure how you are doing.  Start with a baseline, set targets and hold people accountable to meet the targets.</li>
+<li>Refine and coordinate across the business where it affects the customer.  We might call this Digital Transformation, but it goes beyond the &#8216;digital&#8217; part.  It is really about transforming culture and operations as well as the systems.</li>
+<li>Connect with your customer.  Get feedback, encourage honest dialog about what you do and don&#8217;t do right.</li>
+</ul>
+<p>Source: <em><a href="http://www.cmo.com/articles/2015/4/21/a-road-map-to-true-customercentric-thinking-and-strategy.html" target="_blank">The &#8216;Age Of The Customer&#8217; Is Here. What Are You Doing About It?</a></em></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/04/30/the-age-of-the-customer-is-here-what-are-you-doing-about-it/">The &#8216;Age Of The Customer&#8217; Is Here. What Are You Doing About It?</a> was first posted on April 30, 2015 at 7:00 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			</item>
+		<item>
+		<title>The CIO Role in Digital Transformation</title>
+		<link>/adobe-blog/2015/03/26/the-cio-role-in-digital-transformation/</link>
+		<comments>/adobe-blog/2015/03/26/the-cio-role-in-digital-transformation/#respond</comments>
+		<pubDate>Thu, 26 Mar 2015 20:03:32 +0000</pubDate>
+		<dc:creator><![CDATA[Eric Roch]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=8362</guid>
+		<description><![CDATA[The CIO article, “Is it time for CIOs to step up and rule the digital world?” asks a good question. Can the CMO better lead a digital transformation and align IT with what is increasing a digital business than the CIO? This is an oversimplified question asking who but not what needs to be done? [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/26/the-cio-role-in-digital-transformation/">The CIO Role in Digital Transformation</a> was first posted on March 26, 2015 at 3:03 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>The CIO article, “<a href="http://www.cio.com/article/2898043/cio-role/is-it-time-for-cios-to-step-up-and-rule-the-digital-world.html#social">Is it time for CIOs to step up and rule the digital world</a>?” asks a good question. Can the CMO better lead a digital transformation and align IT with what is increasing a digital business than the CIO? This is an oversimplified question asking who but not what needs to be done? Specific to IT, what does the roadmap look like to achieve the digital transformation including removing aging IT systems that are a barrier to change? Modernizing IT systems is likely not what a CMO can do or even would want to do. IT and marketing must partner to achieve a digital transformation.</p>
+<p>IT has been treated as a cost center for years if not decades. The result` is enormous technical debt. IT has been turned into package implementers and outsourced for over a decade and now, when deep technical capabilities are needed, technical competencies are hard to find. The CMO may have great ideas but when faced with aging systems, huge sunk costs, mismanaged data, inefficient processes and a lack of talent, they would become mired in the complexity that is the reality of most IT environments.</p>
+<p>What is needed is for the CIO to modernize IT systems, clean up data and create agile processes so the CMO can deliver on a digital vision. A transformational CIO is needed and the mission of IT needs to change from cost containment to digital innovation. Does the CMO really want to deal with an aging ERP system, an out of date waterfall methodology, or moving CRM to the cloud? I don’t think so. And I don’t think the answer to achieving a digital transformation is in filling the execute suite. It’s going to take a lot of hard work to rationalize and modernize systems and information management. There needs to be a shift from keeping the lights on as economically as possible to a rapid transformation. The CIO and CMO need a shared vision for the digital transformation and a practical roadmap to get there.</p>
+<p>The perceived lack of IT business alignment is caused by the misalignment of shared goals. Think about the goals of outsourced IT – reduce cost and stabilize systems to meet SLAs. This is a barrier to change! IT must have a goal of digital innovation and not cost containment to the point of sacrificing technical capability including systems, processes and human capital. A transformational CIO must share the same goals as the CMO.</p>
+<p>The following is an excerpt from the CIO article:</p>
+<blockquote><p>The rise of the digital customer has sparked a battle among executives &#8212; namely, CMO vs. CIO &#8212; with lots of online sales at stake. In turn, this has led some companies to create new executive positions, such as the chief digital officer, chief data officer, chief analytics officer, chief marketing technologist and chief experience officer, all charged with taking a holistic view of the digital customer and reaching out across the enterprise…</p>
+<p>Proponents of a new C-suite executive argue that the need for business-tech alignment is greater than ever. Companies must survive and thrive in a digital world where relationships with the customer, employee and supplier require emerging technology. The responsibility for this alignment has often fallen on the shoulders of CIOs, and every year for more than a decade CIOs have reiterated that this is their biggest challenge.</p></blockquote>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/26/the-cio-role-in-digital-transformation/">The CIO Role in Digital Transformation</a> was first posted on March 26, 2015 at 3:03 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/26/the-cio-role-in-digital-transformation/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Transformation Needs Marketing, IT and Product Teams To Harmonize</title>
+		<link>/adobe-blog/2015/03/11/transformation-needs-marketing-it-and-product-teams-to-harmonize/</link>
+		<comments>/adobe-blog/2015/03/11/transformation-needs-marketing-it-and-product-teams-to-harmonize/#respond</comments>
+		<pubDate>Wed, 11 Mar 2015 15:06:17 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[CMO]]></category>
+		<category><![CDATA[digital experience]]></category>
+		<category><![CDATA[Digital Marketing]]></category>
+		<category><![CDATA[marketing]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=8308</guid>
+		<description><![CDATA[With any Digital Transformation journey, various groups within your company need to coalesce together in order to move the organization forward.  Adobe CIO Gerri Martin-Flickinger spoke about how Adobe had to harmonize their Marketing, IT and Product efforts to ensure their transformation journey was a success.  You can read my blog article about what Adobe [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/11/transformation-needs-marketing-it-and-product-teams-to-harmonize/">Transformation Needs Marketing, IT and Product Teams To Harmonize</a> was first posted on March 11, 2015 at 10:06 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>With any Digital Transformation journey, various groups within your company need to coalesce together in order to move the organization forward.  Adobe CIO Gerri Martin-Flickinger spoke about how Adobe had to harmonize their Marketing, IT and Product efforts to ensure their transformation journey was a success.  You can read my <a title="Harmonizing Marketing, IT and Product" href="http://blogs.perficient.com/digitaltech/2015/03/10/harmonizing-it-marketing-and-product-in-the-digital-age/" target="_blank">blog article</a> about what Adobe and other companies are doing to bring these factions together.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2015/03/11/transformation-needs-marketing-it-and-product-teams-to-harmonize/">Transformation Needs Marketing, IT and Product Teams To Harmonize</a> was first posted on March 11, 2015 at 10:06 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2015/03/11/transformation-needs-marketing-it-and-product-teams-to-harmonize/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Seeing Shifts: Gartner Magic Quadrant for Horizontal Portals 2014</title>
+		<link>/adobe-blog/2014/10/06/gartner-magic-quadrant-for-horizontal-portals-2014-seeing-shifts/</link>
+		<comments>/adobe-blog/2014/10/06/gartner-magic-quadrant-for-horizontal-portals-2014-seeing-shifts/#respond</comments>
+		<pubDate>Mon, 06 Oct 2014 13:39:52 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[gartner]]></category>
+		<category><![CDATA[horizontal portal]]></category>
+		<category><![CDATA[Liferay]]></category>
+		<category><![CDATA[Microsoft SharePoint]]></category>
+		<category><![CDATA[Oracle WebCenter]]></category>
+		<category><![CDATA[portal]]></category>
+		<category><![CDATA[portals]]></category>
+		<category><![CDATA[salesforce]]></category>
+		<category><![CDATA[SAP NetWeaver Portal]]></category>
+		<category><![CDATA[Sitecore]]></category>
+		<category><![CDATA[WCM]]></category>
+		<category><![CDATA[websphere portal]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=7694</guid>
+		<description><![CDATA[Gartner has released its Magic Quadrant for Horizontal Portals 2014 and it contains some interesting surprises.  For the first time in several years, Gartner has moved IBM and Liferay ahead of the other vendors in both vision and execution ability. The leaders for 2014 are still the same leaders as in 2013 and 2012. For [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/10/06/gartner-magic-quadrant-for-horizontal-portals-2014-seeing-shifts/">Seeing Shifts: Gartner Magic Quadrant for Horizontal Portals 2014</a> was first posted on October 6, 2014 at 8:39 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Gartner has released its <a title="Gartner Horizontal Portals 2014" href="http://www.gartner.com/technology/reprints.do?id=1-22PHCII&amp;ct=141002&amp;st=sg&amp;submissionGuid=6754f207-90cd-4c58-aaf9-bbfdfc92a710" target="_blank">Magic Quadrant for Horizontal Portals 2014</a> and it contains some interesting surprises.  For the first time in several years, Gartner has moved IBM and Liferay ahead of the other vendors in both vision and execution ability.</p>
+<div style="width: 412px" class="wp-caption alignright"><img class="" src="http://na3.www.gartner.com/imagesrv/reprints/260800/260888/260888_1.png;pva6e52f2ab731ba3c" alt="Gartner MQ Horizontal Portals 2014" width="402" height="402" /><p class="wp-caption-text">Gartner Magic Quadrant Horizontal Portals 2014</p></div>
+<p>The leaders for 2014 are still the same leaders as in 2013 and 2012. For the past few years IBM, Microsoft and Oracle have been clustered near each other in the Leader&#8217;s quadrant, with Liferay and SAP barely making it into that coveted quadrant.  You can see my post about the 2013 version here: <a title="Gartner Magic Quadrant for Horizontal Portals 2013" href="http://blogs.perficient.com/digitaltransformation/2013/09/25/gartner-magic-quadrant-for-horizontal-portals-2013/">Gartner MQ Horizontal Portals 2013</a>.</p>
+<p>It&#8217;s clear that Gartner is seeing both IBM and Liferay as leading competitors. Here is Gartner&#8217;s take on IBM: &#8220;IBM&#8217;s long heritage of leadership in the enterprise portal market has brought it the broadest feature set in the industry. IBM has a long list of marquee customers across vertical industries, and it has demonstrated support for nearly every type of B2E, business-to-consumer (B2C) and B2B portal initiative.&#8221;</p>
+<p>Gartner definitely likes what Liferay as accomplished in the past few years. &#8220;Even in the face of increasingly large, complex deployments, Liferay continues to build up a pool of satisfied customers. Liferay Portal has often succeeded where portal initiatives using other products were bogged down in cost and complexity.&#8221;</p>
+<p>We also see several other notable shifts. First Microsoft has moved backward in the vision axis and SAP is moving higher on the vision axis. According to Gartner, Microsoft is being hurt by uncertainty around the future of SharePoint and Office365. Microsoft is definitely making a push to Office365 and many companies want to stay on-premise. Gartner says, &#8220;The future of on-premises SharePoint Server is in question.&#8221;</p>
+<p>SAP has traditionally been viewed as a portal for SAP only.  However SAP has made a lot of investments in enabling better user experiences and can now be seen as a more broadly-based portal by companies.<span id="more-7694"></span></p>
+<p>Another shift in this year&#8217;s Magic Quadrant is the inclusion of Sitecore for the first time.  Sitecore is listed as a challenger along with OpenText. Gartner says, &#8220;Sitecore appeals most directly to organizations seeking WCM capability for customer-facing Web initiatives, but its offerings are increasingly considered for portals of supporting various business processes and audiences.&#8221;</p>
+<p>Another traditional Web Content Management product, Ektron, has also made the list for the first time in the Niche Players quadrant.  Ektron is another .net-based application, like Sitecore.  It has traditionally been positioned for customer-facing and marketing sites, but Gartner is starting to see some companies use it for intranets as well.</p>
+<p>A final shift I noticed is that Covisint has moved down the execute scale. Covisint went public in 2013 and has suffered some pains as a result of being a publicly traded company.  You can read the Gartner report for more details about Covisint.</p>
+<p>Overall, this is interesting information from Gartner and definitely a changing landscape in the Horizontal Portal market.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/10/06/gartner-magic-quadrant-for-horizontal-portals-2014-seeing-shifts/">Seeing Shifts: Gartner Magic Quadrant for Horizontal Portals 2014</a> was first posted on October 6, 2014 at 8:39 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2014/10/06/gartner-magic-quadrant-for-horizontal-portals-2014-seeing-shifts/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: Designing an integrated customer profile</title>
+		<link>/adobe-blog/2014/03/27/adobe-summit-designing-an-integrated-customer-profile/</link>
+		<comments>/adobe-blog/2014/03/27/adobe-summit-designing-an-integrated-customer-profile/#respond</comments>
+		<pubDate>Thu, 27 Mar 2014 21:40:30 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Adobe Campaign]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[campaigns]]></category>
+		<category><![CDATA[marketing]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=7207</guid>
+		<description><![CDATA[Matthew Rawding, a Consulting Manager with Adobe. talked about how to use Adobe Campaign to create an integrated customer profile.  So what is an integrated customer profile? An integrated customer profile is a main pillar of Adobe Campaign.  Also included in Campaign are targeted segmentation, visual campaign orchestration, cross-channel execution, real time interaction management, and [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/27/adobe-summit-designing-an-integrated-customer-profile/">Adobe Summit: Designing an integrated customer profile</a> was first posted on March 27, 2014 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Matthew Rawding, a Consulting Manager with Adobe. talked about how to use Adobe Campaign to create an integrated customer profile.  So what is an integrated customer profile?<img class="alignright" alt="" src="https://blogs.adobe.com/conversations/files/2013/09/Adobe-Campaign.jpeg" width="461" height="454" /></p>
+<p>An integrated customer profile is a main pillar of Adobe Campaign.  Also included in Campaign are targeted segmentation, visual campaign orchestration, cross-channel execution, real time interaction management, and operational reporting.</p>
+<p>The goal is to build the most comprehensive view of a customer possible based on the following sets of data.</p>
+<ul>
+<li>Contact Information</li>
+<li>Sociodemographic data</li>
+<li>Computed Data &#8211; compute additional attributes based on other data</li>
+<li>Explicit customer data &#8211; data provided by the customer as in a customer preference</li>
+<li>Implicit customer data &#8211; data we gather</li>
+<li>Scoring attributes</li>
+</ul>
+<p>A key message here is: The more you can gather and manage data, the fewer guesses you have to make as a marketer.</p>
+<p>Adobe Campaign provides a way to collect and manage all this data about customers.  This allows you to market directly to customers by knowing this much about each customer.</p>
+<p>You want to have conversations with customers, not just communications.  This means listening to what the customers are saying through explicit and implicit data.  In Campaign, you can use this data to target specific customers and target the specific communications methods they prefer. Workflows all you to split a campaign across devices, so if one person prefers email they get an email, while another customer that prefers phone, gets a phone call.</p>
+<p>Data aggregation is important. You can load all data into one DB. Or you can map datasources based on common keys.  Or you can use a hybrid model of collecting data in one place and mapping that data to sources that can&#8217;t be collected.</p>
+<p>Matthew provided a 9-point checklist for building an integrated customer profile.  The first 5 steps are all about planning.</p>
+<ol>
+<li>Define Business Need</li>
+<li>Identify data sources</li>
+<li>Located Other Sources</li>
+<li>Invest in Data Governance</li>
+<li>Plan out your Data Ecosystem</li>
+<li>Implementation</li>
+<li>Automation</li>
+<li>Measurement</li>
+<li>Maintenance</li>
+</ol>
+<p>The process above is iterative. You periodically have to go through iterations of some or all of the steps.</p>
+<p>In Adobe Campaign, they have a very recipient oriented data model. This data includes data from delivery logs, tracking logs, proposition logs, survey logs and sales transactions.  There is often a need to include loyalty data, but you can map this data into the Campaign.</p>
+<p>Campaign also includes a data loading workflow which automates the importation of data.<img class="alignright" alt="" src="https://www.cmswire.com/assets_c/2013/06/screenshot-neolanecampaigns-2013-thumb-600x345-15696.png" width="424" height="244" />  This sounds like a typical ETL process.</p>
+<p>De-duplication is an important and complicated part of the process.  De-duplication rules need to be created and monitored. Campaigns uses a score-based matching system to do de-duping. This allows you to assign a base rule followed by the scoring rules.  Scoring rule allows you to add weights to specific conditions.  Totaled together, the base match and score rule results indicated a matched record.  Campaign calls this an <em>Enrichment </em>activity in the workflow.</p>
+<p>After you have the de-duplication rules, you can also set <em>Merge</em> rules to the system which data fields to keep from which duplicate record.</p>
+<p>&nbsp;</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/27/adobe-summit-designing-an-integrated-customer-profile/">Adobe Summit: Designing an integrated customer profile</a> was first posted on March 27, 2014 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2014/03/27/adobe-summit-designing-an-integrated-customer-profile/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe Summit: New Video Analytics in Adobe Analytics</title>
+		<link>/adobe-blog/2014/03/27/adobe-summit-new-video-analytics-in-adobe-analytics/</link>
+		<comments>/adobe-blog/2014/03/27/adobe-summit-new-video-analytics-in-adobe-analytics/#respond</comments>
+		<pubDate>Thu, 27 Mar 2014 20:13:42 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[marketing]]></category>
+		<category><![CDATA[video]]></category>
+		<category><![CDATA[video analytics]]></category>
+		<category><![CDATA[video content management]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=7203</guid>
+		<description><![CDATA[Scott Smith presented a session on video analytics.  Analytics regarding video has been rough to achieve.  There have been few standards and the complexity has been high. Abode has introduced a Video Heartbeat Tracking library where they hope to simplify implementation of video analytics.  They also want to introduce stability into process and help you [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/27/adobe-summit-new-video-analytics-in-adobe-analytics/">Adobe Summit: New Video Analytics in Adobe Analytics</a> was first posted on March 27, 2014 at 3:13 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Scott Smith presented a session on video analytics.  Analytics regarding video has been rough to achieve.  There have been few standards and the complexity has been high.<img class="alignright" alt="" src="https://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/solutions/project-primetime/images/thumb-primetime-video-analytics-327x183.jpg.adimg.mw.327.png" width="327" height="183" /></p>
+<p>Abode has introduced a Video Heartbeat Tracking library where they hope to simplify implementation of video analytics.  They also want to introduce stability into process and help you understand more about your video usage.  This is becoming more and more important as video consumption moves from traditional TV to all of our connected devices.</p>
+<p>Challenges we all face:</p>
+<ul>
+<li>Granularity vs Cost &#8211; how many server calls am I going to make to track usage vs the cost to make all these calls. RIght now companies send tracking data at quartiles of the video.  If a video is short, like 5 minutes, the quartiles give you data back every minute, which is OK. As videos get longer, the quartiles get longer and you loose information.</li>
+<li>Different players and player vendors &#8211; flash, html 5, third party</li>
+<li>Measuring across devices and platforms &#8211; measuring in set top boxes, AppleTV, Roku, etc.</li>
+<li>Syndicated content &#8211; your videos get syndicated on many different sites</li>
+<li>Deciding what metrics to track</li>
+<li>Understanding how video is impacting business (ROI, KPIs, etc.)</li>
+<li>Video types &#8211; live streaming, video on demand</li>
+</ul>
+<p>Heartbeat &#8211; what is it.  Heartbeat is a ping that lets us know you are still watching a video.  Adobe Analytics now has a video heartbeat tracking capability.   Data contained in a heart beat includes: environment, event info, asset information, stream information and user information.  There is also milestone tracking which Heartbeat is the new method.</p>
+<p>During playback, a heartbeat is sent every 10 seconds.  These go to a pre-aggregation layer.  When the video is complete or abandoned, final time spent and completion metrics are sent to Adobe Analytics.  By going to 10 seconds, you get improved granularity of time spent tracking and you can also get real-time data. <img class="alignright" alt="" src="https://cdn-static.zdnet.com/i/r/story/70/00/021927/zdnet-adobe-analytics-fall-video-620x350.jpg?hash=MQMuBTEuLG&amp;upscale=1" width="521" height="294" /></p>
+<p>How does this affect Ad tracking?  Ads are tracked the same way &#8211; through the Heartbeat.  Adobe is working with Ad servers to ingest meta data from those servers.  New metrics that are available include impressions, duplicate views, bounce rate, average ads per video and time spend on ads. These metrics help you optimize your ad recipe.  If you have a pre-roll, you can use the analytics to determine the effect on viewing the content based on the pre-roll ad time.</p>
+<p>How does this help with Standardization?  First the 10 sec heartbeat becomes a standard.  Adobe is defining a set of reserved variables so everyone has access to the same data. There are 7 core video variables and 7 ad variables.  You can then add custom variables on top of these (for which you have to pay additional money).</p>
+<p>With these standards, Adobe will also be able to show benchmarks.  By taking out customer specific data, the standardization allows Adobe to compare video analytics across industries, content type, etc.</p>
+<p>Adobe is also including real-time reporting for video.  You can pick a few measures and within Adobe Analytics see trends as they happen in real-time.  Later this year, Adobe is going to report on live events and video on demand.</p>
+<p>Pricing in the past has been based on the number of server calls.  Adobe is moving to a stream-based pricing model.  So you pay one price for a stream.  In the stream you can track ads as well as content for the same price.  To estimate the cost, all you need is to estimate the number of streams you want to track.</p>
+<p>Right now this new Heatbeat is available on ActionScript, Javascript, IOS and Android platforms.  Other platforms are coming later this year.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2014/03/27/adobe-summit-new-video-analytics-in-adobe-analytics/">Adobe Summit: New Video Analytics in Adobe Analytics</a> was first posted on March 27, 2014 at 3:13 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2014/03/27/adobe-summit-new-video-analytics-in-adobe-analytics/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe&#8217;s State of Mobile Benchmark</title>
+		<link>/adobe-blog/2013/10/22/adobes-state-of-mobile-benchmark/</link>
+		<comments>/adobe-blog/2013/10/22/adobes-state-of-mobile-benchmark/#respond</comments>
+		<pubDate>Tue, 22 Oct 2013 10:31:43 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Mobile Experience]]></category>
+		<category><![CDATA[Android]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[ios]]></category>
+		<category><![CDATA[Mobile]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=6574</guid>
+		<description><![CDATA[Adobe is making a name for itself in the area of digital marketing.  Marketers know that data is necessary to make key decisions and I&#8217;m glad to see Adobe providing leadership in this area. When it comes to data about mobile usage, Adobe has published their State of Mobile study on their website, available to [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2013/10/22/adobes-state-of-mobile-benchmark/">Adobe&#8217;s State of Mobile Benchmark</a> was first posted on October 22, 2013 at 5:31 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Adobe is making a name for itself in the area of digital marketing.  Marketers know that data is necessary to make key decisions and I&#8217;m glad to see Adobe providing leadership in this area. When it comes to data about mobile usage, Adobe has published their <a title="State of Mobility Benchmark" href="http://success.adobe.com/assets/en/downloads/whitepaper/13926_di_mobile_benchmark_final.pdf" target="_blank">State of Mobile</a> study on their website, available to anybody. <a href="https://blogs.perficient.com/portals/wp-content/blogs.dir/3/files/2013/10/marquee-di-mobile-benchmark-709x300.png"><img class="alignright  wp-image-6578" alt="marquee-di-mobile-benchmark-709x300" src="https://blogs.perficient.com/portals/wp-content/blogs.dir/3/files/2013/10/marquee-di-mobile-benchmark-709x300-600x253.png" width="420" height="177" /></a></p>
+<p>This study highlights some important data about mobile usage, including the following:</p>
+<ul>
+<li>Tablets have overtaken phones in the amount of traffic they drive. Think about that. Modern tablets were introduced in 2010. In just 2+ years, they have taken over smartphone traffic.</li>
+<li>In the Retail industry, tablets are preferred, while in Telecom phones are preferred by a wide margin.</li>
+<li>Since February 2012, iOS has overtaken Android (again) for browsing</li>
+<li>Video has grown by 300% on mobile devices, however, the desktop still accounts for almost 90% of video browsing.</li>
+<li>For online shoppers, tablet users are 3 times more likely to buy versus smartphone users.</li>
+</ul>
+<p>This is all good data for those people who are targeting mobile devices.  I&#8217;m looking forward to more of these types of studies from Adobe.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2013/10/22/adobes-state-of-mobile-benchmark/">Adobe&#8217;s State of Mobile Benchmark</a> was first posted on October 22, 2013 at 5:31 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2013/10/22/adobes-state-of-mobile-benchmark/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adobe CQ5 as a Portal</title>
+		<link>/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/</link>
+		<comments>/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/#comments</comments>
+		<pubDate>Wed, 01 Feb 2012 18:14:14 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Experience Management]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[cq5]]></category>
+		<category><![CDATA[portal]]></category>
+		<category><![CDATA[websphere portal]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=4180</guid>
+		<description><![CDATA[We&#8217;ve seen a lot of interest in Adobe CQ5 lately. One question that comes up a lot is about CQ5&#8217;s portal capabilities.  Michael Porter blogged last year about the trend of Web Content Management systems to become more portal-like (see Web Content Management’s Trend Towards Portals). It is true that overall CQ5 has lots of traditional [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/">Adobe CQ5 as a Portal</a> was first posted on February 1, 2012 at 12:14 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>We&#8217;ve seen a lot of interest in Adobe CQ5 lately. One question that comes up a lot is about CQ5&#8217;s portal capabilities.  Michael Porter blogged last year about the trend of Web Content Management systems to become more portal-like (see <a title="Web Content Management trend toward portal" href="http://blogs.perficient.com/digitaltransformation/2011/04/25/web-content-managements-trend-towards-portals/">Web Content Management’s Trend Towards Portals</a>).</p>
+<p>It is true that overall CQ5 has lots of traditional portal features.  However, unlike many other WCM systems, CQ5 has gone the extra step to include a portal server within its stack so you can run real portlets in the system.  So CQ5 can play dual roles of traditional content management and portal, just like traditional portal vendors IBM, Liferay, and SharePoint.</p>
+<p>So the question is: can CQ5 offer the same level of portal capabilities as these other vendors?  From a pure <em>portal</em> point of view, I don&#8217;t think CQ5 is quite at the level of the major portal vendors.  I refer to CQ5 as more portal-lite because it does offer the ability to run standard portlets, but it lacks many of the features that the other systems provide.  Here is a small list of additional services that IBM&#8217;s portal offers that are not in CQ5:</p>
+<ul>
+<li>Credential Vault &#8211; when integrating with external sites, you sometimes need to store each user&#8217;s ID and password to pass along.  IBM provides a very secure implementation of a credential vault out of the box.</li>
+<li>Personalization engine access from within a portlet.  CQ5 offers personalization of content, but what if you have a custom portlet that needs to pull in personalized content.  IBM offers this service so portlets can define a content spot on the output of a portlet and that spot runs the rules engine to get personalized content.</li>
+<li>JSF or Struts frameworks.  Both frameworks are included in the IBM tooling for Portlets and are available in the server runtimes.  For CQ5 you will have to implement these frameworks yourself.</li>
+<li>Interportlet communications.  CQ5 runs JSR 286 portlets which now offer the ability to communicate with each other through portlet events.  But if you have older JSR 168 portlets that can&#8217;t do events, you have to come up with your own portlet communication system.  IBM has provided a strong portlet wiring service for a long time.</li>
+<li>Virtual portals in the IBM Portal provide the ability to distribute administration of portals without having to purchase separate hardware and software.  This feature allows for addressing multiple user directories when you want to keep your suppliers separate from your customers.</li>
+</ul>
+<p>If you don&#8217;t plan to use these extra features, then Adobe&#8217;s CQ5 product may fit your portal needs just fine.  If these features are important, then you need to evaluate whether CQ5 should be your sole portal platform.</p>
+<p>We often see the scenario where you have a content-heavy site for your public web presence, but you have an application-heavy secure site for customer self service.  In this case, its perfectly feasible to combine CQ5 for its great content management and digital marketing platform with a more traditional portal platform for the heavy application lifting.</p>
+<p>For this scenario, content is managed in CQ5 for both marketing and secure sites.  Your application-heavy portal, say IBM Portal, can use the out of the box CQ5 content portlet to deliver content to the secure site.</p>
+<p>Don’t get me wrong, I like what Adobe CQ5 offers from a WCM and Portal perspective. Many of our clients love it.  But as we see so many vendors trying to blur the lines between the technologies to offer a complete solution, I just see that the evolution is still under way.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/">Adobe CQ5 as a Portal</a> was first posted on February 1, 2012 at 12:14 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2012/02/01/adobe-cq5-as-a-portal/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>When to use JSR 286 vs JSR 168 for portlets</title>
+		<link>/adobe-blog/2011/08/26/when-to-use-jsr-286-vs-jsr-186-for-portlets/</link>
+		<comments>/adobe-blog/2011/08/26/when-to-use-jsr-286-vs-jsr-186-for-portlets/#comments</comments>
+		<pubDate>Fri, 26 Aug 2011 12:05:14 +0000</pubDate>
+		<dc:creator><![CDATA[Mark Polly]]></dc:creator>
+				<category><![CDATA[Analytics, Optimization & Personalization]]></category>
+		<category><![CDATA[Best Practices]]></category>
+		<category><![CDATA[development]]></category>
+		<category><![CDATA[JBoss]]></category>
+		<category><![CDATA[Liferay]]></category>
+		<category><![CDATA[portal]]></category>
+		<category><![CDATA[Technical]]></category>
+		<category><![CDATA[websphere portal]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digitaltransformation/?p=3084</guid>
+		<description><![CDATA[Some confusion exists in the portlet development community, because many vendors tout their compliance with JSR 168 standards and less rarely talk about JSR 286 compatibility.  I think this is mostly due to the fact that prior to JSR 168 becoming mainstream, the standards were loose and vendors built to their own specifications.  So becoming [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2011/08/26/when-to-use-jsr-286-vs-jsr-186-for-portlets/">When to use JSR 286 vs JSR 168 for portlets</a> was first posted on August 26, 2011 at 7:05 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>Some confusion exists in the portlet development community, because many vendors tout their compliance with JSR 168 standards and less rarely talk about JSR 286 compatibility.  I think this is mostly due to the fact that prior to JSR 168 becoming mainstream, the standards were loose and vendors built to their own specifications.  So becoming compliant with JSR 168 was (and still is) a big deal.</p>
+<p>In addition, while the JSR 286 spec has been out since 2008, it took the Portal vendors some time to update their Portal Servers to support the new standard.  Now all the major vendors support JSR 286 on their Portal server.  Even many content management systems are supporting JSR 286 portlets on their systems.</p>
+<p>Also known as Portlet 2.0, JSR 286 builds upon the first portlet standard, JSR 168, so it has all the features of the first standard plus more:</p>
+<ul>
+<li>Event handling</li>
+<li>Shared parameters</li>
+<li>Resource addressing</li>
+<li>Alignment with WSRP 2.0</li>
+</ul>
+<p>If you want a really in depth discussion of these new features, take a look at this article on developerWorks: <a title="Whats new in JSR 286" href="http://www.ibm.com/developerworks/websphere/library/techarticles/0803_hepper/0803_hepper.html" target="_blank">What&#8217;s new in the Java Portlet Specification V2.0 (JSR 286)?  </a>It&#8217;s been three years since the JSR 286 spec came out, so its hardly new.</p>
+<p>So when should you code to JSR 286 or when should you code to JSR 168?  Here are my thoughts:</p>
+<ul>
+<li>If you are using the latest version of a mainstream portal, code to JSR 286.  Liferay 6, WebSphere Portal 7, Oracle WebCenter 11.1.1.14, JBoss, Adobe CQ5, OpenText, Apache all support JSR 286.</li>
+<li>If you aren&#8217;t sure what spec your portal server supports, code to JSR 168.  If you have older versions of Liferay (prior to V5), WebSphere Portal (prior to V6), Oracle WebCenter (prior to v11), you don&#8217;t have a choice &#8211; JSR 168 is the only supported spec.</li>
+<li>Your development environment may dictate whether you use JSR 286 or not.  In IBM&#8217;s Rational Developer, for example, it can&#8217;t create a JSR 286 portlet using Struts.  You can build a JSR 168 portlet using Struts, though.</li>
+</ul>
+<p>So my bottom line is this: code to the JSR 286 standard when you can and only use JSR 168 when forced to.</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2011/08/26/when-to-use-jsr-286-vs-jsr-186-for-portlets/">When to use JSR 286 vs JSR 168 for portlets</a> was first posted on August 26, 2011 at 7:05 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2011/08/26/when-to-use-jsr-286-vs-jsr-186-for-portlets/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:29:39 by W3 Total Cache -->

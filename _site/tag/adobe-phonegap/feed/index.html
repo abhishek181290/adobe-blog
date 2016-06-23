@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>Adobe PhoneGap &#8211; Adobe</title>
+	<atom:link href="/adobe-blog/tag/adobe-phonegap/feed/" rel="self" type="application/rss+xml" />
+	<link>/adobe-blog</link>
+	<description> Perspectives on Adobe Digital Marketing Platform Technologies </description>
+	<lastBuildDate>Wed, 22 Jun 2016 17:47:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.5.3</generator>
+	<copyright>Copyright © Perficient Blogs 2011 </copyright>
+	<managingEditor>gserafini@gmail.com (Adobe)</managingEditor>
+	<webMaster>gserafini@gmail.com (Adobe)</webMaster>
+	<image>
+		<url>/adobe-blog/wp-content/plugins/podpress/images/powered_by_podpress.jpg</url>
+		<title>Adobe</title>
+		<link>/adobe-blog</link>
+		<width>144</width>
+		<height>144</height>
+	</image>
+	<itunes:subtitle></itunes:subtitle>
+	<itunes:summary>Blogs at Perficient</itunes:summary>
+	<itunes:keywords></itunes:keywords>
+	<itunes:category text="Society &#38; Culture" />
+	<itunes:author>Adobe</itunes:author>
+	<itunes:owner>
+		<itunes:name>Adobe</itunes:name>
+		<itunes:email>gserafini@gmail.com</itunes:email>
+	</itunes:owner>
+	<itunes:block>no</itunes:block>
+	<itunes:explicit>no</itunes:explicit>
+	<itunes:image href="https://blogs.perficient.com/wp-content/plugins/podpress/images/powered_by_podpress_large.jpg" />
+	<item>
+		<title>Adobe Summit: Integrating Adobe DTM, Target, Analytics &#038; AEM</title>
+		<link>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/</link>
+		<comments>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/#respond</comments>
+		<pubDate>Fri, 13 May 2016 21:40:06 +0000</pubDate>
+		<dc:creator><![CDATA[Ryan Perea]]></dc:creator>
+				<category><![CDATA[Adobe]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Cordova]]></category>
+		<category><![CDATA[Adobe Data Workbench]]></category>
+		<category><![CDATA[Adobe Dynamic Tag Management]]></category>
+		<category><![CDATA[Adobe Experience Manager]]></category>
+		<category><![CDATA[Adobe Marketing Cloud]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3874</guid>
+		<description><![CDATA[At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p>At this year’s summit Adobe Summit, we had the exciting opportunity to showcase Perficient as a leading Adobe partner. As a Silver Sponsor, we felt it was our duty to demo Adobe powerful products from the Marketing Cloud by integrating Adobe Dynamic Tag Management (DTM – formally known as Satellite), Adobe Experience Manager (AEM – formally known as CQ5), Adobe Target (formally known as Test&amp;Target) and Adobe Analytics (formally known as SiteCatalyst) seamlessly into a hybrid mobile application.</p>
+<p><strong>Overview</strong></p>
+<p>Perficient was self tasked to feature a highly interactive, visually compelling Adobe Summit App built in AEM Mobile that allows users to see real-time analytics from Adobe Workbench, an interactive analytics application part of Adobe Analytics that allows you to build visualization dashboards, as well as experience personalized content based off their responses on the survey taken from their mobile device.</p>
+<p><strong>Challenge</strong></p>
+<p>Integrating DTM and Target on a single page application in AngularJs, a JavaScript front-end framework.</p>
+<p>The application was built with Cordova (formally known as Adobe PhoneGap), a hybrid app development framework which consist of HTML, CSS and JavaScript, we were able to leverage the mobile platform’s Web view to render content. Since DTM is a JavaScript based container, we were able to integrate many of the other Adobe Marketing Cloud products that we come so accustom to.</p>
+<p>Using DTM as a host for Adobe Tools such as Adobe Analytics and Target, you are able to push, configure, track, integrate and perform marketing initiatives such as performing A/B tests with different components on the page and tracking user activities on your app.</p>
+<p><strong>STEP 1</strong></p>
+<p>We built a base template for each page (&#8220;mobileapps/components/angular/ng-page”) and we extended our pages from that template by creating an AEM (CQ) project using Apache Maven, a building management tool.</p>
+<p><strong style="line-height: 1.5">STEP 2</strong></p>
+<p>After configuring our property in Adobe Dynamic Tag Management, we went to our first page in the app, in this case the login page, and inserted the DTM bootleg snippet.</p>
+<p><em><strong>“&lt;script src=&#8221;https://assets.adobedtm.com/3215e845c9690cbe968752c99b825440070e111f/satelliteLib-21077d4adfcbef88029b6d7609a4be07d51b0616-staging.js&#8221;&gt;&lt;/script&gt;”</strong></em></p>
+<p style="text-align: left"><em><strong>Notes:</strong></em> Place snippet before the end of &lt;head&gt; section in the head.jsp;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png"><img class="wp-image-3879 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png" alt="intergating adobe dynamic tag management in crxde lite" width="295" height="171" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-768x445.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite-600x348.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-crxde-lite.png 1171w" sizes="(max-width: 295px) 100vw, 295px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3875 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png" alt="intergating adobe dynamic tag management in adobe experience manager - head snippet" width="323" height="175" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-300x163.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-768x417.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet-600x325.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png 1252w" sizes="(max-width: 323px) 100vw, 323px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>STEP 3</strong></p>
+<p>In the login page component, go to body.jsp, and insert the DTM snippet in the body of the page.</p>
+<p><strong><em>“&lt;script type=&#8221;text/javascript&#8221;&gt;_satellite.pageBottom();&lt;/script&gt;”</em></strong></p>
+<p><strong><em>Notes:</em></strong> Place snippet before the end of &lt;body&gt;;</p>
+<p><strong>Screenshots</strong> from CRXDE Lite (Adobe AEM) and Maven Project</p>
+<p><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-head-snippet.png"><img class="wp-image-3878 alignleft" src="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png" alt="intergating adobe dtm in crxde lite" width="286" height="166" srcset="/adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-300x174.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-768x444.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite-600x347.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dtm-in-crxde-lite.png 1174w" sizes="(max-width: 286px) 100vw, 286px" /></a><a href="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png"><img class="wp-image-3880 alignnone" src="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png" alt="intergating adobe dynamic tag management in adobe experience manager - body snippet" width="312" height="167" srcset="/adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-300x160.png 300w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-768x411.png 768w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet-600x321.png 600w, /adobe-blog/files/2016/05/intergating-adobe-dynamic-tag-management-in-adobe-experience-manager-body-snippet.png 1270w" sizes="(max-width: 312px) 100vw, 312px" /></a></p>
+<p><strong>STEP 4</strong></p>
+<p style="text-align: left">Since the summit app is an Angular SPA, we just needed to put the snippets in the first page, and the JS will be loaded/available for all other pages.</p>
+<p>Therefore the next step was to UAT/QA and verify the JS was getting downloaded correctly.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png"><img class="size-medium wp-image-3876 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png" alt="adobe dynamic tag management debugging adobe analytic tool" width="300" height="167" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-300x167.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-768x428.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool-600x335.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-adobe-analytic-tool.png 1217w" sizes="(max-width: 300px) 100vw, 300px" /></a><strong>STEP 5 </strong></p>
+<p>Now we are ready to add our Adobe Analytics and Adobe Target tools in DTM, where we were able to implement our analytics solution design and run different personalize tests based data being collected from Adobe Analytics including custom variables and success events.</p>
+<p><a href="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png"><img class="size-medium wp-image-3877 aligncenter" src="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png" alt="adobe dynamic tag management debugging" width="300" height="172" srcset="/adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-300x172.png 300w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-768x441.png 768w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging-600x345.png 600w, /adobe-blog/files/2016/05/adobe-dynamic-tag-management-debugging.png 1182w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/">Adobe Summit: Integrating Adobe DTM, Target, Analytics &amp; AEM</a> was first posted on May 13, 2016 at 4:40 pm.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/05/13/adobe-summit-integrating-adobe-dtm-target-analytics-aem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>AEM Mobile Part 1: A Fresh Approach to Mobile Apps</title>
+		<link>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/</link>
+		<comments>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/#respond</comments>
+		<pubDate>Mon, 07 Mar 2016 15:22:35 +0000</pubDate>
+		<dc:creator><![CDATA[Dan Klco]]></dc:creator>
+				<category><![CDATA[Mobile Experience]]></category>
+		<category><![CDATA[Adobe Analytics]]></category>
+		<category><![CDATA[Adobe Digital Publishing Suite]]></category>
+		<category><![CDATA[Adobe PhoneGap]]></category>
+		<category><![CDATA[Adobe Target]]></category>
+		<category><![CDATA[AEM Mobile]]></category>
+		<category><![CDATA[AEM6]]></category>
+
+		<guid isPermaLink="false">http://blogs.perficient.com/digexplatforms/?p=3057</guid>
+		<description><![CDATA[Recently, Adobe introduced AEM Mobile, a new way to build, maintain and deploy mobile apps. AEM Mobile makes it vastly easier to manage mobile apps by enabling marketers to maintain mobile app content, which has traditionally been done by developers. AEM Mobile is the centerpiece of a new platform Adobe has built around enabling marketing to maintain [&#8230;]<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/">AEM Mobile Part 1: A Fresh Approach to Mobile Apps</a> was first posted on March 7, 2016 at 9:22 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></description>
+				<content:encoded><![CDATA[<p><img class="aligncenter" src="/adobe-blog/files/2016/03/aem-mobile-banner.png" alt="AEM Mobile" /></p>
+<p>Recently, Adobe introduced <a href="http://blogs.adobe.com/aemmobile/2016/02/announcing-adobe-experience-manager-mobile.html">AEM Mobile</a>, a new way to build, maintain and deploy mobile apps. AEM Mobile makes it vastly easier to manage mobile apps by enabling marketers to maintain mobile app content, which has traditionally been done by developers. AEM Mobile is the centerpiece of a new platform Adobe has built around enabling marketing to maintain mobile apps and market to mobile app users.</p>
+<p>As <a href="https://solutionpartners.adobe.com/fragments/partners/a1X30000000YGZiEAO.html">one of Adobe&#8217;s top partners</a>, Perficient had a chance to preview AEM Mobile and get a glimpse into the technology underlying this new platform.</p>
+<p><span id="more-3057"></span></p>
+<h2>The Tech Behind the Scenes</h2>
+<p>This new platform is composed of several different technologies, each of which has been deeply integrated, to build a seamless mobile app publishing experience.</p>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3060" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-DPS-Logo.png" alt="Adobe DPS Logo" srcset="/adobe-blog/files/2016/03/Adobe-DPS-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-DPS-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-DPS-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Digital Publishing Suite: Easy maintenance of mobile app content</h3>
+<p><a href="https://digitalpublishing.acrobat.com/welcome.html">Adobe Digital Publishing Suite (or DPS)</a>, which Adobe unveiled in 2010, provides Marketers the ability to maintain mobile app content without having to involve developers or resubmit apps through the app store. This tool has been used by numerous organizations to manage their apps, however it does have some limits. DPS, does not give full access to the mobile APIs and has limited functionality compared to native apps. Adobe Mobile takes what is best about DPS, the Marketing content management and integrates it into the powerful PhoneGap platform.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3062" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/PhoneGap-Logo.png" alt="PhoneGap Logo" /></p>
+<h3>Adobe PhoneGap: Publish apps across all mobile platforms</h3>
+<p><a href="http://phonegap.com/">Adobe PhoneGap</a> is a powerful platform for publishing multi-platform mobile apps. These apps are built with HTML and CSS and are wrapped in a native app wrapper. The deep API integrations and powerful rendering engines in modern phones allows these apps to compete in performance and features with native apps without requiring separate development efforts for each platform. By integrating Adobe PhoneGap into AEM Mobile, Adobe has unleashed the power of the PhoneGap platform and integrated with the ease of content publication provided by Adobe Experience Manager and Adobe Digital Publishing Suite.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3063" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/AEM-Logo.png" alt="AEM Logo" /></p>
+<h3>Adobe Experience Manager: Author content &amp; managed digital assets in an friendly interface</h3>
+<p>In AEM Mobile, <a href="http://www.adobe.com/marketing-cloud/enterprise-content-management.html">Adobe Experience Manager</a> extends it&#8217;s powerful content authoring and Digital Asset Management features to enable marketers to manage and deploy mobile apps through a familiar and intuitive user interface. In AEM Mobile, mobile content authors can use the same drag and drop features to build their mobile app content via reusable components.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3059" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-Analytics-Logo.png" alt="Adobe Analytics Logo" srcset="/adobe-blog/files/2016/03/Adobe-Analytics-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-Analytics-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-Analytics-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Analytics: Quick &amp; easy measurement of mobile interactions</h3>
+<p>Adobe has created a version of <a href="http://www.adobe.com/marketing-cloud/web-analytics.html">Adobe Analytics</a> specifically targeted at measuring mobile app interactions. Of course, companies can still integrate with Adobe Analytics Standard and Premium to get the full breadth of measurement possibilities, but this mobile-specific framework enables quick and low-effort measurement of a large number of mobile-specific interactions.</p>
+</div>
+<div style="clear: both;">
+<p><img class="alignnone size-full wp-image-3061" style="float: left; padding: 10px;" src="/adobe-blog/files/2016/03/Adobe-Target-Logo.png" alt="Adobe Target Logo" srcset="/adobe-blog/files/2016/03/Adobe-Target-Logo.png 233w, /adobe-blog/files/2016/03/Adobe-Target-Logo-150x150.png 150w, /adobe-blog/files/2016/03/Adobe-Target-Logo-144x144.png 144w" sizes="(max-width: 233px) 100vw, 233px" /></p>
+<h3>Adobe Target: Deliver dynamic content</h3>
+<p>Along with the <a href="/blogs.perficient.com/digexplatforms/2016/01/05/are-you-ready-for-at-js/">new AT.js</a>, Adobe has released a version of <a href="http://www.adobe.com/marketing-cloud/testing-targeting.html">Adobe Target</a> geared for mobile apps. Using Adobe Target, marketers can deliver dynamic content to users to market within the device, increasing relevance, conversion rates and engagement.</p>
+</div>
+<h2 style="clear: both;">Bringing it all Together</h2>
+<p>By combining all of these technologies into a single platform, Adobe has created a mobile app platform with unparalleled features, flexibility and ease of use. No longer should mobile apps be separate from the rest of your digital marketing technology or should they be unmeasured or un-marketed. By leveraging, AEM Mobile you can build and maintain more apps and derive more value out of every dollar you put into mobile.</p>
+<p>Perficient is extremely excited by the possibilities offered by AEM Mobile and for <a href="http://summit.adobe.com" target="_blank">Adobe Summit</a>, we have some very special demos planned to demonstrate the potential of the platform. Stay tuned for the second part of this blog series for more information!</p>
+<p>&nbsp;</p>
+<hr style="border-top:black solid 1px" /><a href="/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/">AEM Mobile Part 1: A Fresh Approach to Mobile Apps</a> was first posted on March 7, 2016 at 9:22 am.<br />©2016 "<a href="/adobe-blog">Adobe</a>". Use of this feed is for personal non-commercial use only. If you are not reading this article in your feed reader, then the site is guilty of copyright infringement. Please contact me at gserafini@gmail.com<br />]]></content:encoded>
+			<wfw:commentRss>/adobe-blog/2016/03/07/aem-mobile-part-1-a-fresh-approach-to-mobile-apps/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+
+
+Page Caching using disk: enhanced
+
+
+
+ Served from: blogs.perficient.com @ 2016-06-23 13:25:57 by W3 Total Cache -->

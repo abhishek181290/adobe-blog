@@ -1,0 +1,427 @@
+/*
+Theme Name: Perficient 2016
+Theme URI: http://blogs.perficient.com
+Description: Custom WordPres theme developed for Perficient
+Version: 1.0
+Author: Gabriel Serafini / Serafini Studios
+Author URI: http://www.gabrielserafini.com
+Tags: 
+
+@media breakpoints:
+
+@media (min-width: 48em)
+@media (min-width: 62em) * most common
+@media (min-width: 64em)
+@media (min-width: 80em)
+
+@media (max-width: 767px)
+@media (max-width: 991px)
+@media (max-width: 48em)
+@media (max-width: 61.9375em)
+
+*/
+
+.admin-bar header {
+	margin-top: 3rem;
+	}
+
+.rich-text h1 {
+	border-bottom: none;
+	margin-bottom: 1rem;
+	}
+
+.rich-text p a {
+	color: #cc1f20;
+	}
+
+.post-featured-image-large img {
+	z-index: 800;
+	}
+
+.entry-title-on-featured-image {
+	font-size: .8rem;
+	background: #000;
+	z-index: 10000;
+	margin: -8rem 4rem 0 4rem;
+	padding: 12px;
+	}
+
+article {
+	margin-top: 5rem;
+	}
+
+.archive-page-title {
+	margin-top: 5rem;
+	}
+
+.byline {
+	margin-bottom: 2rem;
+	}
+
+@media (min-width: 768px) {
+.hero .color-container {
+	width: 70%;
+	}
+}
+
+.hero-blog-header {
+	height: 22rem;
+	background: #666;
+	}
+
+.hero-blog-header .hero-content h1 {
+	margin-top: 5rem;
+	margin-bottom: .5rem;
+	}
+
+.hero-blog-name a {
+	color: #fff;
+	}
+
+.hero-blog-name a:hover {
+	text-decoration: none;
+	}
+
+.single .hero-blog-header {
+	height: 16rem;
+	margin-bottom: 2rem;
+	}
+
+.single .hero-blog-header .hero-content h1 {
+	margin-top: 2rem;
+	margin-bottom: 0rem;
+	}
+
+.single .hero-blog-header .hero-caption {
+	display: none;
+	}
+
+
+#blogs-sidebar {
+	margin-top: 6rem;
+	font-size: 1.4rem;
+	}
+
+
+#blogs-sidebar .widget {
+	margin-bottom: 2rem;
+	}
+
+#blogs-sidebar .widget h3 {
+	font-weight: bold;
+	}
+
+#blogs-sidebar .widget ul {
+	margin: 0;
+	padding: 0;
+	}
+
+#blogs-sidebar .widget li {
+	line-height: 1.3em;
+	margin-bottom: 1rem;
+	list-style: none;
+	}
+
+#blogs-sidebar .widget p, #blogs-sidebar .widget li {
+	font-size: 1.4rem;
+	line-height: 1.4em;
+	}
+
+.blogs-tags {
+	text-align: right;
+	font-size: 1.6rem;
+	}
+
+.blogs-tags a {
+	border: 1px solid #666;
+	color: #666;
+	padding: .6rem;
+	margin-right: .2rem;
+	margin-bottom: .4rem;
+	display: inline-block;
+	}
+
+.blogs-tags a:hover {
+	color: #cc1f20;
+	border: 1px solid #cc1f20;
+	text-decoration: none;
+	}
+
+.tags-author-info {
+	padding-top: 3rem;
+	}
+	
+.author-avatar-and-name h4 {
+	text-transform: uppercase;
+	}
+
+.author-avatar-and-name h4 a {
+	color: #000;
+	}
+
+.author-avatar-and-name h5 {
+	font-weight: normal;
+	text-transform: none;
+	}
+
+@media (max-width: 991px) {
+	.hero-blog-header {
+		height: 12rem;
+		margin-bottom: 2rem;
+		}
+
+	.hero-blog-header .hero-content h1 {
+		margin-top: 2rem;
+		margin-bottom: 0rem;
+		}
+
+}
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+	}
+
+.alignright {
+	float: right;
+	}
+
+.alignleft {
+	float: left;
+	}
+
+.wp-caption {
+	margin: 0 18px 18px 18px;
+	}
+
+.wp-caption-text {
+	font-style: italic;
+	color: #333;
+	margin: 0;
+	padding: 4px 0;
+	}
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+blockquote {
+	font-style: italic;
+	text-indent: 3rem;
+	margin-left: 1rem;
+	padding-left: 2rem;
+	border-left: 4px solid #d63732;
+	}
+
+blockquote.alignleft,
+img.alignleft {
+	margin: 7px 24px 7px 0;
+}
+
+.wp-caption.alignleft {
+	margin: 7px 14px 7px 0;
+}
+
+blockquote.alignright,
+img.alignright {
+	margin: 7px 0 7px 24px;
+}
+
+.wp-caption.alignright {
+	margin: 7px 0 7px 14px;
+}
+
+blockquote.aligncenter,
+img.aligncenter,
+.wp-caption.aligncenter {
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.site-content blockquote.alignleft,
+.site-content blockquote.alignright {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-top: 17px;
+	width: 50%;
+}
+
+.site-content blockquote.alignleft p,
+.site-content blockquote.alignright p {
+	margin-bottom: 17px;
+}
+
+.wp-caption {
+	margin-bottom: 24px;
+}
+
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+	margin: 0;
+}
+
+.wp-caption {
+	color: #767676;
+}
+
+.wp-caption-text {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	font-size: 12px;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 9px 0;
+	padding-right: 10px;
+}
+
+.wp-smiley {
+	border: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.sidebar-subscribe-link {
+	margin: 0 0 12px 10px;
+	clear: both;
+	}
+
+.sidebar-subscribe-link img {
+	border: 0;
+	margin: 0 0 -8px 0;
+	}
+
+.sidebar-subscribe-link a {
+	text-decoration: none;
+	}
+
+.sidebar-subscribe-link a span {
+	text-decoration: underline;
+	}
+
+#twitter-tools li {
+	margin: 4px 0 10px 0 !important;
+	font-size: 12px;
+	}
+
+.widget_search {
+	margin: 8px 0 12px 0 !important;
+	}
+
+.author-list {
+	margin: 12px 0;
+	}
+
+.author-list .avatar {
+  	float: left;
+	padding: 6px 4px 0 2px;
+	margin: -8px 0 0 0;
+	border: 0;
+	}
+
+.author-list .avatar img {
+	padding: 0;
+	margin: -5px 0 0 0;
+	}
+
+.author-list .with-name {
+	height: 32px;
+	clear: both;
+	}
+
+.author-list .name {
+	float: left;
+	margin: 0 0 2px 6px;
+	text-align: left;
+	}
+
+.avatar {
+	border-radius: 50%;
+	}
+
+	
+.pager {
+	margin-top: 6rem;
+	}
+	
+.pager li > a, .pager li > span {
+	border: none;
+	color: #000;
+	}
+
+.pager li > a:focus, .pager li > a:hover {
+	background-color: none;
+	}
+
+
+
+/**
+ * 7.0 - Accessibility
+ */
+
+/* Text meant only for screen readers */
+.says,
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
+	/* many screen reader and browser combinations announce broken words as they would appear visually */
+	word-wrap: normal !important;
+}
+
+/* must have higher specificity than alternative color schemes inline styles */
+.site .skip-link {
+	background-color: #f1f1f1;
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+	color: #21759b;
+	display: block;
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	left: -9999em;
+	outline: none;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	text-transform: none;
+	top: -9999em;
+}
+
+.logged-in .site .skip-link {
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	font-family: "Open Sans", sans-serif;
+}
+
+.site .skip-link:focus {
+	clip: auto;
+	height: auto;
+	left: 6px;
+	top: 7px;
+	width: auto;
+	z-index: 100000;
+}
